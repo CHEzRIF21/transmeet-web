@@ -1,0 +1,363 @@
+---
+alwaysApply: true
+---
+
+# ============================================================
+# TRANSMIT — CURSOR PROJECT RULES
+# Marketplace Logistique · Afrique de l'Ouest
+# ============================================================
+
+## 🎯 CONTEXTE PROJET
+
+Tu travailles sur **Transmit**, une marketplace logistique B2B qui connecte expéditeurs
+et transporteurs professionnels pour le transport routier en Afrique de l'Ouest
+(Bénin, Togo, hinterland UEMOA/CEDEAO).
+
+La plateforme intègre :
+- Mise en relation expéditeurs ↔ transporteurs
+- Gestion des formalités douanières (workflow documents)
+- Négociation commerciale sécurisée (denrées alimentaires)
+- Paiements via Mobile Money (CinetPay) et escrow
+- Suivi logistique des transports
+
+---
+
+## 🏗️ STACK TECHNIQUE OBLIGATOIRE
+
+### Frontend
+- **Framework** : Next.js 14 avec App Router (jamais Pages Router)
+- **Langage** : TypeScript strict (strict: true dans tsconfig)
+- **Styles** : Tailwind CSS uniquement — pas de CSS modules, pas de styled-components
+- **Composants UI** : shadcn/ui — utiliser les composants existants avant d'en créer
+- **State global** : Zustand pour l'état client
+- **Data fetching** : TanStack Query (React Query) v5 pour toutes les requêtes serveur
+- **Formulaires** : React Hook Form + Zod (validation synchronisée backend/frontend)
+- **Cartographie** : Leaflet + OpenStreetMap (pas Google Maps)
+- **i18n** : next-intl — toutes les chaînes dans les fichiers de traduction
+
+### Backend
+- **Runtime** : Node.js 20+
+- **Framework API** : Fastify avec TypeScript
+- **ORM** : Prisma avec PostgreSQL
+- **Validation** : Zod sur tous les inputs API
+- **Auth** : Supabase Auth (JWT) — jamais d'implémentation auth custom
+- **Queue** : BullMQ + Redis (Upstash) pour jobs asynchrones
+- **Upload** : Cloudflare R2 avec presigned URLs (upload direct navigateur)
+
+### Base de données
+- **BDD** : PostgreSQL via Supabase
+- **Migrations** : Prisma Migrate uniquement — jamais de SQL brut en production
+- **Nommage** : snake_case pour toutes les tables et colonnes
+- **UUID** : gen_random_uuid() pour toutes les clés primaires
+
+### Infrastructure
+- **Frontend deploy** : Vercel
+- **Backend deploy** : Railway
+- **Fichiers** : Cloudflare R2
+- **Cache** : Upstash Redis
+- **Monitoring** : Sentry pour les erreurs
+
+---
+
+## 📁 STRUCTURE DES DOSSIERS
+
+```
+transmit/
+├── apps/
+│   ├── web/                    # Next.js frontend
+│   │   ├── app/
+│   │   │   ├── (auth)/        # Routes groupe auth (login, register)
+│   │   │   ├── (dashboard)/   # Routes protégées
+│   │   │   │   ├── expediteur/
+│   │   │   │   ├── transporteur/
+│   │   │   │   └── admin/
+│   │   │   ├── api/           # Route handlers Next.js (minimal)
+│   │   │   └── layout.tsx
+│   │   ├── components/
+│   │   │   ├── ui/            # shadcn/ui components (ne pas modifier)
+│   │   │   ├── forms/         # Formulaires métier
+│   │   │   ├── layout/        # Header, sidebar, navigation
+│   │   │   └── features/      # Composants par feature
+│   │   ├── lib/
+│   │   │   ├── api/           # Clients API (React Query hooks)
+│   │   │   ├── store/         # Stores Zustand
+│   │   │   ├── utils/         # Fonctions utilitaires
+│   │   │   └── validations/   # Schémas Zod partagés frontend
+│   │   └── messages/          # Fichiers i18n (fr.json, en.json)
+│   └── api/                   # Fastify backend
+│       ├── src/
+│       │   ├── routes/        # Routes Fastify par domaine
+│       │   ├── services/      # Logique métier
+│       │   ├── repositories/  # Accès BDD via Prisma
+│       │   ├── middlewares/   # Auth, rate limit, validation
+│       │   ├── jobs/          # Workers BullMQ
+│       │   └── utils/
+│       └── prisma/
+│           ├── schema.prisma
+│           └── migrations/
+└── packages/
+    ├── types/                 # Types TypeScript partagés
+    ├── validations/           # Schémas Zod partagés
+    └── config/                # Config partagée (eslint, tsconfig)
+```
+
+---
+
+## 🧑‍💻 CONVENTIONS DE CODE
+
+### TypeScript
+- Toujours typer explicitement les props de composants avec des interfaces
+- Préférer `interface` pour les objets, `type` pour les unions/intersections
+- Jamais de `any` — utiliser `unknown` si le type est incertain
+- Toujours typer les retours de fonctions async
+- Utiliser les types générés par Prisma pour les entités BDD
+
+```typescript
+// ✅ Correct
+interface MissionCardProps {
+  mission: Mission & { vehicle: Vehicle; carrier: User }
+  onStatusUpdate: (id: string, status: MissionStatus) => Promise<void>
+}
+
+// ❌ Interdit
+const handleUpdate = async (data: any) => { ... }
+```
+
+### Nommage
+- **Composants React** : PascalCase (`MissionCard`, `TransportRequestForm`)
+- **Hooks** : camelCase préfixé `use` (`useMissions`, `useAuth`)
+- **Stores Zustand** : camelCase préfixé `use` + suffixe `Store` (`useAuthStore`)
+- **Services** : PascalCase suffixe `Service` (`MissionService`, `PaymentService`)
+- **Types/Interfaces** : PascalCase sans préfixe I (`Mission`, `TransportRequest`)
+- **Constantes** : SCREAMING_SNAKE_CASE (`MAX_FILE_SIZE_MB`, `SUPPORTED_COUNTRIES`)
+- **Variables d'environnement** : SCREAMING_SNAKE_CASE préfixées par contexte
+
+### Composants React
+- Un composant par fichier
+- Toujours exporter en `export default` pour les pages, `export` nommé pour les composants
+- Utiliser les Server Components par défaut dans Next.js App Router
+- Ajouter `'use client'` uniquement si le composant nécessite des hooks ou interactions
+
+```typescript
+// ✅ Server Component (par défaut)
+export default async function MissionsPage() {
+  const missions = await getMissions()
+  return <MissionList missions={missions} />
+}
+
+// ✅ Client Component (interactions requises)
+'use client'
+export function MissionStatusBadge({ status }: { status: MissionStatus }) {
+  ...
+}
+```
+
+### API Routes (Fastify)
+- Une route par fichier dans `routes/`
+- Toujours valider avec Zod avant traitement
+- Toujours retourner des réponses typées
+- Format de réponse uniforme :
+
+```typescript
+// Succès
+{ success: true, data: T, message?: string }
+
+// Erreur
+{ success: false, error: string, code: string, details?: ZodError }
+```
+
+### Gestion des erreurs
+- Utiliser `try/catch` sur tous les appels async
+- Créer des classes d'erreur métier (`MissionNotFoundError`, `PaymentFailedError`)
+- Logger toutes les erreurs via Sentry en production
+- Ne jamais exposer les stack traces en production
+
+---
+
+## 🔐 SÉCURITÉ — RÈGLES ABSOLUES
+
+Ces règles ne sont JAMAIS négociables :
+
+1. **Jamais de secret dans le code** — utiliser les variables d'environnement
+2. **Jamais de données de carte bancaire côté serveur** — widgets CinetPay/Stripe uniquement
+3. **Toujours valider les inputs** avec Zod avant tout traitement
+4. **Toujours vérifier l'authentification** sur les routes protégées via middleware
+5. **Toujours vérifier l'autorisation** (l'utilisateur peut-il accéder à CETTE ressource ?)
+6. **Rate limiting** sur toutes les routes publiques (100 req/min par IP)
+7. **Presigned URLs** pour tous les uploads (jamais de proxy backend pour les fichiers)
+8. **Jamais de SQL brut** — Prisma uniquement pour prévenir les injections
+9. **Valider le type MIME** des fichiers uploadés côté serveur
+10. **Signer et vérifier** tous les webhooks de paiement (HMAC)
+
+```typescript
+// ✅ Vérification d'autorisation obligatoire
+async function getMission(missionId: string, userId: string) {
+  const mission = await prisma.mission.findUnique({ where: { id: missionId } })
+  if (!mission) throw new MissionNotFoundError()
+  // Vérifier que l'utilisateur est bien lié à cette mission
+  if (mission.carrierId !== userId && mission.request.senderId !== userId) {
+    throw new UnauthorizedError()
+  }
+  return mission
+}
+```
+
+---
+
+## 💰 PAIEMENTS — RÈGLES SPÉCIFIQUES
+
+- **Mobile Money** : CinetPay pour MTN, Moov, Orange Money (Bénin + Togo)
+- **International** : Stripe pour cartes et virements EUR
+- **Modèle escrow obligatoire** : fonds retenus jusqu'à confirmation livraison
+- **Devise par défaut** : XOF (Franc CFA) — stocker les montants en centimes (integer)
+- **Webhooks** : toujours vérifier la signature avant de traiter
+- **Idempotence** : utiliser des `idempotency_key` sur tous les appels paiement
+- **Logs paiements** : logger toutes les transactions sans données sensibles
+
+```typescript
+// ✅ Montants en centimes XOF
+const amount = 150000 // = 1 500 XOF
+// ❌ Jamais de float pour les montants
+const amount = 1500.00 // INTERDIT
+```
+
+---
+
+## 🌍 CONTEXTE AFRIQUE DE L'OUEST — OPTIMISATIONS
+
+### Performance réseau
+- **Images** : format WebP/AVIF obligatoire, utiliser `next/image`
+- **Bundle** : max 200kb JS initial — analyser avec `@next/bundle-analyzer`
+- **Lazy loading** : tout composant non visible au premier rendu
+- **Pagination** : curseur-based (pas offset) pour les listes longues
+- **Cache** : Redis TTL 5min pour résultats de recherche fréquents
+
+### PWA (Mode hors-ligne)
+- Mettre en cache les données critiques (profil, missions en cours)
+- Formulaires fonctionnels hors-ligne avec sync au retour de connexion
+- Service Worker actif sur toutes les pages dashboard
+
+### Mobile-first
+- Tous les composants designés mobile d'abord
+- Touch targets minimum 44x44px
+- Navigation bottom bar sur mobile (< 768px)
+- Éviter les hover states comme seule interaction
+
+### Internationalisation
+- Français comme langue principale (`fr`)
+- Anglais en secondaire (`en`)
+- Toutes les chaînes UI dans `messages/fr.json` et `messages/en.json`
+- Format dates/nombres selon locale (Intl API)
+- Support numéros téléphone Bénin (+229) et Togo (+228)
+
+---
+
+## 🗄️ BASE DE DONNÉES — CONVENTIONS
+
+### Prisma Schema
+```prisma
+// ✅ Convention de nommage
+model TransportRequest {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  senderId      String   @db.Uuid
+  originCity    String
+  originCountry String   @db.Char(3) // ISO 3166-1 alpha-3
+  createdAt     DateTime @default(now()) @db.Timestamptz
+  updatedAt     DateTime @updatedAt @db.Timestamptz
+
+  sender User @relation(fields: [senderId], references: [id])
+
+  @@map("transport_requests") // snake_case en BDD
+  @@index([senderId, status])
+}
+```
+
+### Règles BDD
+- Toujours ajouter des index sur les colonnes de filtre fréquent
+- Utiliser `@db.Timestamptz` pour toutes les dates (timezone aware)
+- Soft delete préféré au hard delete (`deletedAt DateTime?`)
+- JSONB pour les données semi-structurées (tracking_updates, metadata)
+- Contraintes au niveau BDD en plus de la validation applicative
+
+---
+
+## 🧪 TESTS
+
+### Stratégie
+- **Tests unitaires** (Jest) : services, utilitaires, logique métier
+- **Tests d'intégration** (Jest + Supertest) : routes API
+- **Tests E2E** (Playwright) : parcours critiques utilisateur
+
+### Parcours E2E obligatoires
+1. Inscription et vérification email/phone
+2. Publication d'une demande de transport
+3. Recherche et sélection d'un transporteur
+4. Processus de paiement Mobile Money (sandbox)
+5. Upload et validation d'un document douanier
+6. Flux complet mission : assignation → en transit → livraison
+
+### Conventions de test
+```typescript
+// Nommage des tests
+describe('MissionService', () => {
+  it('should create a mission when carrier accepts the offer', async () => {})
+  it('should throw MissionNotFoundError when mission does not exist', async () => {})
+})
+```
+
+---
+
+## 📝 GIT & WORKFLOW
+
+### Branches
+- `main` : production uniquement, protégée
+- `develop` : intégration, déploiement auto staging
+- `feat/nom-feature` : nouvelles fonctionnalités
+- `fix/nom-bug` : corrections
+- `chore/tâche` : maintenance, configs
+
+### Commits (Conventional Commits)
+```
+feat(missions): add carrier matching algorithm
+fix(payments): handle CinetPay webhook timeout
+chore(deps): update prisma to 5.x
+docs(api): add swagger for missions endpoints
+test(auth): add OTP verification unit tests
+```
+
+### Pull Requests
+- Titre clair décrivant le changement
+- Lier l'issue GitHub correspondante
+- Tests passants obligatoires avant merge
+- Review obligatoire d'un autre dev
+
+---
+
+## 🚫 CE QUI EST INTERDIT
+
+- `console.log` en production (utiliser le logger Pino)
+- Mutations directes du state React (toujours immutable)
+- Fetch natif dans les composants (utiliser React Query)
+- Secrets en dur dans le code (même pour les tests)
+- `// @ts-ignore` ou `// @ts-nocheck`
+- `eslint-disable` sans commentaire justificatif
+- Dépendances non approuvées (discuter avant d'installer)
+- Requêtes N+1 Prisma (toujours utiliser `include` ou `select`)
+- `dangerouslySetInnerHTML` sans sanitisation (DOMPurify)
+
+---
+
+## ✅ CHECKLIST AVANT CHAQUE PR
+
+- [ ] TypeScript sans erreurs (`tsc --noEmit`)
+- [ ] ESLint sans warnings (`eslint .`)
+- [ ] Tests unitaires passants (`jest`)
+- [ ] Pas de `console.log` oublié
+- [ ] Variables d'environnement documentées dans `.env.example`
+- [ ] Migrations Prisma incluses si changement de schéma
+- [ ] Traductions ajoutées dans `fr.json` ET `en.json`
+- [ ] Composants testés sur mobile (DevTools 375px)
+- [ ] Pas de secrets dans le diff Git
+
+---
+*Transmit Platform — Règles projet v1.0 — Février 2026*
