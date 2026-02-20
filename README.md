@@ -64,3 +64,4 @@ pnpm install
    ```
 
 > **Important :** Ce projet utilise **pnpm** (pas npm). Après `pnpm install`, les commandes `pnpm build`, `pnpm dev`, etc. fonctionnent. Avec `npm run build` sans avoir fait `pnpm install` (ou sans `node_modules`), la commande `turbo` ne sera pas trouvée.
+# TRANSMEET
