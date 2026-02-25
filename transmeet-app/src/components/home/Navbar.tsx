@@ -2,23 +2,44 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
-  { href: "#comment-ca-marche", label: "Comment ça marche" },
-  { href: "#services", label: "Services" },
-  { href: "#temoignages", label: "Témoignages" },
+  { href: "/", label: "Accueil" },
+  { href: "#qui-sommes-nous", label: "Qui sommes-nous" },
+  { href: "#expediteurs", label: "Expéditeurs" },
+  { href: "#transporteurs", label: "Transporteurs" },
+  { href: "#btp", label: "BTP" },
+  { href: "#contact", label: "Contact" },
 ];
+
+const WHATSAPP_LINK = "https://wa.me/22900000000";
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center font-semibold text-foreground">
-          Transmeet
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-white">
+      <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Link href="/" className="flex items-center gap-3">
+          <Image
+            src="/images/logo-transmeet.jpeg"
+            alt="Transmeet"
+            width={48}
+            height={48}
+            className="h-12 w-12 object-contain"
+            priority
+          />
+          <div className="flex flex-col">
+            <span className="text-lg font-bold uppercase tracking-tight text-foreground">
+              Transmeet
+            </span>
+            <span className="text-xs text-muted-foreground">
+              Logistique Afrique de l&apos;Ouest
+            </span>
+          </div>
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">
@@ -33,12 +54,20 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-2 md:flex">
-          <Button variant="ghost" size="sm" asChild>
-            <Link href="/login">Connexion</Link>
-          </Button>
-          <Button size="sm" asChild>
-            <Link href="/register">Inscription</Link>
+        <div className="hidden items-center md:flex">
+          <Button
+            size="sm"
+            variant="default"
+            className="bg-accent hover:bg-accent/90"
+            asChild
+          >
+            <a
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              WhatsApp
+            </a>
           </Button>
         </div>
 
@@ -54,28 +83,32 @@ export function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div className="border-t border-border bg-background md:hidden">
+        <div className="border-t border-border bg-white md:hidden">
           <nav className="flex flex-col gap-1 px-4 py-4">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <div className="mt-4 flex flex-col gap-2 border-t border-border pt-4">
-              <Button variant="outline" className="w-full" asChild>
-                <Link href="/login" onClick={() => setMobileOpen(false)}>
-                  Connexion
-                </Link>
-              </Button>
-              <Button className="w-full" asChild>
-                <Link href="/register" onClick={() => setMobileOpen(false)}>
-                  Inscription
-                </Link>
+            <div className="mt-4 border-t border-border pt-4">
+              <Button
+                size="sm"
+                className="w-full bg-accent hover:bg-accent/90"
+                asChild
+              >
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  WhatsApp
+                </a>
               </Button>
             </div>
           </nav>

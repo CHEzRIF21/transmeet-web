@@ -1,8 +1,16 @@
+import { Suspense } from "react";
+import { PhoneSignupForm } from "./PhoneSignupForm";
+
 export default function RegisterPage() {
   return (
-    <div className="w-full max-w-md p-6">
-      <h1 className="text-2xl font-bold">Inscription</h1>
-      <p className="mt-2 text-muted-foreground">Choix rôle + formulaire — à implémenter</p>
-    </div>
+    <Suspense
+      fallback={
+        <div className="w-full max-w-md rounded-lg border bg-card p-6 animate-pulse">
+          Chargement…
+        </div>
+      }
+    >
+      <PhoneSignupForm />
+    </Suspense>
   );
 }

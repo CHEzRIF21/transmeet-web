@@ -1,8 +1,10 @@
-export default function DemandesPage() {
+export default function ExpediteurDemandesPage() {
   return (
-    <div>
-      <h1 className="text-2xl font-bold">Mes demandes de transport</h1>
-      <p className="mt-2 text-muted-foreground">Liste avec statuts et filtres — à implémenter</p>
+    <div className="space-y-6">
+      <h1 className="text-2xl font-bold">Mes demandes</h1>
+      <p className="text-muted-foreground">
+        Liste de vos demandes de transport.
+      </p>
     </div>
   );
 }

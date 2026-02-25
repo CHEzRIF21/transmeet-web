@@ -30,6 +30,7 @@ export interface Company {
 export interface Profile {
   id: string;
   email: string | null;
+  phone: string | null;
   full_name: string | null;
   role: AppRole;
   company_id: string | null;

@@ -4,24 +4,41 @@
 
 @layer base {
   :root {
+    /* Palette Transmeet : #012767 (bleu) + #e0a842 (jaune) */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --primary: 222.2 47.4% 11.2%; /* bleu foncé */
-    --primary-foreground: 210 40% 98%;
-    --accent: 21.7 90% 48.5%; /* orange */
-    --accent-foreground: 210 40% 98%;
+    --foreground: 213 98% 10%;
+    --muted: 213 20% 96%;
+    --muted-foreground: 213 15% 45%;
+    --primary: 213 98% 20%; /* #012767 */
+    --primary-foreground: 0 0% 100%;
+    --accent: 40 72% 57%; /* #e0a842 */
+    --accent-foreground: 213 98% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 213 98% 10%;
+    --border: 213 20% 90%;
+    --input: 213 20% 90%;
+    --ring: 213 98% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 213 98% 10%;
+    --destructive: 0 84% 60%;
   }
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --accent: 21.7 90% 48.5%;
-    --accent-foreground: 210 40% 98%;
+    --background: 213 98% 8%;
+    --foreground: 0 0% 98%;
+    --muted: 213 30% 15%;
+    --muted-foreground: 213 15% 65%;
+    --primary: 213 98% 25%;
+    --primary-foreground: 0 0% 100%;
+    --accent: 40 72% 57%;
+    --accent-foreground: 213 98% 10%;
+    --card: 213 98% 10%;
+    --card-foreground: 0 0% 98%;
+    --border: 213 30% 20%;
+    --input: 213 30% 20%;
+    --ring: 40 72% 57%;
+    --popover: 213 98% 10%;
+    --popover-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
   }
 }
 

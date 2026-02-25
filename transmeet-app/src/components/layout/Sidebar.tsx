@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { AppRole } from "@/types/database.types";
 import { cn } from "@/lib/utils";
 
@@ -40,8 +41,14 @@ export function Sidebar({ role, className }: SidebarProps) {
       )}
     >
       <div className="flex h-14 items-center border-b px-4">
-        <Link href="/dashboard" className="font-semibold text-foreground">
-          Transmeet
+        <Link href="/dashboard" className="flex items-center">
+          <Image
+            src="/images/logo-transmeet.jpeg"
+            alt="Transmeet"
+            width={120}
+            height={36}
+            className="h-8 w-auto object-contain"
+          />
         </Link>
       </div>
       <nav className="flex flex-col gap-1 p-4">

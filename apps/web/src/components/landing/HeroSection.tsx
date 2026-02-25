@@ -1,38 +1,66 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { Truck, Package, Users } from "lucide-react";
+import { APP_ROUTES } from "@/lib/config";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+
+const AVATARS = [
+  { label: "Expéditeur", icon: Package, color: "bg-primary" },
+  { label: "Transporteur", icon: Truck, color: "bg-accent" },
+  { label: "Partenaire", icon: Users, color: "bg-primary/80" },
+];
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-background text-white">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(248,250,252,0.12),_transparent_60%)]" />
-      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 pb-20 pt-16 sm:px-6 sm:pb-24 sm:pt-20 md:flex-row md:items-center md:gap-12">
-        <div className="relative z-10 max-w-xl space-y-8">
+    <section className="relative min-h-[90vh] overflow-hidden">
+      {/* Hero image background */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/hero.png"
+          alt="Transmeet - Transport et partenariat"
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#012767]/95 via-[#012767]/80 to-[#012767]/40" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_rgba(224,168,66,0.15),_transparent_50%)]" />
+      </div>
+
+      <div className="relative z-10 mx-auto flex min-h-[90vh] max-w-6xl flex-col justify-center gap-10 px-4 py-20 sm:px-6 md:flex-row md:items-center md:gap-16">
+        {/* Left content */}
+        <div className="max-w-xl space-y-8">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="inline-flex items-center gap-2 rounded-full bg-slate-900/70 px-3 py-1 text-xs font-medium text-slate-200 ring-1 ring-slate-700"
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 rounded-full border border-[#e0a842]/50 bg-[#e0a842]/10 px-3 py-1.5 text-xs font-medium text-[#e0a842]"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-            <span>Logistique B2B · Afrique de l&apos;Ouest</span>
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#e0a842] opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#e0a842]" />
+            </span>
+            Logistique B2B · Afrique de l&apos;Ouest
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.05 }}
-            className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl"
           >
             Transmeet — la puissance logistique au service de vos projets.
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-balance text-sm text-slate-200 sm:text-base"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-balance text-base text-white/90 sm:text-lg"
           >
             Transport poids lourds, engins BTP et solutions logistiques sur
             mesure en Afrique de l&apos;Ouest. Un réseau sécurisé de
@@ -40,104 +68,104 @@ export function HeroSection() {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="flex flex-col gap-3 sm:flex-row sm:items-center"
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-col gap-4 sm:flex-row"
           >
-            <Link
-              href="/expediteurs"
-              className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-2.5 text-sm font-semibold text-accent-foreground shadow-lg shadow-orange-500/20 transition hover:-translate-y-0.5 hover:bg-accent/90"
+            <Button
+              size="xl"
+              className="bg-[#e0a842] text-[#012767] hover:bg-[#e0a842]/90 shadow-lg shadow-[#e0a842]/25"
+              asChild
             >
-              Commander un camion
-            </Link>
-            <Link
-              href="/transporteurs"
-              className="inline-flex items-center justify-center rounded-full border border-slate-600/80 px-6 py-2.5 text-sm font-semibold text-slate-50 transition hover:border-slate-300 hover:bg-slate-900/60"
+              <Link href={APP_ROUTES.register("expediteur")}>
+                Commander un camion
+              </Link>
+            </Button>
+            <Button
+              size="xl"
+              variant="outline"
+              className="border-white/40 bg-white/5 text-white hover:bg-white/10"
+              asChild
             >
-              Référencer votre camion
-            </Link>
+              <Link href={APP_ROUTES.register("transporteur")}>
+                Référencer votre camion
+              </Link>
+            </Button>
           </motion.div>
 
-          <motion.dl
-            initial={{ opacity: 0, y: 40 }}
+          {/* Avatars - acteurs logistiques */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid grid-cols-2 gap-4 pt-6 text-xs sm:grid-cols-4 sm:text-sm"
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex items-center gap-4 pt-4"
           >
-            <div>
-              <dt className="text-slate-400">Transporteurs partenaires</dt>
-              <dd className="text-base font-semibold text-white sm:text-lg">
-                500+
-              </dd>
+            <div className="flex -space-x-3">
+              {AVATARS.map((item, i) => (
+                <motion.div
+                  key={item.label}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.5 + i * 0.1 }}
+                  className="ring-2 ring-[#012767] rounded-full"
+                >
+                  <Avatar className="h-10 w-10">
+                    <AvatarFallback className={`${item.color} text-white`}>
+                      <item.icon className="h-4 w-4" />
+                    </AvatarFallback>
+                  </Avatar>
+                </motion.div>
+              ))}
             </div>
-            <div>
-              <dt className="text-slate-400">Années d&apos;expérience</dt>
-              <dd className="text-base font-semibold text-white sm:text-lg">
-                10+
-              </dd>
+            <div className="text-sm text-white/80">
+              <span className="font-semibold text-white">500+</span> transporteurs
+              <br />
+              <span className="font-semibold text-white">98%</span> satisfaction
             </div>
-            <div>
-              <dt className="text-slate-400">Satisfaction client</dt>
-              <dd className="text-base font-semibold text-white sm:text-lg">
-                98%
-              </dd>
-            </div>
-            <div>
-              <dt className="text-slate-400">Couverture</dt>
-              <dd className="text-base font-semibold text-white sm:text-lg">
-                Afrique de l&apos;Ouest
-              </dd>
-            </div>
-          </motion.dl>
+          </motion.div>
         </div>
 
+        {/* Right - Vue Opérationnelle card with animation */}
         <motion.div
           initial={{ opacity: 0, x: 60 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="relative z-10 mt-4 h-64 flex-1 overflow-hidden rounded-3xl border border-slate-700/70 bg-slate-900/70 shadow-2xl shadow-black/40 sm:h-80"
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative flex-1"
         >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_0,_rgba(56,189,248,0.25),_transparent_55%),radial-gradient(circle_at_80%_100%,_rgba(249,115,22,0.35),_transparent_55%)]" />
-          <div className="relative flex h-full flex-col justify-between p-5 text-xs text-slate-100 sm:p-6 sm:text-sm">
-            <div>
-              <p className="text-[0.7rem] uppercase tracking-[0.22em] text-slate-300">
+          <motion.div
+            animate={{ y: [0, -5, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="rounded-2xl border border-white/20 bg-[#012767]/90 p-6 shadow-2xl backdrop-blur-lg"
+          >
+            <div className="flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-[#e0a842] animate-pulse" />
+              <p className="text-xs font-semibold uppercase tracking-wider text-[#e0a842]">
                 Vue opérationnelle
               </p>
-              <p className="mt-1 text-sm font-semibold">
-                Chargement en cours — Port de Cotonou
-              </p>
             </div>
-            <div className="space-y-3">
-              <div className="grid grid-cols-2 gap-3 text-[0.7rem] sm:text-xs">
-                <div className="rounded-lg border border-slate-700/70 bg-slate-900/80 p-3">
-                  <p className="text-[0.65rem] text-slate-400">
-                    Mission #TR-4821
-                  </p>
-                  <p className="mt-1 font-semibold">Cotonou → Lomé</p>
-                  <p className="mt-1 text-slate-300">
-                    27T · Marchandises générales
-                  </p>
-                </div>
-                <div className="rounded-lg border border-slate-700/70 bg-slate-900/80 p-3">
-                  <p className="text-[0.65rem] text-slate-400">
-                    Engins mobilisés
-                  </p>
-                  <p className="mt-1 font-semibold">Porte-char + Bulldozer</p>
-                  <p className="mt-1 text-slate-300">Chantier BTP Grand Nord</p>
-                </div>
+            <p className="mt-2 text-sm font-medium text-white/90">
+              Chargement en cours — Port de Cotonou
+            </p>
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              <div className="rounded-lg border border-white/20 bg-white/5 p-3">
+                <p className="text-[0.65rem] text-white/60">Mission #TR-4821</p>
+                <p className="mt-1 font-semibold text-white">Cotonou → Lomé</p>
+                <p className="mt-1 text-xs text-white/80">27T · Marchandises générales</p>
               </div>
-              <div className="flex items-center justify-between rounded-lg border border-slate-700/70 bg-slate-900/80 px-3 py-2">
-                <span className="text-[0.7rem] text-slate-300">
-                  Tracking en temps réel activé
-                </span>
-                <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_0_6px_rgba(16,185,129,0.25)]" />
+              <div className="rounded-lg border border-[#e0a842]/30 bg-[#e0a842]/10 p-3">
+                <p className="text-[0.65rem] text-[#e0a842]">Engins mobilisés</p>
+                <p className="mt-1 font-semibold text-white">Porte-char + Bulldozer</p>
+                <p className="mt-1 text-xs text-white/80">Chantier BTP Grand Nord</p>
               </div>
             </div>
-          </div>
+            <div className="mt-4 flex items-center justify-between rounded-lg border border-white/20 bg-white/5 px-3 py-2">
+              <span className="text-xs text-white/80">Tracking en temps réel activé</span>
+              <span className="h-2 w-2 rounded-full bg-[#e0a842] shadow-[0_0_8px_rgba(224,168,66,0.6)]" />
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
   );
 }
-
