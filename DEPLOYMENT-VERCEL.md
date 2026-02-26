@@ -9,9 +9,9 @@ Ce dépôt contient :
 ### Configuration Vercel
 
 1. **New Project** → Importez **TRANSMEET** (CHEzRIF21/TRANSMEET)
-2. **Root Directory** : laisser vide
-3. **Build Command** : `pnpm --filter web build` (déjà dans vercel.json)
-4. **Install Command** : `pnpm install`
+2. **Root Directory** : **`apps/web`** (obligatoire pour monorepo)
+3. **Build Command** : `cd ../.. && pnpm --filter web build` (déjà dans vercel.json)
+4. **Install Command** : `cd ../.. && pnpm install`
 5. **Variables d'environnement** :
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
