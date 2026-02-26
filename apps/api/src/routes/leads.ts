@@ -52,7 +52,7 @@ export async function leadsRoutes(
 ) {
   app.post(
     "/",
-    async (request, reply): Promise<{
+    async (request, _reply): Promise<{
       success: boolean;
       message: string;
     }> => {
