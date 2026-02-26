@@ -1,0 +1,10 @@
+{
+  "name": "Transmit — Marketplace Logistique",
+  "short_name": "Transmit",
+  "description": "Marketplace B2B de transport routier en Afrique de l'Ouest",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f172a",
+  "lang": "fr"
+}
