@@ -11,7 +11,7 @@ Si pnpm n’est pas installé :
 
 ```bash
 corepack enable
-corepack prepare pnpm@latest --activate
+corepack prepare pnpm@9.14.2 --activate
 ```
 
 Ou : `npm install -g pnpm`
