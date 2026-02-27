@@ -30,13 +30,13 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_rgba(224,168,66,0.15),_transparent_50%)]" />
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[90vh] max-w-6xl flex-col justify-center gap-10 px-4 py-20 sm:px-6 md:flex-row md:items-center md:gap-16">
-        <div className="max-w-xl space-y-8">
+      <div className="relative z-10 mx-auto flex min-h-[90vh] max-w-6xl flex-col justify-center gap-8 px-4 py-12 sm:px-6 md:flex-row md:items-center md:gap-16 md:py-20">
+        <div className="max-w-xl space-y-6 md:space-y-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 rounded-full border border-[#e0a842]/50 bg-[#e0a842]/10 px-3 py-1.5 text-xs font-medium text-[#e0a842]"
+            className="inline-flex items-center gap-2 rounded-full border border-[#e0a842]/50 bg-[#e0a842]/10 px-3 py-1.5 text-[10px] font-medium text-[#e0a842] sm:text-xs"
           >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#e0a842] opacity-75" />
@@ -49,7 +49,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl"
+            className="text-balance text-3xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl"
           >
             Transmeet — la puissance logistique au service de vos projets.
           </motion.h1>
@@ -58,7 +58,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-balance text-base text-white/90 sm:text-lg"
+            className="text-balance text-base text-white/90 sm:text-lg md:text-xl lg:max-w-[90%]"
           >
             Transport poids lourds, engins BTP et solutions logistiques sur
             mesure en Afrique de l&apos;Ouest. Un réseau sécurisé de
