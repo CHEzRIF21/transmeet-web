@@ -1,5 +1,20 @@
 # Correction du déploiement Vercel — ENOENT page_client-reference-manifest.js
 
+## Erreur « No Next.js version detected »
+
+Si le build affiche :
+`Error: No Next.js version detected. Make sure your package.json has "next" in either "dependencies" or "devDependencies".`
+
+**Cause :** Vercel build à la racine du monorepo, où le `package.json` racine ne contient pas `next` (il est dans `apps/web`).
+
+**Correctifs appliqués :**
+- Un `vercel.json` à la racine définit `buildCommand: "pnpm --filter web build"`, `installCommand: "pnpm install"` et `framework: "nextjs"`.
+- Le `package.json` racine inclut `next` en `devDependencies` pour que Vercel détecte le framework.
+
+**Si l’erreur persiste :** dans Vercel → Project Settings → General → **Root Directory**, renseigner `apps/web` (puis redéployer). Dans ce cas vous pouvez retirer `next` du `package.json` racine si vous préférez.
+
+---
+
 ## ⚠️ Important : structure du dépôt
 
 Le build Vercel indique une structure **monorepo** (`apps/web`, Turbo, `pnpm --filter web`), alors que votre dépôt local contient **transmeet-web** (sans `apps/`).
