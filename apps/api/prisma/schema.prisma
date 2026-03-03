@@ -1,0 +1,512 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ─── ÉNUMÉRATIONS ────────────────────────────────────
+
+enum UserRole {
+  EXPEDITEUR
+  TRANSPORTEUR
+  ADMIN
+  DOUANIER
+}
+
+enum UserStatus {
+  PENDING
+  ACTIVE
+  SUSPENDED
+  BANNED
+}
+
+enum VehicleType {
+  PLATEAU
+  CITERNE
+  FRIGO
+  BENNE
+  CONTENEUR
+  BACHE
+}
+
+enum VehicleStatus {
+  AVAILABLE
+  ON_MISSION
+  MAINTENANCE
+  INACTIVE
+}
+
+enum DocStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum RequestStatus {
+  DRAFT
+  PUBLISHED
+  MATCHED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum MissionStatus {
+  ASSIGNED
+  LOADING
+  IN_TRANSIT
+  AT_CUSTOMS
+  DELIVERED
+  DISPUTED
+}
+
+enum DealStatus {
+  NEGOTIATING
+  AGREED
+  PAYMENT_PENDING
+  PAID
+  DELIVERED
+  DISPUTED
+}
+
+enum PaymentMethod {
+  MOBILE_MONEY
+  BANK_TRANSFER
+  CARD
+  ESCROW
+}
+
+enum PaymentGateway {
+  CINETPAY
+  STRIPE
+  WAVE
+}
+
+enum PaymentStatus {
+  PENDING
+  HELD_ESCROW
+  RELEASED
+  REFUNDED
+  FAILED
+}
+
+enum CustomsDossierStatus {
+  INCOMPLETE
+  SUBMITTED
+  UNDER_REVIEW
+  CLEARED
+  REJECTED
+}
+
+enum MessageType {
+  TEXT
+  FILE
+  OFFER
+  SYSTEM
+}
+
+enum MessageRoomType {
+  MISSION
+  DEAL
+  SUPPORT
+}
+
+// Spec Domaine 1 — companies.type
+enum CompanyType {
+  EXPEDITEUR
+  TRANSPORTEUR
+  NEGOCIANT
+}
+
+// Spec Domaine 1 — user_documents.type
+enum UserDocumentType {
+  ID_CARD
+  PASSPORT
+  PERMIS
+  RCCM
+  CARTE_GRISE
+}
+
+// Spec Domaine 2 — vehicle_docs.type
+enum VehicleDocType {
+  ASSURANCE
+  VISITE_TECH
+  CARTE_GRISE
+  LAISSEZ_PASSER
+}
+
+// Spec Domaine 2 — vehicle_docs.status
+enum VehicleDocStatus {
+  VALID
+  EXPIRING
+  EXPIRED
+}
+
+// Spec Domaine 4 — notifications.channel
+enum NotificationChannel {
+  PUSH
+  SMS
+  EMAIL
+  IN_APP
+}
+
+// Spec Domaine 4 — customs_documents.status (validated = APPROVED)
+enum CustomsDocStatus {
+  PENDING
+  VALIDATED
+  REJECTED
+}
+
+enum LeadType {
+  EXPEDITEUR
+  TRANSPORTEUR
+  BTP
+  CONTACT
+}
+
+// ─── TABLES ──────────────────────────────────────────
+
+model User {
+  id            String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email         String     @unique
+  phone         String?    @unique
+  passwordHash  String?
+  role          UserRole
+  status        UserStatus @default(PENDING)
+  preferredLang String     @default("fr") @db.VarChar(5)
+  createdAt     DateTime   @default(now()) @db.Timestamptz
+  updatedAt     DateTime   @updatedAt @db.Timestamptz
+  lastLoginAt   DateTime?  @db.Timestamptz
+  deletedAt     DateTime?  @db.Timestamptz
+
+  company              Company?
+  documents            UserDocument[]
+  sentRequests         TransportRequest[]
+  carrierMissions      Mission[]            @relation("CarrierMissions")
+  buyerDeals           CommercialDeal[]     @relation("BuyerDeals")
+  sellerDeals          CommercialDeal[]     @relation("SellerDeals")
+  paidPayments         Payment[]            @relation("PayerPayments")
+  receivedPayments     Payment[]            @relation("PayeePayments")
+  sentMessages         Message[]
+  notifications        Notification[]
+  reviewsGiven         Review[]             @relation("ReviewsGiven")
+  reviewsReceived      Review[]             @relation("ReviewsReceived")
+  reviewedDocuments    UserDocument[]       @relation("ReviewedDocuments")
+  uploadedCustomsDocs  CustomsDocument[]    @relation("UploadedCustomsDocs")
+
+  @@map("users")
+  @@index([role, status])
+}
+
+model Company {
+  id        String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  ownerId   String      @unique @db.Uuid
+  name      String
+  type      CompanyType
+  country   String      @db.Char(3)
+  taxId     String?
+  address   String?     @db.Text
+  verified  Boolean     @default(false)
+  createdAt DateTime    @default(now()) @db.Timestamptz
+  updatedAt DateTime    @updatedAt @db.Timestamptz
+
+  owner    User     @relation(fields: [ownerId], references: [id])
+  vehicles Vehicle[]
+
+  @@map("companies")
+}
+
+model UserDocument {
+  id         String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId     String          @db.Uuid
+  type       UserDocumentType
+  fileUrl    String
+  status     DocStatus       @default(PENDING)
+  reviewedBy String?         @db.Uuid
+  reviewedAt DateTime?       @db.Timestamptz
+  createdAt  DateTime        @default(now()) @db.Timestamptz
+
+  user     User  @relation(fields: [userId], references: [id])
+  reviewer User? @relation("ReviewedDocuments", fields: [reviewedBy], references: [id])
+
+  @@map("user_documents")
+  @@index([userId, status])
+}
+
+model Vehicle {
+  id            String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId     String        @db.Uuid
+  plateNumber   String        @unique
+  type          VehicleType
+  capacityTons  Decimal       @db.Decimal(10, 2)
+  capacityM3    Decimal?       @db.Decimal(10, 2)
+  countryReg    String        @db.Char(3)
+  isAvailable   Boolean       @default(true)
+  currentLat    Decimal?      @db.Decimal(10, 7)
+  currentLng    Decimal?      @db.Decimal(10, 7)
+  status        VehicleStatus @default(AVAILABLE)
+  createdAt     DateTime      @default(now()) @db.Timestamptz
+  updatedAt     DateTime      @updatedAt @db.Timestamptz
+
+  company   Company    @relation(fields: [companyId], references: [id])
+  documents VehicleDoc[]
+  missions  Mission[]
+
+  @@map("vehicles")
+  @@index([companyId, status])
+  @@index([type, status, isAvailable])
+}
+
+model VehicleDoc {
+  id        String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  vehicleId String          @db.Uuid
+  type      VehicleDocType
+  fileUrl   String
+  expiresAt DateTime?       @db.Date
+  status    VehicleDocStatus @default(VALID)
+  createdAt DateTime        @default(now()) @db.Timestamptz
+
+  vehicle Vehicle @relation(fields: [vehicleId], references: [id])
+
+  @@map("vehicle_docs")
+  @@index([vehicleId, expiresAt])
+  @@index([vehicleId, status])
+}
+
+model TransportRequest {
+  id             String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  senderId       String        @db.Uuid
+  originCity     String
+  originCountry  String        @db.Char(3)
+  destCity       String
+  destCountry    String        @db.Char(3)
+  goodsType      String
+  weightTons     Decimal       @db.Decimal(10, 2)
+  volumeM3       Decimal?      @db.Decimal(10, 2)
+  pickupDate     DateTime      @db.Date
+  deliveryDate   DateTime?     @db.Date
+  proposedPrice  Decimal       @db.Decimal(15, 0)
+  currency       String        @default("XOF") @db.VarChar(5)
+  status         RequestStatus @default(DRAFT)
+  specialNotes   String?       @db.Text
+  createdAt      DateTime      @default(now()) @db.Timestamptz
+  updatedAt      DateTime      @updatedAt @db.Timestamptz
+
+  sender   User      @relation(fields: [senderId], references: [id])
+  missions Mission[]
+
+  @@map("transport_requests")
+  @@index([senderId, status])
+  @@index([originCountry, destCountry, status])
+  @@index([pickupDate, status])
+}
+
+model Mission {
+  id                  String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  requestId           String        @db.Uuid
+  carrierId           String        @db.Uuid
+  vehicleId           String        @db.Uuid
+  agreedPrice         Decimal       @db.Decimal(15, 0)
+  commissionRate      Decimal       @default(0.05) @db.Decimal(5, 4)
+  status              MissionStatus @default(ASSIGNED)
+  pickupConfirmedAt   DateTime?     @db.Timestamptz
+  deliveryConfirmedAt DateTime?     @db.Timestamptz
+  trackingUpdates     Json?
+  createdAt           DateTime      @default(now()) @db.Timestamptz
+  updatedAt           DateTime      @updatedAt @db.Timestamptz
+
+  request         TransportRequest  @relation(fields: [requestId], references: [id])
+  carrier         User              @relation("CarrierMissions", fields: [carrierId], references: [id])
+  vehicle         Vehicle           @relation(fields: [vehicleId], references: [id])
+  linkedDeals     CommercialDeal[]
+  payments        Payment[]
+  customsDossiers CustomsDossier[]
+  messages        Message[]
+  reviews         Review[]
+
+  @@map("missions")
+  @@index([carrierId, status])
+  @@index([requestId])
+}
+
+model CommercialDeal {
+  id               String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  buyerId          String     @db.Uuid
+  sellerId         String     @db.Uuid
+  goodsType        String
+  quantityTons     Decimal    @db.Decimal(10, 2)
+  unitPrice        Decimal    @db.Decimal(15, 0)
+  totalAmount      Decimal    @db.Decimal(15, 0)
+  currency         String     @default("XOF") @db.VarChar(5)
+  status           DealStatus @default(NEGOTIATING)
+  linkedMissionId  String?    @db.Uuid
+  createdAt        DateTime   @default(now()) @db.Timestamptz
+  updatedAt        DateTime   @updatedAt @db.Timestamptz
+
+  buyer         User     @relation("BuyerDeals", fields: [buyerId], references: [id])
+  seller        User     @relation("SellerDeals", fields: [sellerId], references: [id])
+  linkedMission Mission? @relation(fields: [linkedMissionId], references: [id])
+  payments      Payment[]
+  messages      Message[]
+
+  @@map("commercial_deals")
+  @@index([buyerId, status])
+  @@index([sellerId, status])
+  @@index([linkedMissionId])
+}
+
+model Payment {
+  id          String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  payerId     String         @db.Uuid
+  payeeId     String         @db.Uuid
+  missionId   String?        @db.Uuid
+  dealId      String?        @db.Uuid
+  amount      Decimal        @db.Decimal(15, 0)
+  commission  Decimal        @db.Decimal(15, 0)
+  method      PaymentMethod
+  gateway     PaymentGateway
+  gatewayTxId String?        @unique
+  status      PaymentStatus @default(PENDING)
+  releasedAt  DateTime?      @db.Timestamptz
+  createdAt   DateTime       @default(now()) @db.Timestamptz
+  updatedAt   DateTime       @updatedAt @db.Timestamptz
+
+  payer   User            @relation("PayerPayments", fields: [payerId], references: [id])
+  payee   User            @relation("PayeePayments", fields: [payeeId], references: [id])
+  mission Mission?        @relation(fields: [missionId], references: [id])
+  deal    CommercialDeal? @relation(fields: [dealId], references: [id])
+
+  @@map("payments")
+  @@index([payerId, status])
+  @@index([missionId])
+  @@index([dealId])
+}
+
+model CustomsRequirement {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  originCountry  String   @db.Char(3)
+  destCountry    String   @db.Char(3)
+  goodsCategory  String
+  requiredDocs   Json     // JSONB spec: [{type, description}]
+  notes          String?  @db.Text
+  createdAt      DateTime @default(now()) @db.Timestamptz
+  updatedAt      DateTime @updatedAt @db.Timestamptz
+
+  dossiers CustomsDossier[]
+
+  @@map("customs_requirements")
+  @@unique([originCountry, destCountry, goodsCategory])
+}
+
+model CustomsDossier {
+  id             String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  missionId      String               @db.Uuid
+  requirementId   String               @db.Uuid
+  status         CustomsDossierStatus @default(INCOMPLETE)
+  blockedRelease Boolean              @default(false)
+  submittedAt    DateTime?            @db.Timestamptz
+  clearedAt      DateTime?             @db.Timestamptz
+  createdAt      DateTime             @default(now()) @db.Timestamptz
+
+  mission     Mission            @relation(fields: [missionId], references: [id])
+  requirement CustomsRequirement  @relation(fields: [requirementId], references: [id])
+  documents   CustomsDocument[]
+
+  @@map("customs_dossiers")
+  @@index([missionId, status])
+}
+
+model CustomsDocument {
+  id            String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  dossierId     String          @db.Uuid
+  type          String
+  fileUrl       String
+  uploadedBy    String          @db.Uuid
+  status        CustomsDocStatus @default(PENDING)
+  rejectionNote String?         @db.Text
+  uploadedAt    DateTime        @default(now()) @db.Timestamptz
+
+  dossier CustomsDossier @relation(fields: [dossierId], references: [id])
+  uploader User           @relation("UploadedCustomsDocs", fields: [uploadedBy], references: [id])
+
+  @@map("customs_documents")
+  @@index([dossierId, status])
+  @@index([uploadedBy])
+}
+
+model Message {
+  id        String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  roomType  MessageRoomType
+  senderId  String          @db.Uuid
+  missionId String?         @db.Uuid
+  dealId    String?         @db.Uuid
+  content   String?         @db.Text
+  type      MessageType     @default(TEXT)
+  fileUrl   String?
+  readAt    DateTime?       @db.Timestamptz
+  sentAt    DateTime        @default(now()) @db.Timestamptz
+
+  sender  User            @relation(fields: [senderId], references: [id])
+  mission Mission?        @relation(fields: [missionId], references: [id])
+  deal    CommercialDeal? @relation(fields: [dealId], references: [id])
+
+  @@map("messages")
+  @@index([missionId, sentAt])
+  @@index([dealId, sentAt])
+  @@index([senderId])
+}
+
+model Notification {
+  id        String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId    String             @db.Uuid
+  type      String
+  channel   NotificationChannel
+  title     String
+  body      String             @db.Text
+  metadata  Json?
+  readAt    DateTime?          @db.Timestamptz
+  sentAt    DateTime           @default(now()) @db.Timestamptz
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("notifications")
+  @@index([userId, readAt])
+}
+
+model Review {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  missionId  String   @db.Uuid
+  reviewerId String   @db.Uuid
+  revieweeId String   @db.Uuid
+  rating     Int      @db.SmallInt // 1–5 (spec)
+  comment    String?  @db.Text
+  tags       Json?
+  createdAt  DateTime @default(now()) @db.Timestamptz
+
+  mission  Mission @relation(fields: [missionId], references: [id])
+  reviewer User    @relation("ReviewsGiven", fields: [reviewerId], references: [id])
+  reviewee User    @relation("ReviewsReceived", fields: [revieweeId], references: [id])
+
+  @@map("reviews")
+  @@unique([missionId, reviewerId])
+  @@index([revieweeId])
+}
+
+model Lead {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  type      LeadType
+  name      String
+  email     String
+  phone     String?
+  company   String?
+  message   String?  @db.Text
+  metadata  Json?
+  createdAt DateTime @default(now()) @db.Timestamptz
+
+  @@map("leads")
+  @@index([type, createdAt])
+}

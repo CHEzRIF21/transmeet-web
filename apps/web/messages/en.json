@@ -1,0 +1,58 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "search": "Search",
+    "filter": "Filter",
+    "actions": "Actions"
+  },
+  "nav": {
+    "home": "Home",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "demandes": "Requests",
+    "missions": "Missions",
+    "paiements": "Payments",
+    "flotte": "Fleet",
+    "offres": "Offers",
+    "messagerie": "Messages",
+    "profil": "Profile",
+    "notifications": "Notifications",
+    "douanes": "Customs",
+    "admin": "Admin",
+    "utilisateurs": "Users",
+    "kyc": "KYC",
+    "parametres": "Settings"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "phone": "Phone",
+    "role": "Role",
+    "expediteur": "Sender",
+    "transporteur": "Carrier",
+    "verifyOtp": "Verify OTP code",
+    "forgotPassword": "Forgot password"
+  },
+  "status": {
+    "draft": "Draft",
+    "published": "Published",
+    "matched": "Matched",
+    "inProgress": "In progress",
+    "completed": "Completed",
+    "cancelled": "Cancelled",
+    "pending": "Pending",
+    "approved": "Approved",
+    "rejected": "Rejected"
+  }
+}

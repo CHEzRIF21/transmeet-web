@@ -1,0 +1,451 @@
+
+> web@0.0.0 build C:\Users\Mustafa\Desktop\TRANSMEET\apps\web
+> next build
+
+  ▲ Next.js 14.2.18
+
+   Creating an optimized production build ...
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (133kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/20) ...
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at i (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:5755)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:6094)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:7784)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '2977597567'
+}
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at i (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:5755)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:6094)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:7784)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '2977597567'
+}
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at i (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:5755)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:6094)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:7784)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '2977597567'
+}
+
+Error occurred prerendering page "/expediteur/missions". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at i (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:5755)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:6094)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:7784)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569)
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at i (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:5776)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:6115)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:7805)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '3503853324'
+}
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at i (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:5776)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:6115)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:7805)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '3503853324'
+}
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at i (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:5776)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:6115)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:7805)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '3503853324'
+}
+
+Error occurred prerendering page "/expediteur". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at i (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:5776)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:6115)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:7805)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569)
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\transporteur\page.js:1:5417)
+   Generating static pages (5/20) 
+    at d (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\transporteur\page.js:1:5756)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\transporteur\page.js:1:7446)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '85392637'
+}
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\transporteur\page.js:1:5417)
+    at d (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\transporteur\page.js:1:5756)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\transporteur\page.js:1:7446)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '85392637'
+}
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\transporteur\page.js:1:5417)
+    at d (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\transporteur\page.js:1:5756)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\transporteur\page.js:1:7446)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '85392637'
+}
+
+Error occurred prerendering page "/transporteur/missions". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\transporteur\page.js:1:5417)
+    at d (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\transporteur\page.js:1:5756)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\transporteur\page.js:1:7446)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569)
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at i (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:5755)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:6094)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:7784)
+   Generating static pages (10/20) 
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '2977597567'
+}
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at i (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:5755)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:6094)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:7784)
+   Generating static pages (15/20) 
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '2977597567'
+}
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at i (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:5755)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:6094)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:7784)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '2977597567'
+}
+
+Error occurred prerendering page "/admin". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at i (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:5755)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:6094)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:7784)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569)
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at i (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:5776)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:6115)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:7805)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '3503853324'
+}
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at i (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:5776)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:6115)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:7805)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '3503853324'
+}
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at i (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:5776)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:6115)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:7805)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '3503853324'
+}
+
+Error occurred prerendering page "/transporteur/vehicules". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at i (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:5776)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:6115)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\missions\page.js:1:7805)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569)
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at i (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:5755)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:6094)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:7784)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '2977597567'
+}
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at i (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:5755)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:6094)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:7784)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '2977597567'
+}
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at i (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:5755)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:6094)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:7784)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '2977597567'
+}
+
+Error occurred prerendering page "/admin/missions". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at i (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:5755)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:6094)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\missions\page.js:1:7784)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569)
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at o (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\demandes\page.js:1:5788)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\demandes\page.js:1:6127)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\demandes\page.js:1:7817)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '2682929639'
+}
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at o (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\demandes\page.js:1:5788)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\demandes\page.js:1:6127)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\demandes\page.js:1:7817)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '2682929639'
+}
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at o (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\demandes\page.js:1:5788)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\demandes\page.js:1:6127)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\demandes\page.js:1:7817)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '2682929639'
+}
+
+Error occurred prerendering page "/transporteur". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at o (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\demandes\page.js:1:5788)
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\demandes\page.js:1:6127)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\expediteur\demandes\page.js:1:7817)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569)
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\page.js:1:5694)
+    at d (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\page.js:1:6033)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\page.js:1:7723)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '4102970269'
+}
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\page.js:1:5694)
+    at d (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\page.js:1:6033)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\page.js:1:7723)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '4102970269'
+}
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\page.js:1:5694)
+    at d (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\page.js:1:6033)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\page.js:1:7723)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569) {
+  digest: '4102970269'
+}
+
+Error occurred prerendering page "/expediteur/demandes". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: Supabase non configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY dans .env.local (voir .env.local.example).
+    at l (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\page.js:1:5694)
+    at d (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\page.js:1:6033)
+    at b (C:\Users\Mustafa\Desktop\TRANSMEET\apps\web\.next\server\app\(dashboard)\admin\page.js:1:7723)
+    at eh (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:134657)
+    at e (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137542)
+    at ek (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138016)
+    at Array.toJSON (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135626)
+    at stringify (<anonymous>)
+    at eP (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142090)
+    at eE (C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\next@14.2.18_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142569)
+ ✓ Generating static pages (20/20)
+
+> Export encountered errors on following paths:
+	/(dashboard)/admin/missions/page: /admin/missions
+	/(dashboard)/admin/page: /admin
+	/(dashboard)/expediteur/demandes/page: /expediteur/demandes
+	/(dashboard)/expediteur/missions/page: /expediteur/missions
+	/(dashboard)/expediteur/page: /expediteur
+	/(dashboard)/transporteur/missions/page: /transporteur/missions
+	/(dashboard)/transporteur/page: /transporteur
+	/(dashboard)/transporteur/vehicules/page: /transporteur/vehicules
+ ELIFECYCLE  Command failed with exit code 1.

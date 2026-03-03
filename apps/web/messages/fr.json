@@ -1,0 +1,58 @@
+{
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "back": "Retour",
+    "next": "Suivant",
+    "submit": "Envoyer",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "actions": "Actions"
+  },
+  "nav": {
+    "home": "Accueil",
+    "login": "Connexion",
+    "register": "Inscription",
+    "logout": "Déconnexion",
+    "dashboard": "Dashboard",
+    "demandes": "Demandes",
+    "missions": "Missions",
+    "paiements": "Paiements",
+    "flotte": "Flotte",
+    "offres": "Offres",
+    "messagerie": "Messagerie",
+    "profil": "Profil",
+    "notifications": "Notifications",
+    "douanes": "Douanes",
+    "admin": "Admin",
+    "utilisateurs": "Utilisateurs",
+    "kyc": "KYC",
+    "parametres": "Paramètres"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Mot de passe",
+    "phone": "Téléphone",
+    "role": "Rôle",
+    "expediteur": "Expéditeur",
+    "transporteur": "Transporteur",
+    "verifyOtp": "Vérifier le code OTP",
+    "forgotPassword": "Mot de passe oublié"
+  },
+  "status": {
+    "draft": "Brouillon",
+    "published": "Publié",
+    "matched": "Assigné",
+    "inProgress": "En cours",
+    "completed": "Terminé",
+    "cancelled": "Annulé",
+    "pending": "En attente",
+    "approved": "Approuvé",
+    "rejected": "Rejeté"
+  }
+}
