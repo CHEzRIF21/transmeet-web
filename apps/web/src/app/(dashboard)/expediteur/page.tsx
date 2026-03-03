@@ -1,10 +1,10 @@
-export default function ExpediteurDashboardPage() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold">Tableau de bord Expéditeur</h1>
-      <p className="text-muted-foreground">
-        Bienvenue dans votre espace expéditeur. Gérez vos demandes de transport et missions.
-      </p>
-    </div>
-  );
+import { redirect } from "next/navigation";
+import { getCurrentUser } from "@/lib/auth";
+import { ExpediteurDashboardContent } from "@/components/features/dashboard/ExpediteurDashboardContent";
+
+export default async function ExpediteurDashboardPage() {
+  const user = await getCurrentUser();
+  if (!user) redirect("/login");
+
+  return <ExpediteurDashboardContent userId={user.id} />;
 }

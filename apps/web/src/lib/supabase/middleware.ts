@@ -34,7 +34,11 @@ export async function updateSession(request: NextRequest) {
   const isAuthRoute =
     request.nextUrl.pathname === "/login" || request.nextUrl.pathname === "/register" ||
     request.nextUrl.pathname.startsWith("/register/verify");
-  const isDashboard = request.nextUrl.pathname.startsWith("/dashboard");
+  const isDashboard =
+    request.nextUrl.pathname.startsWith("/dashboard") ||
+    ["/expediteur", "/transporteur", "/admin", "/shared"].some((p) =>
+      request.nextUrl.pathname.startsWith(p)
+    );
 
   if (isDashboard && !isAuth) {
     const redirect = new URL("/login", request.url);

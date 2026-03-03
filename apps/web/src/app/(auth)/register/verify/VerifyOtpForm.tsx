@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { otpSchema, type OtpInput } from "@/validations/auth";
-import { verifyOtp } from "@/services/authService";
+import { verifyOtpEmail } from "@/services/authService";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import {
@@ -28,12 +28,12 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { ShieldCheck, ArrowLeft } from "lucide-react";
 
-const PHONE_SIGNUP_STORAGE_KEY = "transmeet_phone_signup_data";
+const EMAIL_SIGNUP_STORAGE_KEY = "transmeet_email_signup_data";
 
 export function VerifyOtpForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const phoneFromUrl = searchParams.get("phone");
+  const emailFromUrl = searchParams.get("email");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -42,20 +42,20 @@ export function VerifyOtpForm() {
     defaultValues: { token: "" },
   });
 
-  const phone = phoneFromUrl || "";
+  const email = emailFromUrl || "";
 
   useEffect(() => {
-    if (!phone) {
+    if (!email) {
       router.replace("/register");
     }
-  }, [phone, router]);
+  }, [email, router]);
 
   async function onSubmit(values: OtpInput) {
     setError(null);
     setIsLoading(true);
 
-    const { error: verifyError } = await verifyOtp({
-      phone,
+    const { error: verifyError } = await verifyOtpEmail({
+      email,
       token: values.token,
     });
 
@@ -69,9 +69,10 @@ export function VerifyOtpForm() {
     const { data: { user } } = await supabase.auth.getUser();
 
     if (user && typeof window !== "undefined") {
-      const stored = sessionStorage.getItem(PHONE_SIGNUP_STORAGE_KEY);
+      const stored = sessionStorage.getItem(EMAIL_SIGNUP_STORAGE_KEY);
       if (stored) {
         const data = JSON.parse(stored) as {
+          email: string;
           full_name: string;
           role: "expediteur" | "transporteur";
           company_name: string;
@@ -93,7 +94,6 @@ export function VerifyOtpForm() {
             .from("profiles")
             .update({
               full_name: data.full_name,
-              phone: phone,
               role: data.role,
               company_id: company.id,
             })
@@ -112,7 +112,7 @@ export function VerifyOtpForm() {
           }
         }
 
-        sessionStorage.removeItem(PHONE_SIGNUP_STORAGE_KEY);
+        sessionStorage.removeItem(EMAIL_SIGNUP_STORAGE_KEY);
       }
     }
 
@@ -121,7 +121,7 @@ export function VerifyOtpForm() {
     setIsLoading(false);
   }
 
-  if (!phone) return null;
+  if (!email) return null;
 
   return (
     <div className="w-full">
@@ -129,7 +129,7 @@ export function VerifyOtpForm() {
         <CardHeader className="space-y-1 text-center sm:text-left">
           <CardTitle className="text-2xl font-bold">Vérification</CardTitle>
           <CardDescription>
-            Entrez le code à 6 chiffres envoyé au {phone}
+            Entrez le code à 6 chiffres envoyé à {email}
           </CardDescription>
         </CardHeader>
         <CardContent>

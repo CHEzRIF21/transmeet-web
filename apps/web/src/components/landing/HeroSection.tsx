@@ -8,9 +8,10 @@ import { APP_ROUTES } from "@/lib/config";
 import { Button } from "@/components/ui/button";
 
 const CAROUSEL_IMAGES = [
-  { src: "/images/hero.png", alt: "Transport et logistique" },
-  { src: "/images/engin BTP.jpeg", alt: "Engins BTP" },
-  { src: "/images/engin-btp.jpg", alt: "Chantier BTP" },
+  { src: "/images/engin btp2.jpg", alt: "Engins BTP" },
+  { src: "/images/3def2e57faeadd9ec2a121303618a34a.jpg", alt: "Logistique et Transport" },
+  { src: "/images/cereale 1.jpg", alt: "Transport de céréales" },
+  { src: "/images/794f43aa25c5663703725cb1332e7a74.jpg", alt: "Camions sur la route" },
 ];
 
 const CAROUSEL_INTERVAL_MS = 5000;
@@ -45,7 +46,7 @@ export function HeroSection() {
             />
           </div>
         ))}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#012767]/90 via-[#012767]/75 to-[#012767]/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/75 to-primary/50" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_rgba(224,168,66,0.12),_transparent_50%)]" />
       </div>
 
@@ -66,7 +67,7 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-balance text-base text-white/90 sm:text-lg"
           >
-            Commandez votre camion simplement !
+            Commandez votre camion
           </motion.p>
 
           <motion.div
@@ -77,7 +78,8 @@ export function HeroSection() {
           >
             <Button
               size="xl"
-              className="bg-[#e0a842] text-[#012767] hover:bg-[#e0a842]/90 shadow-lg shadow-[#e0a842]/25"
+              variant="accent"
+              className="shadow-lg shadow-accent/25"
               asChild
             >
               <Link href={APP_ROUTES.register("expediteur")}>
@@ -87,7 +89,7 @@ export function HeroSection() {
             <Button
               size="xl"
               variant="outline"
-              className="border-white/40 bg-white/5 text-white hover:bg-white/10"
+              className="border-white/40 bg-white/5 text-white hover:bg-white/10 hover:text-white"
               asChild
             >
               <Link href={APP_ROUTES.register("transporteur")}>
@@ -97,6 +99,7 @@ export function HeroSection() {
           </motion.div>
         </div>
 
+        {/* Floating info card */}
         <motion.div
           initial={{ opacity: 0, x: 60 }}
           animate={{ opacity: 1, x: 0 }}
@@ -120,18 +123,25 @@ export function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Carousel indicators */}
-      <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 gap-2">
+      {/* Carousel indicators — accessible 44px touch targets */}
+      <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 gap-1">
         {CAROUSEL_IMAGES.map((_, i) => (
           <button
             key={i}
             type="button"
-            aria-label={`Image ${i + 1}`}
-            className={`h-2 rounded-full transition-all ${
-              i === currentIndex ? "w-6 bg-[#e0a842]" : "w-2 bg-white/50"
-            }`}
+            aria-label={`Slide ${i + 1} sur ${CAROUSEL_IMAGES.length}`}
+            aria-pressed={i === currentIndex}
+            className="flex h-11 w-11 items-center justify-center"
             onClick={() => setCurrentIndex(i)}
-          />
+          >
+            <span
+              className={`block rounded-full transition-all duration-300 ${
+                i === currentIndex
+                  ? "h-2 w-6 bg-accent"
+                  : "h-2 w-2 bg-white/50 hover:bg-white/75"
+              }`}
+            />
+          </button>
         ))}
       </div>
     </section>

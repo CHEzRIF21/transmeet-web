@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { phoneSignupSchema, type PhoneSignupInput } from "@/validations/auth";
-import { signInWithOtpPhone } from "@/services/authService";
+import { emailSignupSchema, type EmailSignupInput } from "@/validations/auth";
+import { signInWithOtpEmail } from "@/services/authService";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -25,9 +25,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { UserPlus, Package, Truck, Phone } from "lucide-react";
+import { UserPlus, Package, Truck, Mail } from "lucide-react";
 
-const PHONE_SIGNUP_STORAGE_KEY = "transmeet_phone_signup_data";
+const EMAIL_SIGNUP_STORAGE_KEY = "transmeet_email_signup_data";
 
 export function PhoneSignupForm() {
   const router = useRouter();
@@ -38,10 +38,10 @@ export function PhoneSignupForm() {
   const roleFromUrl = searchParams.get("role") as "expediteur" | "transporteur" | null;
   const initialRole = roleFromUrl === "transporteur" ? "transporteur" : "expediteur";
 
-  const form = useForm<PhoneSignupInput>({
-    resolver: zodResolver(phoneSignupSchema),
+  const form = useForm<EmailSignupInput>({
+    resolver: zodResolver(emailSignupSchema),
     defaultValues: {
-      phone: "",
+      email: "",
       full_name: "",
       role: initialRole,
       company_name: "",
@@ -57,11 +57,11 @@ export function PhoneSignupForm() {
 
   const role = form.watch("role");
 
-  async function onSubmit(values: PhoneSignupInput) {
+  async function onSubmit(values: EmailSignupInput) {
     setError(null);
     setIsLoading(true);
 
-    const { error: signInError } = await signInWithOtpPhone(values.phone, {
+    const { error: signInError } = await signInWithOtpEmail(values.email, {
       shouldCreateUser: true,
       data: {
         full_name: values.full_name,
@@ -79,9 +79,9 @@ export function PhoneSignupForm() {
 
     if (typeof window !== "undefined") {
       sessionStorage.setItem(
-        PHONE_SIGNUP_STORAGE_KEY,
+        EMAIL_SIGNUP_STORAGE_KEY,
         JSON.stringify({
-          phone: values.phone,
+          email: values.email,
           full_name: values.full_name,
           role: values.role,
           company_name: values.company_name ?? values.full_name,
@@ -90,7 +90,7 @@ export function PhoneSignupForm() {
       );
     }
 
-    router.push(`/register/verify?phone=${encodeURIComponent(values.phone)}`);
+    router.push(`/register/verify?email=${encodeURIComponent(values.email)}`);
     setIsLoading(false);
   }
 
@@ -157,16 +157,16 @@ export function PhoneSignupForm() {
               />
               <FormField
                 control={form.control}
-                name="phone"
+                name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Numéro de téléphone</FormLabel>
+                    <FormLabel>Email</FormLabel>
                     <FormControl>
                       <div className="relative">
-                        <Phone className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                         <Input
-                          type="tel"
-                          placeholder="+229XXXXXXXX"
+                          type="email"
+                          placeholder="vous@exemple.com"
                           className="pl-9"
                           {...field}
                           disabled={isLoading}
@@ -226,7 +226,7 @@ export function PhoneSignupForm() {
                 ) : (
                   <>
                     <UserPlus className="mr-2 h-4 w-4" />
-                    Recevoir le code par SMS
+                    Recevoir le code par email
                   </>
                 )}
               </Button>
