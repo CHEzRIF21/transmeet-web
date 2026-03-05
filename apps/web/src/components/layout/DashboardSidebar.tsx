@@ -37,8 +37,8 @@ type NavItem = {
 const expediteurNav: NavItem[] = [
   { href: "/expediteur", label: "Tableau de bord", icon: LayoutDashboard },
   { href: "/expediteur/demandes", label: "Mes demandes", icon: ClipboardList },
-  { href: "/expediteur/missions", label: "Missions", icon: Truck },
-  { href: "/expediteur/paiements", label: "Paiements", icon: CreditCard },
+  { href: "/dashboard/missions", label: "Missions", icon: Truck },
+  { href: "/dashboard/paiements", label: "Paiements", icon: CreditCard },
 ];
 
 const transporteurNav: NavItem[] = [
@@ -46,8 +46,8 @@ const transporteurNav: NavItem[] = [
   { href: "/transporteur/flotte", label: "Ma flotte", icon: Layers },
   { href: "/transporteur/vehicules", label: "Véhicules", icon: Truck },
   { href: "/transporteur/offres", label: "Offres", icon: FileText },
-  { href: "/transporteur/missions", label: "Missions", icon: ClipboardList },
-  { href: "/transporteur/paiements", label: "Paiements", icon: CreditCard },
+  { href: "/dashboard/missions", label: "Missions", icon: ClipboardList },
+  { href: "/dashboard/paiements", label: "Paiements", icon: CreditCard },
 ];
 
 const adminNav: NavItem[] = [
@@ -59,7 +59,7 @@ const adminNav: NavItem[] = [
 ];
 
 const sharedNav: NavItem[] = [
-  { href: "/shared/messagerie", label: "Messagerie", icon: MessageSquare },
+  { href: "/dashboard/messagerie", label: "Messagerie", icon: MessageSquare },
   { href: "/shared/notifications", label: "Notifications", icon: Bell },
   { href: "/shared/profil", label: "Mon profil", icon: User },
 ];

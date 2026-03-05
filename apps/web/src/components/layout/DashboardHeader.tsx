@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Bell, LogOut, User, Settings, Menu } from "lucide-react";
+import { LogOut, User, Settings, Menu } from "lucide-react";
 import { signOut } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,6 +20,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { DashboardSidebar } from "@/components/layout/DashboardSidebar";
+import { NotificationBell } from "@/components/layout/NotificationBell";
 import type { AppRole } from "@/types/database.types";
 
 interface DashboardHeaderProps {
@@ -86,16 +87,7 @@ export function DashboardHeader({ user, role }: DashboardHeaderProps) {
       {/* Right: actions */}
       <div className="flex items-center gap-2">
         {/* Notifications bell */}
-        <Button variant="ghost" size="icon" className="relative" asChild>
-          <Link href="/shared/notifications" aria-label="Notifications">
-            <Bell className="h-5 w-5" />
-            {/* Notification badge */}
-            <span className="absolute right-1.5 top-1.5 flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
-            </span>
-          </Link>
-        </Button>
+        <NotificationBell />
 
         {/* User dropdown */}
         <DropdownMenu>

@@ -14,6 +14,10 @@ import { customsRoutes } from "./routes/customs.js";
 import { messagesRoutes } from "./routes/messages.js";
 import { notificationsRoutes } from "./routes/notifications.js";
 import { leadsRoutes } from "./routes/leads.js";
+import { offersRoutes } from "./routes/offers.js";
+import { adminRoutes } from "./routes/admin.js";
+import { uploadRoutes } from "./routes/upload.js";
+import { AppError } from "./utils/errors.js";
 
 const app = Fastify({ logger: false });
 
@@ -51,13 +55,18 @@ async function build() {
     prefix: "/api/v1/notifications",
   });
   await app.register(leadsRoutes, { prefix: "/api/v1/leads" });
+  await app.register(offersRoutes, { prefix: "/api/v1/offers" });
+  await app.register(adminRoutes, { prefix: "/api/v1/admin" });
+  await app.register(uploadRoutes, { prefix: "/api/v1/upload" });
 
   app.setErrorHandler((err, _request, reply) => {
     logger.error({ err }, "Request error");
-    reply.status(err.statusCode ?? 500).send({
+    const statusCode = err instanceof AppError ? err.statusCode : 500;
+    const code = err instanceof AppError ? err.code : "INTERNAL_ERROR";
+    reply.status(statusCode).send({
       success: false,
       error: err.message ?? "Internal Server Error",
-      code: "INTERNAL_ERROR",
+      code,
     });
   });
 

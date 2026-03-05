@@ -120,7 +120,7 @@ export function TransporteurDashboardContent({ userId }: TransporteurDashboardCo
             </p>
           </div>
           <Button variant="outline" size="sm" asChild>
-            <Link href="/transporteur/missions" className="gap-1">
+            <Link href="/dashboard/missions" className="gap-1">
               Voir tout
               <ChevronRight className="h-3.5 w-3.5" />
             </Link>

@@ -239,7 +239,7 @@ export async function getAdminStats(): Promise<AdminStats> {
     const [missionsTotal, utilisateursTotal, demandesEnAttente, payments] =
       await Promise.all([
         prisma.mission.count(),
-        prisma.user.count(),
+        prisma.profile.count(),
         prisma.transportRequest.count({
           where: { status: { in: ["DRAFT", "PUBLISHED"] as RequestStatus[] } },
         }),

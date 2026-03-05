@@ -46,3 +46,17 @@ export class ValidationError extends AppError {
     this.name = "ValidationError";
   }
 }
+
+export class TransportRequestNotFoundError extends AppError {
+  constructor() {
+    super("Demande non trouvée", "REQUEST_NOT_FOUND", 404);
+    this.name = "TransportRequestNotFoundError";
+  }
+}
+
+export class OfferNotFoundError extends AppError {
+  constructor() {
+    super("Proposition non trouvée", "OFFER_NOT_FOUND", 404);
+    this.name = "OfferNotFoundError";
+  }
+}

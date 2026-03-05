@@ -11,16 +11,16 @@ const expediteurLinks = [
   { href: "/expediteur", label: "Dashboard" },
   { href: "/expediteur/demandes", label: "Demandes" },
   { href: "/expediteur/demandes/nouvelle", label: "Nouvelle demande" },
-  { href: "/expediteur/missions", label: "Missions" },
-  { href: "/expediteur/paiements", label: "Paiements" },
+  { href: "/dashboard/missions", label: "Missions" },
+  { href: "/dashboard/paiements", label: "Paiements" },
 ];
 
 const transporteurLinks = [
   { href: "/transporteur", label: "Dashboard" },
   { href: "/transporteur/flotte", label: "Flotte" },
   { href: "/transporteur/offres", label: "Offres" },
-  { href: "/transporteur/missions", label: "Missions" },
-  { href: "/transporteur/paiements", label: "Paiements" },
+  { href: "/dashboard/missions", label: "Missions" },
+  { href: "/dashboard/paiements", label: "Paiements" },
 ];
 
 const adminLinks = [
@@ -31,7 +31,7 @@ const adminLinks = [
 ];
 
 const sharedLinks = [
-  { href: "/shared/messagerie", label: "Messagerie" },
+  { href: "/dashboard/messagerie", label: "Messagerie" },
   { href: "/shared/profil", label: "Profil" },
   { href: "/shared/notifications", label: "Notifications" },
 ];
