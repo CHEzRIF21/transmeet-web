@@ -74,7 +74,7 @@ export function TestimonialsSection() {
           viewport={defaultViewport}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
+          <p className="text-sm font-bold uppercase tracking-[0.22em] text-accent">
             Témoignages
           </p>
           <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">

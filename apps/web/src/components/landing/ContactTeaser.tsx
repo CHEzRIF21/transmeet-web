@@ -39,7 +39,7 @@ export function ContactTeaser() {
             <CardContent className="flex flex-col gap-4 p-6 text-white sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:py-10">
               <div className="flex flex-1 flex-col gap-2 sm:flex-row sm:items-center sm:gap-6">
                 <div className="space-y-2">
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
+                  <p className="text-sm font-bold uppercase tracking-[0.22em] text-accent">
                     Contact &amp; accompagnement
                   </p>
                   <h2 className="text-balance text-xl font-semibold tracking-tight sm:text-2xl">

@@ -54,7 +54,7 @@ export function TransporteursTeaser() {
                 <div className="space-y-4">
                   <motion.p
                     variants={itemVariants}
-                    className="text-xs font-semibold uppercase tracking-[0.22em] text-accent"
+                    className="text-sm font-bold uppercase tracking-[0.22em] text-accent"
                   >
                     Pour les transporteurs
                   </motion.p>

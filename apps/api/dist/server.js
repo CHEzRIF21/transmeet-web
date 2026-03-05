@@ -19,6 +19,10 @@ const customs_js_1 = require("./routes/customs.js");
 const messages_js_1 = require("./routes/messages.js");
 const notifications_js_1 = require("./routes/notifications.js");
 const leads_js_1 = require("./routes/leads.js");
+const offers_js_1 = require("./routes/offers.js");
+const admin_js_1 = require("./routes/admin.js");
+const upload_js_1 = require("./routes/upload.js");
+const errors_js_1 = require("./utils/errors.js");
 const app = (0, fastify_1.default)({ logger: false });
 async function build() {
     await app.register(cors_1.default, {
@@ -50,12 +54,17 @@ async function build() {
         prefix: "/api/v1/notifications",
     });
     await app.register(leads_js_1.leadsRoutes, { prefix: "/api/v1/leads" });
+    await app.register(offers_js_1.offersRoutes, { prefix: "/api/v1/offers" });
+    await app.register(admin_js_1.adminRoutes, { prefix: "/api/v1/admin" });
+    await app.register(upload_js_1.uploadRoutes, { prefix: "/api/v1/upload" });
     app.setErrorHandler((err, _request, reply) => {
         logger_js_1.logger.error({ err }, "Request error");
-        reply.status(err.statusCode ?? 500).send({
+        const statusCode = err instanceof errors_js_1.AppError ? err.statusCode : 500;
+        const code = err instanceof errors_js_1.AppError ? err.code : "INTERNAL_ERROR";
+        reply.status(statusCode).send({
             success: false,
             error: err.message ?? "Internal Server Error",
-            code: "INTERNAL_ERROR",
+            code,
         });
     });
     return app;

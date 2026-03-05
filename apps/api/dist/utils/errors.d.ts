@@ -21,4 +21,10 @@ export declare class PaymentFailedError extends AppError {
 export declare class ValidationError extends AppError {
     constructor(message?: string);
 }
+export declare class TransportRequestNotFoundError extends AppError {
+    constructor();
+}
+export declare class OfferNotFoundError extends AppError {
+    constructor();
+}
 //# sourceMappingURL=errors.d.ts.map

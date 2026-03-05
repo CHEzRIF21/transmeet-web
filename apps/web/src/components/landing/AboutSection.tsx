@@ -56,7 +56,7 @@ export function AboutSection() {
         >
           <motion.p
             variants={leftVariants}
-            className="text-xs font-semibold uppercase tracking-[0.22em] text-accent"
+            className="text-sm font-bold uppercase tracking-[0.22em] text-accent"
           >
             Qui sommes-nous ?
           </motion.p>

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ValidationError = exports.PaymentFailedError = exports.UserNotFoundError = exports.UnauthorizedError = exports.MissionNotFoundError = exports.AppError = void 0;
+exports.OfferNotFoundError = exports.TransportRequestNotFoundError = exports.ValidationError = exports.PaymentFailedError = exports.UserNotFoundError = exports.UnauthorizedError = exports.MissionNotFoundError = exports.AppError = void 0;
 /**
  * Erreurs métier — classes d'erreur pour l'API
  */
@@ -50,4 +50,18 @@ class ValidationError extends AppError {
     }
 }
 exports.ValidationError = ValidationError;
+class TransportRequestNotFoundError extends AppError {
+    constructor() {
+        super("Demande non trouvée", "REQUEST_NOT_FOUND", 404);
+        this.name = "TransportRequestNotFoundError";
+    }
+}
+exports.TransportRequestNotFoundError = TransportRequestNotFoundError;
+class OfferNotFoundError extends AppError {
+    constructor() {
+        super("Proposition non trouvée", "OFFER_NOT_FOUND", 404);
+        this.name = "OfferNotFoundError";
+    }
+}
+exports.OfferNotFoundError = OfferNotFoundError;
 //# sourceMappingURL=errors.js.map

@@ -4,7 +4,7 @@ export default function ContactPage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
       <div className="space-y-3">
-        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
+        <p className="text-sm font-bold uppercase tracking-[0.22em] text-accent">
           Contact
         </p>
         <h1 className="text-balance text-2xl font-semibold tracking-tight sm:text-3xl">

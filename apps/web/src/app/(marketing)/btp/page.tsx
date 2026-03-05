@@ -80,7 +80,7 @@ export default function BTPPage() {
       />
       <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
         <div className="space-y-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
+          <p className="text-sm font-bold uppercase tracking-[0.22em] text-accent">
             BTP &amp; grands projets
           </p>
           <h1 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
