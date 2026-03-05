@@ -1,7 +1,6 @@
 import { HeroSection } from "@/components/landing/HeroSection";
 import { AboutSection } from "@/components/landing/AboutSection";
 import { TruckTypesSection } from "@/components/landing/TruckTypesSection";
-import { ServicesSection } from "@/components/landing/ServicesSection";
 import { ExpediteursTeaser } from "@/components/landing/ExpediteursTeaser";
 import { TransporteursTeaser } from "@/components/landing/TransporteursTeaser";
 import { BTPTeaser } from "@/components/landing/BTPTeaser";
@@ -14,7 +13,6 @@ export default function HomePage() {
       <HeroSection />
       <AboutSection />
       <TruckTypesSection />
-      <ServicesSection />
       <ExpediteursTeaser />
       <TransporteursTeaser />
       <BTPTeaser />

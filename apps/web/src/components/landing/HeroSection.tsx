@@ -46,8 +46,8 @@ export function HeroSection() {
             />
           </div>
         ))}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/75 to-primary/50" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_rgba(224,168,66,0.12),_transparent_50%)]" />
+        {/* Overlay léger côté gauche uniquement pour lisibilité du texte */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-transparent to-transparent" />
       </div>
 
       <div className="relative z-10 mx-auto flex min-h-[90vh] max-w-6xl flex-col justify-center gap-10 px-4 py-20 sm:px-6 md:flex-row md:items-center md:gap-16">
