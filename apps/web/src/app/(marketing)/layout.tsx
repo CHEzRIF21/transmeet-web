@@ -19,7 +19,7 @@ export default function MarketingLayout({
       </a>
       <PublicHeader />
       <ScrollToHash />
-      <main id="main-content" className="flex-1">
+      <main id="main-content" className="flex-1 pt-12">
         <PageTransition>{children}</PageTransition>
       </main>
       <PublicFooter />

@@ -5,8 +5,31 @@ import { Button } from "@/components/ui/button";
 
 export function PublicFooter() {
   return (
-    <footer className="border-t border-border bg-muted/30">
-      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 text-sm text-muted-foreground sm:px-6 sm:py-12 md:flex-row md:items-start md:justify-between">
+    <footer className="relative border-t border-white/10 bg-gradient-to-b from-[#012767] to-[#021e4a]">
+      {/* Wave transition avec bande or au-dessus */}
+      <div
+        className="absolute -top-12 left-0 right-0 z-30 h-12 w-full"
+        aria-hidden
+      >
+        <svg
+          viewBox="0 0 1440 48"
+          preserveAspectRatio="none"
+          className="h-full w-full"
+        >
+          <path
+            d="M0,48 L0,24 Q720,0 1440,24 L1440,48 Z"
+            fill="#012767"
+          />
+          <path
+            d="M0,24 Q720,0 1440,24"
+            stroke="#e0a842"
+            strokeWidth="3"
+            fill="none"
+          />
+        </svg>
+      </div>
+
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 text-sm text-white/70 sm:px-6 sm:py-12 md:flex-row md:items-start md:justify-between">
         <div className="space-y-2">
           <Link href="/" className="inline-block">
             <Image
@@ -26,7 +49,7 @@ export function PublicFooter() {
             <p>Tél. : +229 XX XX XX XX</p>
             <p>Email : contact@transmeet.com</p>
           </div>
-          <Button variant="outline" size="sm" className="mt-2" asChild>
+          <Button variant="accent" size="sm" className="mt-2" asChild>
             <Link href={APP_ROUTES.login()}>
               Accéder à l&apos;application
             </Link>
@@ -35,62 +58,62 @@ export function PublicFooter() {
 
         <div className="flex gap-12">
           <div className="space-y-2">
-            <div className="text-xs font-semibold uppercase tracking-wide text-foreground">
+            <div className="text-xs font-semibold uppercase tracking-wide text-[#e0a842]">
               Navigation
             </div>
             <ul className="space-y-1">
               <li>
-                <Link href="/" className="hover:text-foreground">
+                <Link href="/" className="text-white/70 hover:text-white transition-colors">
                   Accueil
                 </Link>
               </li>
               <li>
-                <Link href="/#qui-sommes-nous" className="hover:text-foreground">
+                <Link href="/#qui-sommes-nous" className="text-white/70 hover:text-white transition-colors">
                   Qui sommes-nous
                 </Link>
               </li>
               <li>
-                <Link href="/#expediteurs" className="hover:text-foreground">
+                <Link href="/#expediteurs" className="text-white/70 hover:text-white transition-colors">
                   Expéditeurs
                 </Link>
               </li>
               <li>
-                <Link href="/#transporteurs" className="hover:text-foreground">
+                <Link href="/#transporteurs" className="text-white/70 hover:text-white transition-colors">
                   Transporteurs
                 </Link>
               </li>
               <li>
-                <Link href="/#btp" className="hover:text-foreground">
+                <Link href="/#btp" className="text-white/70 hover:text-white transition-colors">
                   BTP
                 </Link>
               </li>
               <li>
-                <Link href="/#contact" className="hover:text-foreground">
+                <Link href="/#contact" className="text-white/70 hover:text-white transition-colors">
                   Contact
                 </Link>
               </li>
             </ul>
           </div>
           <div className="space-y-2">
-            <div className="text-xs font-semibold uppercase tracking-wide text-foreground">
+            <div className="text-xs font-semibold uppercase tracking-wide text-[#e0a842]">
               Légal
             </div>
             <ul className="space-y-1">
               <li>
-                <Link href="/mentions-legales" className="hover:text-foreground">
+                <Link href="/mentions-legales" className="text-white/70 hover:text-white transition-colors">
                   Mentions légales
                 </Link>
               </li>
               <li>
                 <Link
                   href="/politique-confidentialite"
-                  className="hover:text-foreground"
+                  className="text-white/70 hover:text-white transition-colors"
                 >
                   Politique de confidentialité
                 </Link>
               </li>
               <li>
-                <Link href="/cookies" className="hover:text-foreground">
+                <Link href="/cookies" className="text-white/70 hover:text-white transition-colors">
                   Cookies
                 </Link>
               </li>
@@ -98,7 +121,7 @@ export function PublicFooter() {
           </div>
         </div>
       </div>
-      <div className="border-t border-border py-4 text-center text-xs text-muted-foreground">
+      <div className="border-t border-white/10 py-4 text-center text-xs text-white/50">
         © {new Date().getFullYear()} Transmeet. Tous droits réservés.
       </div>
     </footer>

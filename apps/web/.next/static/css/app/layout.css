@@ -985,6 +985,12 @@ input:where([type='file']):focus {
 .right-\[45\%\] {
   right: 45%;
 }
+.-bottom-12 {
+  bottom: -3rem;
+}
+.-top-12 {
+  top: -3rem;
+}
 .z-0 {
   z-index: 0;
 }
@@ -1026,6 +1032,10 @@ input:where([type='file']):focus {
 .my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+}
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 .-mb-6 {
   margin-bottom: -1.5rem;
@@ -1777,6 +1787,12 @@ input:where([type='file']):focus {
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
 }
+.border-border\/50 {
+  border-color: hsl(var(--border) / 0.5);
+}
+.border-white\/30 {
+  border-color: rgb(255 255 255 / 0.3);
+}
 .border-t-transparent {
   border-top-color: transparent;
 }
@@ -1953,6 +1969,10 @@ input:where([type='file']):focus {
 .bg-\[\#e0a842\]\/80 {
   background-color: rgb(224 168 66 / 0.8);
 }
+.bg-\[\#012767\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(1 39 103 / var(--tw-bg-opacity, 1));
+}
 .bg-\[radial-gradient\(circle_at_top\2c _rgba\(224\2c 168\2c 66\2c 0\.12\)\2c _transparent_55\%\)\] {
   background-image: radial-gradient(circle at top, rgba(224,168,66,0.12), transparent 55%);
 }
@@ -1961,6 +1981,9 @@ input:where([type='file']):focus {
 }
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+.bg-gradient-to-b {
+  background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
 }
 .from-\[\#5C7CFF\]\/45 {
   --tw-gradient-from: rgb(92 124 255 / 0.45) var(--tw-gradient-from-position);
@@ -2186,6 +2209,9 @@ input:where([type='file']):focus {
 }
 .pt-8 {
   padding-top: 2rem;
+}
+.pt-12 {
+  padding-top: 3rem;
 }
 .text-left {
   text-align: left;
@@ -2496,6 +2522,10 @@ input:where([type='file']):focus {
 }
 .shadow-\[\#e0a842\]\/30 {
   --tw-shadow-color: rgb(224 168 66 / 0.3);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+.shadow-\[\#012767\]\/20 {
+  --tw-shadow-color: rgb(1 39 103 / 0.2);
   --tw-shadow: var(--tw-shadow-colored);
 }
 .outline-none {

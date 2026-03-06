@@ -71,8 +71,8 @@ function NavLink({
         className={cn(
           "relative py-1 transition-colors duration-200",
           isActive
-            ? "text-primary font-semibold"
-            : "text-muted-foreground hover:text-foreground",
+            ? "text-[#e0a842] font-semibold"
+            : "text-white/70 hover:text-white",
           className
         )}
       >
@@ -81,7 +81,7 @@ function NavLink({
       {isActive && isDesktop && (
         <motion.span
           layoutId="header-nav-active"
-          className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-primary"
+          className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-[#e0a842]"
           transition={springTransition}
         />
       )}
@@ -110,23 +110,23 @@ function getIsActive(href: string, pathname: string, hash: string): boolean {
 export function PublicHeader() {
   const { pathname, hash } = usePathnameAndHash();
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+    <header className="sticky top-0 z-40 overflow-visible bg-[#012767] shadow-lg shadow-[#012767]/20">
+      <div className="mx-auto flex h-18 max-w-6xl items-center justify-between px-4 sm:px-6">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
           <Image
             src="/images/logo TRANSMEET.jpeg"
             alt="Transmeet"
-            width={40}
-            height={40}
-            className="h-10 w-10 object-contain"
+            width={52}
+            height={52}
+            className="h-13 w-13 object-contain"
             priority
           />
           <div className="flex flex-col leading-tight">
-            <span className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">
+            <span className="text-base font-bold uppercase tracking-[0.22em] text-white">
               Transmeet
             </span>
-            <span className="hidden text-xs text-muted-foreground sm:block">
+            <span className="hidden text-xs text-white/60 sm:block">
               Commandez votre camion
             </span>
           </div>
@@ -149,10 +149,10 @@ export function PublicHeader() {
 
         {/* Desktop auth buttons */}
         <div className="hidden items-center gap-2 md:flex">
-          <Button variant="ghost" size="sm" asChild>
+          <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10" asChild>
             <Link href="/login">Connexion</Link>
           </Button>
-          <Button variant="outline" size="sm" asChild>
+          <Button variant="outline" size="sm" className="border-white/30 text-white hover:bg-white/10 hover:text-white" asChild>
             <Link href="/register">S&apos;inscrire</Link>
           </Button>
           <Button variant="accent" size="sm" asChild>
@@ -173,23 +173,23 @@ export function PublicHeader() {
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden"
+              className="md:hidden text-white hover:bg-white/10"
               aria-label="Ouvrir le menu"
             >
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-72 p-0 bg-background">
-            <div className="flex h-16 items-center border-b px-5">
+          <SheetContent side="left" className="w-72 p-0 bg-[#012767]">
+            <div className="flex h-16 items-center border-b border-white/10 px-5">
               <Link href="/" className="flex items-center gap-3">
                 <Image
                   src="/images/logo TRANSMEET.jpeg"
                   alt="Transmeet"
-                  width={36}
-                  height={36}
-                  className="h-9 w-9 object-contain"
+                  width={44}
+                  height={44}
+                  className="h-11 w-11 object-contain"
                 />
-                <span className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">
+                <span className="text-base font-bold uppercase tracking-[0.22em] text-white">
                   Transmeet
                 </span>
               </Link>
@@ -203,22 +203,22 @@ export function PublicHeader() {
                     label={item.label}
                     isActive={getIsActive(item.href, pathname, hash)}
                     variant="mobile"
-                    className="block rounded-md px-3 py-2.5 text-base hover:bg-muted"
+                    className="block rounded-md px-3 py-2.5 text-base text-white/70 hover:bg-white/10 hover:text-white"
                   />
                 </SheetClose>
               ))}
             </nav>
 
-            <Separator />
+            <div className="mx-4 border-t border-white/10" />
 
             <div className="flex flex-col gap-2 p-4">
               <SheetClose asChild>
-                <Button variant="outline" size="lg" className="w-full" asChild>
+                <Button variant="outline" size="lg" className="w-full border-white/30 text-white hover:bg-white/10 hover:text-white" asChild>
                   <Link href="/login">Connexion</Link>
                 </Button>
               </SheetClose>
               <SheetClose asChild>
-                <Button variant="default" size="lg" className="w-full" asChild>
+                <Button variant="accent" size="lg" className="w-full" asChild>
                   <Link href="/register">S&apos;inscrire</Link>
                 </Button>
               </SheetClose>
@@ -234,6 +234,29 @@ export function PublicHeader() {
             </div>
           </SheetContent>
         </Sheet>
+      </div>
+
+      {/* Wave transition avec bande or */}
+      <div
+        className="absolute -bottom-12 left-0 right-0 z-30 h-12 w-full"
+        aria-hidden
+      >
+        <svg
+          viewBox="0 0 1440 48"
+          preserveAspectRatio="none"
+          className="h-full w-full"
+        >
+          <path
+            d="M0,0 L0,24 Q720,48 1440,24 L1440,0 Z"
+            fill="#012767"
+          />
+          <path
+            d="M0,24 Q720,48 1440,24"
+            stroke="#e0a842"
+            strokeWidth="3"
+            fill="none"
+          />
+        </svg>
       </div>
     </header>
   );
