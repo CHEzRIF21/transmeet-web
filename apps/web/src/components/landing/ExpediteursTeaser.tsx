@@ -51,7 +51,7 @@ function DiamondImage({
 
 export function ExpediteursTeaser() {
   return (
-    <section id="expediteurs" className="relative overflow-hidden bg-gradient-to-br from-[#012767] via-[#01306e] to-[#021e4a] py-16">
+    <section id="expediteurs" className="relative scroll-mt-[120px] overflow-hidden bg-gradient-to-br from-[#012767] via-[#01306e] to-[#021e4a] py-16">
       {/* Decorative diagonal shapes - gold accent */}
       <div
         className="hidden md:block absolute -left-20 -top-20 h-64 w-64 rotate-45 border-2 border-[#e0a842]/40"

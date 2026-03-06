@@ -28,6 +28,56 @@ const NAV_ITEMS = [
 
 const WHATSAPP_NUMBER = "+22900000000";
 
+const SECTION_IDS = [
+  "qui-sommes-nous",
+  "expediteurs",
+  "transporteurs",
+  "btp",
+  "contact",
+] as const;
+
+function useScrollSpy(sectionIds: readonly string[]) {
+  const [activeId, setActiveId] = useState("");
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (typeof window === "undefined" || pathname !== "/") return;
+
+    const visibleSections = new Map<string, boolean>();
+    sectionIds.forEach((id) => visibleSections.set(id, false));
+
+    const callback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        visibleSections.set(entry.target.id, entry.isIntersecting);
+      });
+
+      for (const id of sectionIds) {
+        if (visibleSections.get(id)) {
+          setActiveId(id);
+          return;
+        }
+      }
+      if (window.scrollY < 100) {
+        setActiveId("");
+      }
+    };
+
+    const observer = new IntersectionObserver(callback, {
+      rootMargin: "-20% 0px -60% 0px",
+      threshold: 0,
+    });
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [pathname, sectionIds.join(",")]);
+
+  return activeId;
+}
+
 function usePathnameAndHash() {
   const pathname = usePathname();
   const [hash, setHash] = useState("");
@@ -97,10 +147,20 @@ const HREF_TO_PAGE: Record<string, string> = {
   "/#contact": "/contact",
 };
 
-function getIsActive(href: string, pathname: string, hash: string): boolean {
-  if (href === "/") return pathname === "/" && !hash;
+function getIsActive(
+  href: string,
+  pathname: string,
+  hash: string,
+  activeScrollId: string
+): boolean {
+  if (href === "/")
+    return pathname === "/" && !activeScrollId && !hash;
   if (href.startsWith("/#")) {
-    const matchOnHome = pathname === "/" && hash === href.slice(1);
+    const sectionId = href.slice(2); // href is "/#qui-sommes-nous", sectionId = "qui-sommes-nous"
+    const matchOnHome =
+      pathname === "/" &&
+      (activeScrollId === sectionId ||
+        (hash === "#" + sectionId && !activeScrollId));
     const matchOnPage = HREF_TO_PAGE[href] && pathname === HREF_TO_PAGE[href];
     return matchOnHome || !!matchOnPage;
   }
@@ -109,6 +169,7 @@ function getIsActive(href: string, pathname: string, hash: string): boolean {
 
 export function PublicHeader() {
   const { pathname, hash } = usePathnameAndHash();
+  const activeScrollId = useScrollSpy(SECTION_IDS);
   return (
     <header className="sticky top-0 z-40 overflow-visible bg-[#012767] shadow-lg shadow-[#012767]/20">
       <div className="mx-auto flex h-18 max-w-6xl items-center justify-between px-4 sm:px-6">
@@ -142,7 +203,7 @@ export function PublicHeader() {
               key={item.href}
               href={item.href}
               label={item.label}
-              isActive={getIsActive(item.href, pathname, hash)}
+              isActive={getIsActive(item.href, pathname, hash, activeScrollId)}
             />
           ))}
         </nav>
@@ -201,7 +262,7 @@ export function PublicHeader() {
                   <NavLink
                     href={item.href}
                     label={item.label}
-                    isActive={getIsActive(item.href, pathname, hash)}
+                    isActive={getIsActive(item.href, pathname, hash, activeScrollId)}
                     variant="mobile"
                     className="block rounded-md px-3 py-2.5 text-base text-white/70 hover:bg-white/10 hover:text-white"
                   />

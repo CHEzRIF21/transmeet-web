@@ -70,7 +70,7 @@ export function BTPTeaser() {
   const itemVariants = reduced ? fadeUpReduced : fadeUp;
 
   return (
-    <section id="btp" className="relative overflow-hidden bg-primary py-14 text-white">
+    <section id="btp" className="relative scroll-mt-[120px] overflow-hidden bg-primary py-14 text-white">
       <motion.div
         className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(224,168,66,0.12),_transparent_55%)]"
         animate={
