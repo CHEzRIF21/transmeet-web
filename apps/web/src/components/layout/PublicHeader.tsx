@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -18,34 +19,42 @@ import { springTransition, useReducedMotion } from "@/lib/motion";
 
 const NAV_ITEMS = [
   { href: "/", label: "Accueil" },
-  { href: "/qui-sommes-nous", label: "Qui sommes-nous" },
-  { href: "/expediteurs", label: "Expéditeurs" },
-  { href: "/transporteurs", label: "Transporteurs" },
-  { href: "/btp", label: "BTP" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#qui-sommes-nous", label: "Qui sommes-nous" },
+  { href: "/#expediteurs", label: "Expéditeurs" },
+  { href: "/#transporteurs", label: "Transporteurs" },
+  { href: "/#btp", label: "BTP" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 const WHATSAPP_NUMBER = "+22900000000";
 
-function useIsActive(href: string) {
+function usePathnameAndHash() {
   const pathname = usePathname();
-  return href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const [hash, setHash] = useState("");
+  useEffect(() => {
+    setHash(typeof window !== "undefined" ? window.location.hash : "");
+    const onHashChange = () => setHash(window.location.hash);
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
+  return { pathname, hash };
 }
 
 function NavLink({
   href,
   label,
+  isActive,
   className,
   onClick,
   variant = "desktop",
 }: {
   href: string;
   label: string;
+  isActive: boolean;
   className?: string;
   onClick?: () => void;
   variant?: "desktop" | "mobile";
 }) {
-  const isActive = useIsActive(href);
   const reduced = useReducedMotion();
   const isDesktop = variant === "desktop";
 
@@ -80,7 +89,26 @@ function NavLink({
   );
 }
 
+const HREF_TO_PAGE: Record<string, string> = {
+  "/#qui-sommes-nous": "/qui-sommes-nous",
+  "/#expediteurs": "/expediteurs",
+  "/#transporteurs": "/transporteurs",
+  "/#btp": "/btp",
+  "/#contact": "/contact",
+};
+
+function getIsActive(href: string, pathname: string, hash: string): boolean {
+  if (href === "/") return pathname === "/" && !hash;
+  if (href.startsWith("/#")) {
+    const matchOnHome = pathname === "/" && hash === href.slice(1);
+    const matchOnPage = HREF_TO_PAGE[href] && pathname === HREF_TO_PAGE[href];
+    return matchOnHome || !!matchOnPage;
+  }
+  return pathname.startsWith(href);
+}
+
 export function PublicHeader() {
+  const { pathname, hash } = usePathnameAndHash();
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
@@ -110,7 +138,12 @@ export function PublicHeader() {
           className="hidden items-center gap-6 text-sm font-medium md:flex"
         >
           {NAV_ITEMS.map((item) => (
-            <NavLink key={item.href} href={item.href} label={item.label} />
+            <NavLink
+              key={item.href}
+              href={item.href}
+              label={item.label}
+              isActive={getIsActive(item.href, pathname, hash)}
+            />
           ))}
         </nav>
 
@@ -168,6 +201,7 @@ export function PublicHeader() {
                   <NavLink
                     href={item.href}
                     label={item.label}
+                    isActive={getIsActive(item.href, pathname, hash)}
                     variant="mobile"
                     className="block rounded-md px-3 py-2.5 text-base hover:bg-muted"
                   />

@@ -1,3 +1,7 @@
 {
-  "/(marketing)/page": "app/(marketing)/page.js"
+  "/(marketing)/page": "app/(marketing)/page.js",
+  "/(marketing)/expediteurs/page": "app/(marketing)/expediteurs/page.js",
+  "/(marketing)/qui-sommes-nous/page": "app/(marketing)/qui-sommes-nous/page.js",
+  "/(auth)/register/page": "app/(auth)/register/page.js",
+  "/(marketing)/btp/page": "app/(marketing)/btp/page.js"
 }

@@ -43,7 +43,7 @@ export function AboutSection() {
   return (
     <section
       ref={sectionRef}
-      id="about"
+      id="qui-sommes-nous"
       className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16"
     >
       <div className="grid gap-10 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:items-center">

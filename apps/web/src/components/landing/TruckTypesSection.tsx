@@ -75,7 +75,7 @@ export function TruckTypesSection() {
           </h2>
         </motion.div>
         <motion.div
-          className="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6"
+          className="grid gap-2 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
@@ -84,7 +84,7 @@ export function TruckTypesSection() {
           {TRUCK_TYPES.map((item) => (
             <motion.div key={item.name} variants={itemVariants} className="flex flex-col items-center text-center">
               <motion.div
-                className="relative flex h-28 w-28 items-center justify-center"
+                className="relative flex h-40 w-40 items-center justify-center lg:h-44 lg:w-44"
                 whileHover={reduced ? undefined : { y: -6, scale: 1.05, rotate: -1 }}
                 transition={springTransition}
               >
@@ -108,7 +108,7 @@ export function TruckTypesSection() {
                   </>
                 )}
                 <motion.div
-                  className="relative flex h-24 w-24 items-center justify-center overflow-hidden rounded-xl bg-white shadow-md ring-1 ring-black/5 transition-all duration-300 hover:shadow-lg"
+                  className="relative flex h-36 w-36 items-center justify-center overflow-hidden rounded-xl bg-white shadow-md ring-1 ring-black/5 transition-all duration-300 hover:shadow-lg lg:h-40 lg:w-40"
                   animate={reduced ? undefined : item.animation}
                   transition={reduced ? undefined : springTransition}
                 >

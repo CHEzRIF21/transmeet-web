@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { PageTransition } from "@/components/layout/PageTransition";
 
 export default function AuthLayout({
   children,
@@ -21,7 +22,7 @@ export default function AuthLayout({
               La plateforme logistique qui connecte expéditeurs et transporteurs.
             </p>
           </div>
-          {children}
+          <PageTransition>{children}</PageTransition>
         </div>
       </div>
     </div>

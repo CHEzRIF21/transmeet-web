@@ -18,7 +18,7 @@ export function ContactTeaser() {
   const itemVariants = reduced ? fadeUpReduced : fadeUp;
 
   return (
-    <section className="mx-auto max-w-6xl px-4 pb-12 sm:px-6 sm:pb-16">
+    <section id="contact" className="mx-auto max-w-6xl px-4 pb-12 sm:px-6 sm:pb-16">
       <motion.div
         initial="hidden"
         whileInView="visible"

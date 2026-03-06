@@ -45,27 +45,27 @@ export function PublicFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/qui-sommes-nous" className="hover:text-foreground">
+                <Link href="/#qui-sommes-nous" className="hover:text-foreground">
                   Qui sommes-nous
                 </Link>
               </li>
               <li>
-                <Link href="/expediteurs" className="hover:text-foreground">
+                <Link href="/#expediteurs" className="hover:text-foreground">
                   Expéditeurs
                 </Link>
               </li>
               <li>
-                <Link href="/transporteurs" className="hover:text-foreground">
+                <Link href="/#transporteurs" className="hover:text-foreground">
                   Transporteurs
                 </Link>
               </li>
               <li>
-                <Link href="/btp" className="hover:text-foreground">
+                <Link href="/#btp" className="hover:text-foreground">
                   BTP
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-foreground">
+                <Link href="/#contact" className="hover:text-foreground">
                   Contact
                 </Link>
               </li>

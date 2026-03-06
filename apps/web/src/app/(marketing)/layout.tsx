@@ -1,5 +1,7 @@
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
+import { PageTransition } from "@/components/layout/PageTransition";
+import { ScrollToHash } from "@/components/layout/ScrollToHash";
 
 export default function MarketingLayout({
   children,
@@ -16,8 +18,9 @@ export default function MarketingLayout({
         Aller au contenu principal
       </a>
       <PublicHeader />
+      <ScrollToHash />
       <main id="main-content" className="flex-1">
-        {children}
+        <PageTransition>{children}</PageTransition>
       </main>
       <PublicFooter />
     </div>
