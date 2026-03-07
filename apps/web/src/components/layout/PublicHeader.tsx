@@ -13,7 +13,6 @@ import {
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
-import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { springTransition, useReducedMotion } from "@/lib/motion";
 
@@ -39,6 +38,7 @@ const SECTION_IDS = [
 function useScrollSpy(sectionIds: readonly string[]) {
   const [activeId, setActiveId] = useState("");
   const pathname = usePathname();
+  const sectionIdsKey = sectionIds.join(",");
 
   useEffect(() => {
     if (typeof window === "undefined" || pathname !== "/") return;
@@ -73,7 +73,7 @@ function useScrollSpy(sectionIds: readonly string[]) {
     });
 
     return () => observer.disconnect();
-  }, [pathname, sectionIds.join(",")]);
+  }, [pathname, sectionIdsKey, sectionIds]);
 
   return activeId;
 }
@@ -188,7 +188,7 @@ export function PublicHeader() {
               Transmeet
             </span>
             <span className="hidden text-xs text-white/60 sm:block">
-              Commandez votre camion
+              Commandez votre camion !
             </span>
           </div>
         </Link>

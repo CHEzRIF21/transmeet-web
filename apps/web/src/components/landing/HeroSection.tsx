@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { APP_ROUTES } from "@/lib/config";
 import { Button } from "@/components/ui/button";
 
 const CAROUSEL_IMAGES = [
@@ -82,7 +81,7 @@ export function HeroSection() {
               className="shadow-lg shadow-accent/25"
               asChild
             >
-              <Link href={APP_ROUTES.register("expediteur")}>
+              <Link href="/expediteurs">
                 Commander un camion
               </Link>
             </Button>
@@ -92,7 +91,7 @@ export function HeroSection() {
               className="border-white/40 bg-white/5 text-white hover:bg-white/10 hover:text-white"
               asChild
             >
-              <Link href={APP_ROUTES.register("transporteur")}>
+              <Link href="/transporteurs">
                 Référencer votre camion
               </Link>
             </Button>

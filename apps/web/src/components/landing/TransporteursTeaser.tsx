@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { APP_ROUTES } from "@/lib/config";
 import { Button } from "@/components/ui/button";
 
 const DIAMOND_IMAGES = [
@@ -144,7 +143,7 @@ export function TransporteursTeaser() {
               className="shadow-lg shadow-[#e0a842]/30"
               asChild
             >
-              <Link href={APP_ROUTES.register("transporteur")}>
+              <Link href="/transporteurs">
                 Référencer mon camion
               </Link>
             </Button>
