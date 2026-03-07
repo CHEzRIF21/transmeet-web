@@ -1,10 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { MessageCircle, Linkedin, Facebook } from "lucide-react";
+import {
+  Linkedin,
+  Facebook,
+  Instagram,
+  Phone,
+  MapPin,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import {
   staggerContainer,
   fadeUp,
@@ -16,6 +25,7 @@ import {
 const WHATSAPP_NUMBER = "+22900000000";
 const LINKEDIN_URL = "https://linkedin.com/company/transmeet";
 const FACEBOOK_URL = "https://facebook.com/transmeet";
+const INSTAGRAM_URL = "https://instagram.com/transmeet_officiel";
 
 function IconWhatsApp({ className }: { className?: string }) {
   return (
@@ -30,133 +40,302 @@ function IconWhatsApp({ className }: { className?: string }) {
   );
 }
 
+const CONTACT_CARDS = [
+  {
+    icon: IconWhatsApp,
+    title: "WhatsApp",
+    subtitle: "Réponse en quelques minutes",
+    detail: "Bénin / Togo",
+    buttonLabel: "Discuter",
+    href: `https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "")}`,
+    iconColor: "text-[#25D366]",
+  },
+  {
+    icon: Phone,
+    title: "Téléphone",
+    subtitle: "+229 XX XX XX XX",
+    detail: "Profil Transmeet",
+    buttonLabel: "Appeler",
+    href: "tel:+22900000000",
+    iconColor: "text-primary",
+  },
+  {
+    icon: Linkedin,
+    title: "LinkedIn",
+    subtitle: "Profil Transmeet",
+    detail: "",
+    buttonLabel: "Suivre",
+    href: LINKEDIN_URL,
+    iconColor: "text-[#0A66C2]",
+  },
+  {
+    icon: Instagram,
+    title: "Instagram",
+    subtitle: "@transmeet_officiel",
+    detail: "",
+    buttonLabel: "Suivre",
+    href: INSTAGRAM_URL,
+    iconColor: "text-[#E4405F]",
+  },
+];
+
 export function ContactTeaser() {
   const reduced = useReducedMotion();
+  const router = useRouter();
   const itemVariants = reduced ? fadeUpReduced : fadeUp;
 
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    router.push("/contact");
+  };
+
   return (
-    <section id="contact" className="mx-auto max-w-6xl scroll-mt-[120px] px-4 pb-12 sm:px-6 sm:pb-16">
+    <section
+      id="contact"
+      className="relative mx-auto max-w-6xl scroll-mt-[120px] overflow-hidden px-4 pb-12 sm:px-6 sm:pb-16"
+    >
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={defaultViewport}
         variants={staggerContainer}
+        className="space-y-0"
       >
+        {/* Hero bandeau */}
         <motion.div
           variants={itemVariants}
-          initial={reduced ? undefined : { opacity: 0, y: 24, scale: 0.97 }}
+          initial={reduced ? undefined : { opacity: 0, y: 24 }}
           whileInView={
             reduced
               ? undefined
-              : { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5 } }
+              : { opacity: 1, y: 0, transition: { duration: 0.5 } }
           }
           viewport={defaultViewport}
+          className="relative overflow-hidden rounded-t-2xl bg-gradient-to-br from-[#012767] via-[#01306e] to-[#021e4a] px-6 py-12 text-white sm:px-10 sm:py-16"
         >
-          <Card className="relative overflow-hidden border-primary/20 bg-primary shadow-lg">
-            <CardContent className="flex flex-col gap-4 p-6 text-white sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:py-10">
-              <div className="flex flex-1 flex-col gap-2 sm:flex-row sm:items-center sm:gap-6">
-                <div className="space-y-2">
-                  <p className="text-sm font-bold uppercase tracking-[0.22em] text-accent">
-                    Contact &amp; accompagnement
-                  </p>
-                  <h2 className="text-balance text-xl font-semibold tracking-tight sm:text-2xl">
-                    Un projet, une urgence ou un besoin récurrent ?
-                  </h2>
-                  <p className="max-w-xl text-sm text-white/90 sm:text-base">
-                    Parlez-nous de vos flux et de vos contraintes, nous vous
-                    proposerons une approche sur-mesure pour vos opérations
-                    logistiques.
-                  </p>
-                </div>
-                {!reduced && (
-                  <motion.div
-                    className="hidden flex-shrink-0 sm:flex sm:items-center sm:justify-center"
-                    animate={{
-                      scale: [1, 1.1, 1],
-                      transition: {
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      },
-                    }}
-                  >
-                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/10 text-white">
-                      <MessageCircle className="h-7 w-7" />
-                    </div>
-                  </motion.div>
-                )}
-              </div>
-              <div className="flex flex-col gap-4 sm:items-end">
-                <motion.div
-                  animate={
-                    reduced
-                      ? undefined
-                      : {
-                          rotate: [0, -1, 1, -1, 0],
-                          transition: {
-                            duration: 5,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                          },
-                        }
-                  }
-                  className="inline-block"
+          <div className="relative z-10 mx-auto max-w-4xl space-y-6">
+            <p className="text-sm font-bold uppercase tracking-[0.22em] text-accent">
+              Contact &amp; accompagnement
+            </p>
+            <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
+              Un projet logistique ? Parlons-en.
+            </h2>
+            <p className="max-w-2xl text-base text-white/90 sm:text-lg">
+              Nous accompagnons expéditeurs et transporteurs dans
+              l&apos;optimisation de leurs flux logistiques.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Button
+                variant="accent"
+                size="lg"
+                className="text-accent-foreground shadow-lg"
+                asChild
+              >
+                <Link href="/contact">Demander un devis</Link>
+              </Button>
+              <Button
+                size="lg"
+                className="bg-[#25D366] text-white hover:bg-[#20BD5A]"
+                asChild
+              >
+                <a
+                  href={`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2"
                 >
-                  <Button
-                    variant="accent"
-                    size="lg"
-                    className="text-accent-foreground"
-                    asChild
-                  >
-                    <Link href="/contact">Nous contacter</Link>
-                  </Button>
-                </motion.div>
-                <div className="flex flex-col items-center gap-3 sm:items-end">
-                  <p className="text-xs text-white/70">
-                    Ou en direct via nos réseaux sociaux :
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <motion.a
-                      href={`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "")}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-200 hover:bg-[#25D366] focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-primary"
-                      aria-label="Contacter via WhatsApp"
-                      whileHover={reduced ? undefined : { scale: 1.1 }}
-                      whileTap={reduced ? undefined : { scale: 0.95 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    >
-                      <IconWhatsApp className="h-5 w-5" />
-                    </motion.a>
-                    <motion.a
-                      href={LINKEDIN_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-200 hover:bg-[#0A66C2] focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-primary"
-                      aria-label="Contacter via LinkedIn"
-                      whileHover={reduced ? undefined : { scale: 1.1 }}
-                      whileTap={reduced ? undefined : { scale: 0.95 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    >
-                      <Linkedin className="h-5 w-5" />
-                    </motion.a>
-                    <motion.a
-                      href={FACEBOOK_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-200 hover:bg-[#1877F2] focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-primary"
-                      aria-label="Contacter via Facebook"
-                      whileHover={reduced ? undefined : { scale: 1.1 }}
-                      whileTap={reduced ? undefined : { scale: 0.95 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    >
-                      <Facebook className="h-5 w-5" />
-                    </motion.a>
-                  </div>
-                </div>
+                  <IconWhatsApp className="h-5 w-5" />
+                  WhatsApp rapide
+                </a>
+              </Button>
+            </div>
+            <div className="flex items-center gap-4 pt-4">
+              <p className="text-xs text-white/70">Suivez-nous :</p>
+              <div className="flex items-center gap-2">
+                <a
+                  href={`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-[#25D366]"
+                  aria-label="WhatsApp"
+                >
+                  <IconWhatsApp className="h-5 w-5" />
+                </a>
+                <a
+                  href={LINKEDIN_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-[#0A66C2]"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="h-5 w-5" />
+                </a>
+                <a
+                  href={FACEBOOK_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-[#1877F2]"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="h-5 w-5" />
+                </a>
+                <a
+                  href={INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-[#E4405F]"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="h-5 w-5" />
+                </a>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
+          {/* Vague décorative vers le bas */}
+          <div
+            className="absolute -bottom-px left-0 right-0 z-20 h-12 w-full"
+            aria-hidden
+          >
+            <svg
+              viewBox="0 0 1440 48"
+              preserveAspectRatio="none"
+              className="h-full w-full"
+            >
+              <path
+                d="M0,48 L0,24 Q720,0 1440,24 L1440,48 Z"
+                fill="white"
+              />
+            </svg>
+          </div>
+        </motion.div>
+
+        {/* Zone contact directe - fond blanc */}
+        <motion.div
+          variants={itemVariants}
+          initial={reduced ? undefined : { opacity: 0, y: 20 }}
+          whileInView={
+            reduced
+              ? undefined
+              : { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.1 } }
+          }
+          viewport={defaultViewport}
+          className="-mt-1 rounded-b-2xl border border-t-0 border-primary/10 bg-white px-6 py-10 shadow-lg sm:px-10"
+        >
+          <h3 className="mb-8 text-center text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
+            Contactez-nous directement
+          </h3>
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+            {/* Formulaire à gauche */}
+            <div className="space-y-4">
+              <p className="text-base font-semibold text-foreground">
+                Besoin d&apos;un transport ?
+              </p>
+              <form
+                onSubmit={handleFormSubmit}
+                className="space-y-4"
+              >
+                <div className="space-y-2">
+                  <Input
+                    placeholder="Nom"
+                    className="border-muted-foreground/30 bg-white"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Input
+                    placeholder="Entreprise"
+                    className="border-muted-foreground/30 bg-white"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <select
+                    className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm text-muted-foreground shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    defaultValue=""
+                  >
+                    <option value="" disabled>
+                      Type de marchandise
+                    </option>
+                    <option value="cereales">Céréales</option>
+                    <option value="btp">Engins BTP</option>
+                    <option value="conteneurs">Conteneurs</option>
+                    <option value="divers">Divers</option>
+                  </select>
+                </div>
+                <div className="space-y-2">
+                  <Textarea
+                    placeholder="Votre message"
+                    rows={4}
+                    className="border-muted-foreground/30 bg-white resize-none"
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  variant="accent"
+                  size="lg"
+                  className="text-accent-foreground w-full sm:w-auto"
+                >
+                  Envoyer la demande
+                </Button>
+              </form>
+            </div>
+
+            {/* Cartes de contact à droite */}
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {CONTACT_CARDS.map((card) => {
+                const Icon = card.icon;
+                return (
+                  <Card
+                    key={card.title}
+                    className="border-muted-foreground/20 bg-white shadow-sm"
+                  >
+                    <CardContent className="p-4">
+                      <div
+                        className={`mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-muted/50 ${card.iconColor}`}
+                      >
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <p className="font-semibold text-foreground">
+                        {card.title}
+                      </p>
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        {card.subtitle}
+                      </p>
+                      {card.detail && (
+                        <p className="text-xs text-muted-foreground">
+                          {card.detail}
+                        </p>
+                      )}
+                      <Button
+                        variant="default"
+                        size="sm"
+                        className="mt-3"
+                        asChild
+                      >
+                        <a
+                          href={card.href}
+                          target={card.href.startsWith("http") ? "_blank" : undefined}
+                          rel={
+                            card.href.startsWith("http")
+                              ? "noopener noreferrer"
+                              : undefined
+                          }
+                        >
+                          {card.buttonLabel}
+                        </a>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Couverture géographique */}
+          <div className="mt-8 flex items-center justify-center gap-2 border-t border-muted/50 pt-6">
+            <MapPin className="h-5 w-5 text-accent" />
+            <p className="text-sm text-muted-foreground">
+              Couverture : Bénin - Togo - Afrique de l&apos;Ouest
+            </p>
+          </div>
         </motion.div>
       </motion.div>
     </section>

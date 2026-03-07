@@ -5,11 +5,10 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
-const DIAMOND_IMAGES = [
-  { src: "/images/engin btp2.jpg", alt: "Engins BTP et logistique" },
-  { src: "/images/cereales.jpg", alt: "Transport de marchandises" },
-  { src: "/images/7877ef4b9e0e203980ded0641155149e.jpg", alt: "Flotte de camions" },
-];
+const HERO_IMAGE = {
+  src: "/images/pour les transporteur.jpeg",
+  alt: "Transporteurs - Engins et logistique professionnelle",
+};
 
 const BULLET_POINTS = [
   "Missions récurrentes adaptées à votre flotte",
@@ -29,9 +28,14 @@ function DiamondImage({
 }: {
   src: string;
   alt: string;
-  size?: "default" | "sm";
+  size?: "default" | "sm" | "lg";
 }) {
-  const base = size === "sm" ? "h-24 w-24" : "h-36 w-36 md:h-44 md:w-44 lg:h-48 lg:w-48";
+  const base =
+    size === "sm"
+      ? "h-24 w-24"
+      : size === "lg"
+        ? "h-64 w-64 md:h-80 md:w-80 lg:h-96 lg:w-96"
+        : "h-36 w-36 md:h-44 md:w-44 lg:h-48 lg:w-48";
   return (
     <div
       className={`relative ${base} rotate-45 overflow-hidden border-4 border-white shadow-2xl`}
@@ -46,7 +50,13 @@ function DiamondImage({
             alt={alt}
             fill
             className="object-cover"
-            sizes={size === "sm" ? "96px" : "(max-width: 1024px) 176px, 192px"}
+            sizes={
+              size === "sm"
+                ? "96px"
+                : size === "lg"
+                  ? "(max-width: 768px) 256px, (max-width: 1024px) 320px, 384px"
+                  : "(max-width: 1024px) 176px, 192px"
+            }
           />
         </div>
       </div>
@@ -150,62 +160,42 @@ export function TransporteursTeaser() {
           </motion.div>
         </div>
 
-        {/* Right column - Diamond image layout */}
+        {/* Right column - Single large diamond image */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="relative hidden min-h-[360px] md:block lg:min-h-[420px]"
+          className="relative hidden min-h-[360px] md:flex lg:min-h-[420px] md:items-center md:justify-center"
         >
-          {/* Diamond 1 - top-left */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="absolute left-[15%] top-[15%] -translate-x-1/2 -translate-y-1/2 z-10"
+            className="flex items-center justify-center"
           >
-            <DiamondImage src={DIAMOND_IMAGES[0].src} alt={DIAMOND_IMAGES[0].alt} />
-          </motion.div>
-          {/* Diamond 2 - center */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
-          >
-            <DiamondImage src={DIAMOND_IMAGES[1].src} alt={DIAMOND_IMAGES[1].alt} />
-          </motion.div>
-          {/* Diamond 3 - bottom-right */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="absolute left-[85%] top-[85%] -translate-x-1/2 -translate-y-1/2 z-30"
-          >
-            <DiamondImage src={DIAMOND_IMAGES[2].src} alt={DIAMOND_IMAGES[2].alt} />
+            <DiamondImage
+              src={HERO_IMAGE.src}
+              alt={HERO_IMAGE.alt}
+              size="lg"
+            />
           </motion.div>
         </motion.div>
 
-        {/* Mobile: diamonds below text in a row */}
+        {/* Mobile: single image below text */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex justify-center gap-6 md:hidden py-4 overflow-hidden"
+          className="flex justify-center md:hidden py-4 overflow-hidden"
         >
-          {DIAMOND_IMAGES.map((img, i) => (
-            <DiamondImage
-              key={img.src}
-              src={img.src}
-              alt={img.alt}
-              size="sm"
-            />
-          ))}
+          <DiamondImage
+            src={HERO_IMAGE.src}
+            alt={HERO_IMAGE.alt}
+            size="lg"
+          />
         </motion.div>
       </div>
     </section>

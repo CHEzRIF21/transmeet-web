@@ -7,10 +7,8 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 const CAROUSEL_IMAGES = [
-  { src: "/images/engin btp2.jpg", alt: "Engins BTP" },
-  { src: "/images/3def2e57faeadd9ec2a121303618a34a.jpg", alt: "Logistique et Transport" },
-  { src: "/images/cereale 1.jpg", alt: "Transport de céréales" },
   { src: "/images/794f43aa25c5663703725cb1332e7a74.jpg", alt: "Camions sur la route" },
+  { src: "/images/engin btp2.jpg", alt: "Engins BTP" },
 ];
 
 const CAROUSEL_INTERVAL_MS = 5000;
