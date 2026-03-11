@@ -14,6 +14,11 @@ export const metadata: Metadata = {
   description:
     "Transmeet connecte expéditeurs, transporteurs et projets BTP pour des solutions logistiques premium en Afrique de l'Ouest.",
   manifest: "/manifest.json",
+  icons: {
+    icon: "/images/logo TRANSMEET.jpeg",
+    shortcut: "/images/logo TRANSMEET.jpeg",
+    apple: "/images/logo TRANSMEET.jpeg",
+  },
 };
 
 export const viewport: Viewport = {
