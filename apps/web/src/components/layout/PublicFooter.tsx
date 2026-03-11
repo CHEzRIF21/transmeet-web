@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { APP_ROUTES } from "@/lib/config";
+import { APP_ROUTES, CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/config";
 import { Button } from "@/components/ui/button";
 
 export function PublicFooter() {
@@ -46,8 +46,18 @@ export function PublicFooter() {
           </p>
           <div className="space-y-1 text-xs">
             <p>Cotonou, Bénin</p>
-            <p>Tél. : +229 XX XX XX XX</p>
-            <p>Email : contact@transmeet.com</p>
+            <p>
+              Tél. :{" "}
+              <a href={`tel:${CONTACT_PHONE.replace(/\s/g, "")}`} className="hover:text-white transition-colors">
+                {CONTACT_PHONE}
+              </a>
+            </p>
+            <p>
+              Email :{" "}
+              <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-white transition-colors">
+                {CONTACT_EMAIL}
+              </a>
+            </p>
           </div>
           <Button variant="accent" size="sm" className="mt-2" asChild>
             <Link href={APP_ROUTES.login()}>

@@ -1,4 +1,5 @@
 import { ContactForm } from "@/components/forms/ContactForm";
+import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/config";
 
 export default function ContactPage() {
   return (
@@ -25,8 +26,8 @@ export default function ContactPage() {
             Coordonnées
           </p>
           <p>Cotonou, Bénin</p>
-          <p>Tél. : +229 XX XX XX XX</p>
-          <p>Email : contact@transmeet.com</p>
+          <p>Tél. : {CONTACT_PHONE}</p>
+          <p>Email : {CONTACT_EMAIL}</p>
         </div>
       </div>
     </div>

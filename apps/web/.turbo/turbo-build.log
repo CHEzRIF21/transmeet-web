@@ -4,75 +4,22 @@
 
 Prisma schema loaded from ..\api\prisma\schema.prisma
 
-✔ Generated Prisma Client (v5.22.0) to .\..\..\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client in 1.00s
+✔ Generated Prisma Client (v5.22.0) to .\..\..\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client in 1.33s
 
 Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
 
-Tip: Want real-time updates to your database without manual polling? Discover how with Pulse: https://pris.ly/tip-0-pulse
+Tip: Want to react to database changes in your app as they happen? Discover how with Pulse: https://pris.ly/tip-1-pulse
 
   ▲ Next.js 14.2.18
 
    Creating an optimized production build ...
- ✓ Compiled successfully
-   Linting and checking validity of types ...
+Failed to compile.
 
-./src/components/features/tracking/MissionMap.tsx
-127:6  Warning: React Hook useEffect has missing dependencies: 'truckPosition.lat' and 'truckPosition.lng'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+./src/app/api/leads/route.ts
+Module not found: Can't resolve 'resend'
 
-./src/components/features/tracking/TrackingContent.tsx
-161:6  Warning: React Hook useMemo has a missing dependency: 'DEST'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
-
-info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
-   Collecting page data ...
-   Generating static pages (0/31) ...
-   Generating static pages (7/31) 
-   Generating static pages (15/31) 
-   Generating static pages (23/31) 
- ✓ Generating static pages (31/31)
-   Finalizing page optimization ...
-   Collecting build traces ...
-
-Route (app)                              Size     First Load JS
-┌ ○ /                                    13.5 kB         158 kB
-├ ○ /_not-found                          874 B          88.5 kB
-├ ƒ /admin                               2.3 kB          116 kB
-├ ƒ /admin/kyc                           6.26 kB         112 kB
-├ ƒ /admin/missions                      160 B          87.8 kB
-├ ƒ /admin/parametres                    6.62 kB         113 kB
-├ ƒ /admin/utilisateurs                  3.94 kB         127 kB
-├ ○ /btp                                 4.94 kB         166 kB
-├ ○ /contact                             3.02 kB         122 kB
-├ ƒ /dashboard                           160 B          87.8 kB
-├ ƒ /dashboard/messagerie                4.05 kB        99.6 kB
-├ ƒ /dashboard/missions                  4.61 kB         134 kB
-├ ƒ /dashboard/missions/[id]             6.78 kB         201 kB
-├ ƒ /dashboard/missions/[id]/tracking    8.02 kB         176 kB
-├ ƒ /dashboard/notifications             4.89 kB         173 kB
-├ ƒ /dashboard/paiements                 5.4 kB          101 kB
-├ ƒ /expediteur                          2.59 kB         116 kB
-├ ƒ /expediteur/demandes                 3.03 kB         175 kB
-├ ƒ /expediteur/demandes/[id]            2.47 kB         174 kB
-├ ƒ /expediteur/demandes/nouvelle        3.12 kB         198 kB
-├ ƒ /expediteur/missions                 160 B          87.8 kB
-├ ○ /expediteurs                         3.17 kB         122 kB
-├ ○ /login                               3.95 kB         186 kB
-├ ○ /qui-sommes-nous                     160 B          87.8 kB
-├ ○ /register                            4.86 kB         187 kB
-├ ○ /register/verify                     4.35 kB         187 kB
-├ ƒ /transporteur                        2.4 kB          116 kB
-├ ƒ /transporteur/flotte                 10.9 kB         181 kB
-├ ƒ /transporteur/missions               160 B          87.8 kB
-├ ƒ /transporteur/offres                 8.63 kB         115 kB
-├ ƒ /transporteur/vehicules              160 B          87.8 kB
-└ ○ /transporteurs                       3.07 kB         122 kB
-+ First Load JS shared by all            87.6 kB
-  ├ chunks/7298-be9ab8468d76ea40.js      31.6 kB
-  ├ chunks/b62a28e4-00668f1a9ee243ae.js  53.6 kB
-  └ other shared chunks (total)          2.43 kB
+https://nextjs.org/docs/messages/module-not-found
 
 
-ƒ Middleware                             73.7 kB
-
-○  (Static)   prerendered as static content
-ƒ  (Dynamic)  server-rendered on demand
-
+> Build failed because of webpack errors
+ ELIFECYCLE  Command failed with exit code 1.

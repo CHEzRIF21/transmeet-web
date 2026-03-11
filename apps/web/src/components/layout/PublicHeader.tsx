@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { springTransition, useReducedMotion } from "@/lib/motion";
+import { WHATSAPP_NUMBER } from "@/lib/config";
 
 const NAV_ITEMS = [
   { href: "/", label: "Accueil" },
@@ -24,8 +25,6 @@ const NAV_ITEMS = [
   { href: "/#btp", label: "BTP" },
   { href: "/#contact", label: "Contact" },
 ];
-
-const WHATSAPP_NUMBER = "+22900000000";
 
 const SECTION_IDS = [
   "qui-sommes-nous",
@@ -218,7 +217,7 @@ export function PublicHeader() {
           </Button>
           <Button variant="accent" size="sm" asChild>
             <a
-              href={`https://wa.me/${WHATSAPP_NUMBER.replace("+", "")}`}
+              href={`https://wa.me/${WHATSAPP_NUMBER}`}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Contacter via WhatsApp"
@@ -284,7 +283,7 @@ export function PublicHeader() {
                 </Button>
               </SheetClose>
               <a
-                href={`https://wa.me/${WHATSAPP_NUMBER.replace("+", "")}`}
+                href={`https://wa.me/${WHATSAPP_NUMBER}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 rounded-md bg-green-600 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-green-700"

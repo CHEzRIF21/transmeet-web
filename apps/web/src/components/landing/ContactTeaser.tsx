@@ -1,15 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import {
-  Linkedin,
-  Facebook,
-  Instagram,
-  Phone,
-  MapPin,
-} from "lucide-react";
+import { Facebook, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -21,11 +14,14 @@ import {
   defaultViewport,
   useReducedMotion,
 } from "@/lib/motion";
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+  WHATSAPP_NUMBER,
+} from "@/lib/config";
 
-const WHATSAPP_NUMBER = "+22900000000";
-const LINKEDIN_URL = "https://linkedin.com/company/transmeet";
 const FACEBOOK_URL = "https://facebook.com/transmeet";
-const INSTAGRAM_URL = "https://instagram.com/transmeet_officiel";
+const TIKTOK_URL = "https://tiktok.com/@transmeet_officiel";
 
 function IconWhatsApp({ className }: { className?: string }) {
   return (
@@ -40,6 +36,19 @@ function IconWhatsApp({ className }: { className?: string }) {
   );
 }
 
+function IconTikTok({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden
+    >
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+    </svg>
+  );
+}
+
 const CONTACT_CARDS = [
   {
     icon: IconWhatsApp,
@@ -47,46 +56,53 @@ const CONTACT_CARDS = [
     subtitle: "Réponse en quelques minutes",
     detail: "Bénin / Togo",
     buttonLabel: "Discuter",
-    href: `https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "")}`,
+    href: `https://wa.me/${WHATSAPP_NUMBER}`,
     iconColor: "text-[#25D366]",
   },
   {
     icon: Phone,
     title: "Téléphone",
-    subtitle: "+229 XX XX XX XX",
+    subtitle: CONTACT_PHONE,
     detail: "Profil Transmeet",
     buttonLabel: "Appeler",
-    href: "tel:+22900000000",
+    href: `tel:${CONTACT_PHONE.replace(/\s/g, "")}`,
     iconColor: "text-primary",
   },
   {
-    icon: Linkedin,
-    title: "LinkedIn",
+    icon: Facebook,
+    title: "Facebook",
     subtitle: "Profil Transmeet",
     detail: "",
     buttonLabel: "Suivre",
-    href: LINKEDIN_URL,
-    iconColor: "text-[#0A66C2]",
+    href: FACEBOOK_URL,
+    iconColor: "text-[#1877F2]",
   },
   {
-    icon: Instagram,
-    title: "Instagram",
+    icon: IconTikTok,
+    title: "TikTok",
     subtitle: "@transmeet_officiel",
     detail: "",
     buttonLabel: "Suivre",
-    href: INSTAGRAM_URL,
-    iconColor: "text-[#E4405F]",
+    href: TIKTOK_URL,
+    iconColor: "text-foreground",
   },
 ];
 
 export function ContactTeaser() {
   const reduced = useReducedMotion();
-  const router = useRouter();
   const itemVariants = reduced ? fadeUpReduced : fadeUp;
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push("/contact");
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const nom = formData.get("nom")?.toString() || "";
+    const entreprise = formData.get("entreprise")?.toString() || "";
+    const typeMarchandise = formData.get("typeMarchandise")?.toString() || "";
+    const message = formData.get("message")?.toString() || "";
+    const subject = `[Transmeet] Demande depuis l'accueil - ${entreprise || nom}`;
+    const body = `Nom: ${nom}\nEntreprise: ${entreprise}\nType de marchandise: ${typeMarchandise}\n\nMessage:\n${message}`;
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
   return (
@@ -139,7 +155,7 @@ export function ContactTeaser() {
                 asChild
               >
                 <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "")}`}
+                  href={`https://wa.me/${WHATSAPP_NUMBER}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2"
@@ -153,22 +169,13 @@ export function ContactTeaser() {
               <p className="text-xs text-white/70">Suivez-nous :</p>
               <div className="flex items-center gap-2">
                 <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "")}`}
+                  href={`https://wa.me/${WHATSAPP_NUMBER}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-[#25D366]"
                   aria-label="WhatsApp"
                 >
                   <IconWhatsApp className="h-5 w-5" />
-                </a>
-                <a
-                  href={LINKEDIN_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-[#0A66C2]"
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin className="h-5 w-5" />
                 </a>
                 <a
                   href={FACEBOOK_URL}
@@ -180,13 +187,13 @@ export function ContactTeaser() {
                   <Facebook className="h-5 w-5" />
                 </a>
                 <a
-                  href={INSTAGRAM_URL}
+                  href={TIKTOK_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-[#E4405F]"
-                  aria-label="Instagram"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-black"
+                  aria-label="TikTok"
                 >
-                  <Instagram className="h-5 w-5" />
+                  <IconTikTok className="h-5 w-5" />
                 </a>
               </div>
             </div>
@@ -236,18 +243,21 @@ export function ContactTeaser() {
               >
                 <div className="space-y-2">
                   <Input
+                    name="nom"
                     placeholder="Nom"
                     className="border-muted-foreground/30 bg-white"
                   />
                 </div>
                 <div className="space-y-2">
                   <Input
+                    name="entreprise"
                     placeholder="Entreprise"
                     className="border-muted-foreground/30 bg-white"
                   />
                 </div>
                 <div className="space-y-2">
                   <select
+                    name="typeMarchandise"
                     className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm text-muted-foreground shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     defaultValue=""
                   >
@@ -262,6 +272,7 @@ export function ContactTeaser() {
                 </div>
                 <div className="space-y-2">
                   <Textarea
+                    name="message"
                     placeholder="Votre message"
                     rows={4}
                     className="border-muted-foreground/30 bg-white resize-none"

@@ -1,8 +1,5 @@
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000";
-
 export async function submitLead(payload: unknown): Promise<string> {
-  const res = await fetch(`${API_BASE}/api/v1/leads`, {
+  const res = await fetch("/api/leads", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

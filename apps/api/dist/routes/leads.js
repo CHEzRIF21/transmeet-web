@@ -4,38 +4,65 @@ exports.leadsRoutes = leadsRoutes;
 const zod_1 = require("zod");
 const prisma_js_1 = require("../repositories/prisma.js");
 const errors_js_1 = require("../utils/errors.js");
-const baseLeadSchema = zod_1.z.object({
-    name: zod_1.z.string().min(2),
-    email: zod_1.z.string().email(),
+const truckTypeItemSchema = zod_1.z.object({
+    type: zod_1.z.string().min(1, "Type de camion requis"),
+    quantity: zod_1.z.number().int().positive("Quantité > 0 requise"),
+});
+const baseLeadObject = zod_1.z.object({
+    name: zod_1.z.string().min(2).optional(),
+    email: zod_1.z.string().email().optional().or(zod_1.z.literal("")),
     phone: zod_1.z.string().min(6).max(32).optional(),
     company: zod_1.z.string().min(2).optional(),
-    message: zod_1.z.string().min(5).max(2000).optional(),
+    message: zod_1.z.string().max(2000).optional(),
 });
-const expediteurSchema = baseLeadSchema.extend({
+const baseLeadRefine = (data, ctx) => {
+    const hasContact = (data.email && data.email !== "") || (data.phone && data.phone.length >= 6);
+    if (!hasContact) {
+        ctx.addIssue({
+            code: zod_1.z.ZodIssueCode.custom,
+            message: "Téléphone ou email requis",
+            path: ["email"],
+        });
+    }
+    const hasIdentity = (data.name && data.name.length >= 2) || (data.company && data.company.length >= 2);
+    if (!hasIdentity) {
+        ctx.addIssue({
+            code: zod_1.z.ZodIssueCode.custom,
+            message: "Nom/prénom ou nom d'entreprise requis",
+            path: ["name"],
+        });
+    }
+};
+const expediteurSchema = baseLeadObject
+    .extend({
     type: zod_1.z.literal("EXPEDITEUR"),
-    goodsType: zod_1.z.string().min(2),
-    destination: zod_1.z.string().min(2),
-    truckType: zod_1.z.string().min(2),
-});
-const transporteurSchema = baseLeadSchema.extend({
+    departureCity: zod_1.z.string().min(2, "Ville de départ requise"),
+    arrivalCity: zod_1.z.string().min(2, "Ville d'arrivée requise"),
+    truckTypes: zod_1.z.array(truckTypeItemSchema).min(1, "Au moins un type de camion requis"),
+})
+    .superRefine(baseLeadRefine);
+const transporteurSchema = baseLeadObject
+    .extend({
     type: zod_1.z.literal("TRANSPORTEUR"),
-    truckType: zod_1.z.string().min(2),
-    capacity: zod_1.z.string().min(1),
-    zone: zod_1.z.string().min(2),
-    experienceYears: zod_1.z.string().min(1),
-});
-const btpSchema = baseLeadSchema.extend({
+    truckTypes: zod_1.z.array(truckTypeItemSchema).min(1, "Au moins un type de camion requis"),
+})
+    .superRefine(baseLeadRefine);
+const btpSchema = baseLeadObject
+    .extend({
     type: zod_1.z.literal("BTP"),
     projectType: zod_1.z.string().min(2),
     equipments: zod_1.z.array(zod_1.z.string()).min(1),
     startDate: zod_1.z.string().optional(),
     endDate: zod_1.z.string().optional(),
-});
-const contactSchema = baseLeadSchema.extend({
+})
+    .superRefine(baseLeadRefine);
+const contactSchema = baseLeadObject
+    .extend({
     type: zod_1.z.literal("CONTACT"),
     subject: zod_1.z.string().min(2),
-});
-const leadSchema = zod_1.z.discriminatedUnion("type", [
+})
+    .superRefine(baseLeadRefine);
+const leadSchema = zod_1.z.union([
     expediteurSchema,
     transporteurSchema,
     btpSchema,
@@ -46,14 +73,16 @@ async function leadsRoutes(app, _opts) {
         try {
             const parsed = leadSchema.parse(request.body);
             const { type, name, email, phone, company, message, ...metadata } = parsed;
+            const cleanName = name?.trim() || undefined;
+            const cleanEmail = email?.trim() || undefined;
             await prisma_js_1.prisma.lead.create({
                 data: {
-                    type,
-                    name,
-                    email,
-                    phone,
-                    company,
-                    message,
+                    type: type,
+                    name: cleanName,
+                    email: cleanEmail,
+                    phone: phone?.trim() || undefined,
+                    company: company?.trim() || undefined,
+                    message: message?.trim() || undefined,
                     metadata: Object.keys(metadata).length ? metadata : undefined,
                 },
             });

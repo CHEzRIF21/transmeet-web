@@ -593,8 +593,8 @@ model Review {
 model Lead {
   id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   type      LeadType
-  name      String
-  email     String
+  name      String?
+  email     String?
   phone     String?
   company   String?
   message   String?  @db.Text
