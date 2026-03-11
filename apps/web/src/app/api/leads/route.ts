@@ -60,6 +60,18 @@ export async function POST(request: NextRequest) {
       });
     }
 
+    if (process.env.LEADS_WEBHOOK_URL) {
+      try {
+        await fetch(process.env.LEADS_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+      } catch {
+        // Ne pas bloquer le flux si le webhook échoue
+      }
+    }
+
     const res = await fetch(`${API_BASE}/api/v1/leads`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

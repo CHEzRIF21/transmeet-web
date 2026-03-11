@@ -23,7 +23,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { AuthInput } from "@/components/auth/AuthInput";
 import Link from "next/link";
 import { UserPlus, Package, Truck, Mail } from "lucide-react";
 
@@ -96,16 +96,18 @@ export function PhoneSignupForm() {
 
   return (
     <div className="w-full">
-      <Card className="border-primary/20 shadow-xl">
-        <CardHeader className="space-y-1 text-center sm:text-left">
-          <CardTitle className="text-2xl font-bold">Inscription</CardTitle>
-          <CardDescription>
+      <Card className="rounded-2xl border-white/20 bg-white/95 shadow-2xl shadow-black/25 backdrop-blur-md">
+        <CardHeader className="space-y-2 pb-2 text-center">
+          <CardTitle className="text-2xl font-bold tracking-tight sm:text-3xl">
+            Inscription
+          </CardTitle>
+          <CardDescription className="text-base">
             Créez votre compte Transmeet pour accéder à la plateforme.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
               <FormField
                 control={form.control}
                 name="role"
@@ -149,7 +151,7 @@ export function PhoneSignupForm() {
                   <FormItem>
                     <FormLabel>Nom complet</FormLabel>
                     <FormControl>
-                      <Input placeholder="Jean Dupont" {...field} disabled={isLoading} />
+                      <AuthInput placeholder="Jean Dupont" {...field} disabled={isLoading} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -164,7 +166,7 @@ export function PhoneSignupForm() {
                     <FormControl>
                       <div className="relative">
                         <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                        <Input
+                        <AuthInput
                           type="email"
                           placeholder="vous@exemple.com"
                           className="pl-9"
@@ -186,7 +188,7 @@ export function PhoneSignupForm() {
                       <FormItem>
                         <FormLabel>Nom de l&apos;entreprise</FormLabel>
                         <FormControl>
-                          <Input placeholder="Ma Société" {...field} disabled={isLoading} />
+                          <AuthInput placeholder="Ma Société" {...field} disabled={isLoading} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -199,7 +201,7 @@ export function PhoneSignupForm() {
                       <FormItem>
                         <FormLabel>Pays (code ISO 3)</FormLabel>
                         <FormControl>
-                          <Input placeholder="BEN" {...field} disabled={isLoading} />
+                          <AuthInput placeholder="BEN" {...field} disabled={isLoading} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -214,7 +216,7 @@ export function PhoneSignupForm() {
               )}
               <Button
                 type="submit"
-                className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+                className="w-full bg-accent text-accent-foreground shadow-lg shadow-accent/25 hover:bg-accent/90"
                 size="lg"
                 disabled={isLoading}
               >
@@ -233,7 +235,7 @@ export function PhoneSignupForm() {
             </form>
           </Form>
         </CardContent>
-        <CardFooter className="flex flex-col gap-4 border-t pt-6">
+        <CardFooter className="flex flex-col gap-4 border-t border-white/20 pt-6">
           <p className="text-center text-sm text-muted-foreground">
             Déjà un compte ?{" "}
             <Link

@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createClient } from "@/lib/supabase/client";
 import { loginSchema, type LoginInput } from "@/validations/auth";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { AuthInput } from "@/components/auth/AuthInput";
 import {
   Card,
   CardContent,
@@ -55,17 +55,19 @@ export function LoginForm() {
 
   return (
     <div className="w-full">
-      <Card className="border-primary/20 shadow-xl">
-        <CardHeader className="space-y-1 text-center sm:text-left">
-          <CardTitle className="text-2xl font-bold">Connexion</CardTitle>
-          <CardDescription>
+      <Card className="rounded-2xl border-white/20 bg-white/95 shadow-2xl shadow-black/25 backdrop-blur-md">
+        <CardHeader className="space-y-2 pb-2 text-center">
+          <CardTitle className="text-2xl font-bold tracking-tight sm:text-3xl">
+            Connexion
+          </CardTitle>
+          <CardDescription className="text-base">
             Accédez à votre espace Transmeet pour gérer vos missions et
             demandes.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
               <FormField
                 control={form.control}
                 name="email"
@@ -75,7 +77,7 @@ export function LoginForm() {
                     <FormControl>
                       <div className="relative">
                         <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                        <Input
+                        <AuthInput
                           type="email"
                           placeholder="vous@exemple.com"
                           className="pl-9"
@@ -96,7 +98,7 @@ export function LoginForm() {
                     <FormControl>
                       <div className="relative">
                         <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                        <Input
+                        <AuthInput
                           type="password"
                           placeholder="••••••••"
                           className="pl-9"
@@ -115,7 +117,7 @@ export function LoginForm() {
               )}
               <Button
                 type="submit"
-                className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+                className="w-full bg-accent text-accent-foreground shadow-lg shadow-accent/25 hover:bg-accent/90"
                 size="lg"
               >
                 Se connecter
@@ -124,7 +126,7 @@ export function LoginForm() {
             </form>
           </Form>
         </CardContent>
-        <CardFooter className="flex flex-col gap-4 border-t pt-6">
+        <CardFooter className="flex flex-col gap-4 border-t border-white/20 pt-6">
           <p className="text-center text-sm text-muted-foreground">
             Pas encore de compte ?{" "}
             <Link

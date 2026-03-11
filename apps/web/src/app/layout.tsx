@@ -1,9 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { QueryProvider } from "@/components/providers/QueryProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-display",
+});
 
 export const metadata: Metadata = {
   title: "Transmeet — Plateforme logistique Afrique de l'Ouest",
@@ -22,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={inter.variable}>
+    <html lang="fr" className={`${inter.variable} ${plusJakarta.variable}`}>
       <body className="font-sans antialiased bg-background text-foreground">
         <QueryProvider>
           {children}

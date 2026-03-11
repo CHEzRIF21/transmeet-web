@@ -24,7 +24,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { AuthInput } from "@/components/auth/AuthInput";
 import Link from "next/link";
 import { ShieldCheck, ArrowLeft } from "lucide-react";
 
@@ -125,16 +125,18 @@ export function VerifyOtpForm() {
 
   return (
     <div className="w-full">
-      <Card className="border-primary/20 shadow-xl">
-        <CardHeader className="space-y-1 text-center sm:text-left">
-          <CardTitle className="text-2xl font-bold">Vérification</CardTitle>
-          <CardDescription>
+      <Card className="rounded-2xl border-white/20 bg-white/95 shadow-2xl shadow-black/25 backdrop-blur-md">
+        <CardHeader className="space-y-2 pb-2 text-center">
+          <CardTitle className="text-2xl font-bold tracking-tight sm:text-3xl">
+            Vérification
+          </CardTitle>
+          <CardDescription className="text-base">
             Entrez le code à 6 chiffres envoyé à {email}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
               <FormField
                 control={form.control}
                 name="token"
@@ -142,10 +144,10 @@ export function VerifyOtpForm() {
                   <FormItem>
                     <FormLabel>Code OTP</FormLabel>
                     <FormControl>
-                      <Input
+                      <AuthInput
                         placeholder="123456"
                         maxLength={6}
-                        className="text-center text-lg tracking-[0.5em] font-mono"
+                        className="h-12 text-center text-lg tracking-[0.5em] font-mono"
                         {...field}
                         disabled={isLoading}
                         onChange={(e) =>
@@ -183,7 +185,7 @@ export function VerifyOtpForm() {
             </form>
           </Form>
         </CardContent>
-        <CardFooter className="flex flex-col gap-4 border-t pt-6">
+        <CardFooter className="flex flex-col gap-4 border-t border-white/20 pt-6">
           <Link
             href="/register"
             className="flex items-center justify-center gap-2 text-sm text-muted-foreground hover:text-foreground"

@@ -4,22 +4,76 @@
 
 Prisma schema loaded from ..\api\prisma\schema.prisma
 
-✔ Generated Prisma Client (v5.22.0) to .\..\..\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client in 1.33s
+✔ Generated Prisma Client (v5.22.0) to .\..\..\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client in 1.08s
 
 Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
 
-Tip: Want to react to database changes in your app as they happen? Discover how with Pulse: https://pris.ly/tip-1-pulse
+Tip: Easily identify and fix slow SQL queries in your app. Optimize helps you enhance your visibility: https://pris.ly/--optimize
 
   ▲ Next.js 14.2.18
 
    Creating an optimized production build ...
-Failed to compile.
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
 
-./src/app/api/leads/route.ts
-Module not found: Can't resolve 'resend'
+./src/components/features/tracking/MissionMap.tsx
+127:6  Warning: React Hook useEffect has missing dependencies: 'truckPosition.lat' and 'truckPosition.lng'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
 
-https://nextjs.org/docs/messages/module-not-found
+./src/components/features/tracking/TrackingContent.tsx
+161:6  Warning: React Hook useMemo has a missing dependency: 'DEST'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/32) ...
+   Generating static pages (8/32) 
+   Generating static pages (16/32) 
+   Generating static pages (24/32) 
+ ✓ Generating static pages (32/32)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    15 kB           159 kB
+├ ○ /_not-found                          874 B          88.5 kB
+├ ƒ /admin                               2.3 kB          116 kB
+├ ƒ /admin/kyc                           6.25 kB         112 kB
+├ ƒ /admin/missions                      160 B          87.8 kB
+├ ƒ /admin/parametres                    6.61 kB         113 kB
+├ ƒ /admin/utilisateurs                  3.94 kB         127 kB
+├ ƒ /api/leads                           0 B                0 B
+├ ○ /btp                                 4.49 kB         166 kB
+├ ○ /contact                             2.35 kB         122 kB
+├ ƒ /dashboard                           160 B          87.8 kB
+├ ƒ /dashboard/messagerie                4.05 kB        99.6 kB
+├ ƒ /dashboard/missions                  4.61 kB         134 kB
+├ ƒ /dashboard/missions/[id]             6.78 kB         201 kB
+├ ƒ /dashboard/missions/[id]/tracking    8.02 kB         176 kB
+├ ƒ /dashboard/notifications             4.89 kB         173 kB
+├ ƒ /dashboard/paiements                 5.4 kB          101 kB
+├ ƒ /expediteur                          2.59 kB         116 kB
+├ ƒ /expediteur/demandes                 3.03 kB         175 kB
+├ ƒ /expediteur/demandes/[id]            2.47 kB         174 kB
+├ ƒ /expediteur/demandes/nouvelle        3.1 kB          199 kB
+├ ƒ /expediteur/missions                 160 B          87.8 kB
+├ ○ /expediteurs                         4.45 kB         124 kB
+├ ○ /login                               3.93 kB         188 kB
+├ ○ /qui-sommes-nous                     160 B          87.8 kB
+├ ○ /register                            4.83 kB         189 kB
+├ ○ /register/verify                     4.33 kB         188 kB
+├ ƒ /transporteur                        2.4 kB          116 kB
+├ ƒ /transporteur/flotte                 10.9 kB         181 kB
+├ ƒ /transporteur/missions               160 B          87.8 kB
+├ ƒ /transporteur/offres                 8.62 kB         115 kB
+├ ƒ /transporteur/vehicules              160 B          87.8 kB
+└ ○ /transporteurs                       4.39 kB         124 kB
++ First Load JS shared by all            87.6 kB
+  ├ chunks/7298-be9ab8468d76ea40.js      31.6 kB
+  ├ chunks/b62a28e4-00668f1a9ee243ae.js  53.6 kB
+  └ other shared chunks (total)          2.43 kB
 
 
-> Build failed because of webpack errors
- ELIFECYCLE  Command failed with exit code 1.
+ƒ Middleware                             73.7 kB
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
