@@ -17,7 +17,7 @@ export function CTAExpediteurs() {
           className="mt-8 bg-white text-primary hover:bg-white/90"
           asChild
         >
-          <Link href="/register?role=expediteur">Créer une demande</Link>
+          <Link href="/expediteurs">Créer une demande</Link>
         </Button>
       </div>
     </section>

@@ -18,8 +18,8 @@ export function CTATransporteurs() {
           className="mt-8 bg-white text-accent hover:bg-white/90"
           asChild
         >
-          <Link href="/register?role=transporteur">
-            S&apos;inscrire comme transporteur
+          <Link href="/transporteurs">
+            Rejoindre le réseau
           </Link>
         </Button>
       </div>

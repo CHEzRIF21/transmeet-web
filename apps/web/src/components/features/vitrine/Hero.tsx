@@ -34,7 +34,7 @@ export function Hero() {
               className="bg-accent text-white hover:bg-accent/90"
               asChild
             >
-              <Link href="/register?role=expediteur">
+              <Link href="/expediteurs">
                 Commander un camion
               </Link>
             </Button>
@@ -44,7 +44,7 @@ export function Hero() {
               className="border-white/40 bg-white/5 text-white hover:bg-white/10 hover:text-white"
               asChild
             >
-              <Link href="/register?role=transporteur">
+              <Link href="/transporteurs">
                 Référencer votre camion
               </Link>
             </Button>
