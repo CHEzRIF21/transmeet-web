@@ -34,11 +34,29 @@ export async function updateSession(request: NextRequest) {
   const isAuthRoute =
     request.nextUrl.pathname === "/login" || request.nextUrl.pathname === "/register" ||
     request.nextUrl.pathname.startsWith("/register/verify");
+  const pathname = request.nextUrl.pathname;
+
+  // Pages de formulaires publics (expéditeurs, transporteurs, BTP) — jamais rediriger vers login
+  const isPublicFormPage =
+    pathname === "/expediteurs" ||
+    pathname.startsWith("/expediteurs/") ||
+    pathname === "/transporteurs" ||
+    pathname.startsWith("/transporteurs/") ||
+    pathname === "/btp" ||
+    pathname.startsWith("/btp/");
+
+  const isExpediteurDashboard =
+    !isPublicFormPage &&
+    (pathname === "/expediteur" || pathname.startsWith("/expediteur/"));
+  const isTransporteurDashboard =
+    !isPublicFormPage &&
+    (pathname === "/transporteur" || pathname.startsWith("/transporteur/"));
   const isDashboard =
-    request.nextUrl.pathname.startsWith("/dashboard") ||
-    ["/expediteur", "/transporteur", "/admin", "/shared"].some((p) =>
-      request.nextUrl.pathname.startsWith(p)
-    );
+    pathname.startsWith("/dashboard") ||
+    isExpediteurDashboard ||
+    isTransporteurDashboard ||
+    pathname.startsWith("/admin") ||
+    pathname.startsWith("/shared");
 
   if (isDashboard && !isAuth) {
     const redirect = new URL("/login", request.url);
