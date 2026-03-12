@@ -1,5 +1,8 @@
 {
   "/(auth)/login/page": "app/(auth)/login/page.js",
+  "/(marketing)/page": "app/(marketing)/page.js",
   "/(auth)/register/page": "app/(auth)/register/page.js",
-  "/(marketing)/page": "app/(marketing)/page.js"
+  "/(marketing)/btp/page": "app/(marketing)/btp/page.js",
+  "/(marketing)/expediteurs/page": "app/(marketing)/expediteurs/page.js",
+  "/(marketing)/transporteurs/page": "app/(marketing)/transporteurs/page.js"
 }
