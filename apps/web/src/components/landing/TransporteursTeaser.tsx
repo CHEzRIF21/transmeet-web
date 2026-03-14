@@ -6,8 +6,8 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
 const HERO_IMAGE = {
-  src: "/images/pour les transporteur.jpeg",
-  alt: "Transporteurs - Engins et logistique professionnelle",
+  src: "/images/transporteur-professionnel.png",
+  alt: "Transporteur professionnel - Transmeet",
 };
 
 const BULLET_POINTS = [
@@ -21,6 +21,7 @@ const fadeUp = {
   animate: { opacity: 1, y: 0 },
 };
 
+/** Image en losange - même affichage que la section expéditeurs */
 function DiamondImage({
   src,
   alt,
@@ -160,7 +161,7 @@ export function TransporteursTeaser() {
           </motion.div>
         </div>
 
-        {/* Right column - Single large diamond image */}
+        {/* Right column - Losange (même affichage que la section expéditeurs) */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
