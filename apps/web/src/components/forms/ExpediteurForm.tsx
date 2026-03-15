@@ -58,6 +58,13 @@ const schema = z
         });
       }
     } else {
+      if (!data.name || data.name.trim().length < 2) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Nom et prénom de la personne requis",
+          path: ["name"],
+        });
+      }
       if (!data.company || data.company.trim().length < 2) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
@@ -101,7 +108,7 @@ export function ExpediteurForm() {
     try {
       const message = await submitLead({
         type: "EXPEDITEUR",
-        name: values.profileType === "particulier" ? values.name : undefined,
+        name: values.name,
         company: values.profileType === "entreprise" ? values.company : undefined,
         phone: values.phone,
         email: values.email,
@@ -166,17 +173,31 @@ export function ExpediteurForm() {
               )}
             </div>
           ) : (
-            <div className="space-y-1">
-              <label className="text-sm font-medium text-foreground">
-                Nom de l&apos;entreprise
-              </label>
-              <Input
-                placeholder="Ex: Transport SA"
-                {...register("company")}
-              />
-              {errors.company && (
-                <p className="text-xs text-red-600">{errors.company.message}</p>
-              )}
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="space-y-1">
+                <label className="text-sm font-medium text-foreground">
+                  Nom et prénom de la personne
+                </label>
+                <Input
+                  placeholder="Ex: Jean Dupont"
+                  {...register("name")}
+                />
+                {errors.name && (
+                  <p className="text-xs text-red-600">{errors.name.message}</p>
+                )}
+              </div>
+              <div className="space-y-1">
+                <label className="text-sm font-medium text-foreground">
+                  Nom de l&apos;entreprise
+                </label>
+                <Input
+                  placeholder="Ex: Transport SA"
+                  {...register("company")}
+                />
+                {errors.company && (
+                  <p className="text-xs text-red-600">{errors.company.message}</p>
+                )}
+              </div>
             </div>
           )}
 

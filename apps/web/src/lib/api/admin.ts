@@ -1,5 +1,51 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import type { Lead } from "@transmit/types";
 import { apiRequest } from "./client";
+
+export interface AdminLeadsParams {
+  type?: "ALL" | "EXPEDITEUR" | "TRANSPORTEUR" | "BTP" | "CONTACT";
+  search?: string;
+  page?: number;
+}
+
+export interface AdminLeadsResponse {
+  data: Lead[];
+  total: number;
+  page: number;
+}
+
+async function fetchAdminLeads(
+  params: AdminLeadsParams,
+  accessToken: string
+): Promise<AdminLeadsResponse> {
+  const searchParams = new URLSearchParams();
+  if (params.type && params.type !== "ALL") searchParams.set("type", params.type);
+  if (params.search?.trim()) searchParams.set("search", params.search.trim());
+  if (params.page) searchParams.set("page", String(params.page));
+  const query = searchParams.toString();
+  const path = `admin/leads${query ? `?${query}` : ""}`;
+  const res = (await apiRequest(path, { accessToken })) as {
+    success: boolean;
+    data?: Lead[];
+    total?: number;
+    page?: number;
+  };
+  if (!res.success) {
+    return { data: [], total: 0, page: 1 };
+  }
+  return { data: res.data ?? [], total: res.total ?? 0, page: res.page ?? 1 };
+}
+
+export function useAdminLeads(
+  accessToken: string | undefined,
+  params: AdminLeadsParams = {}
+) {
+  return useQuery({
+    queryKey: ["admin", "leads", params],
+    queryFn: () => fetchAdminLeads(params, accessToken!),
+    enabled: !!accessToken,
+  });
+}
 
 export function useAdminUsers(accessToken: string | undefined) {
   return useQuery({

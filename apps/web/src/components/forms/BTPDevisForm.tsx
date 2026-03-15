@@ -72,18 +72,18 @@ export function BTPDevisForm() {
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-1">
               <label className="text-sm font-medium text-foreground">
-                Nom complet
+                Nom et prénom
               </label>
-              <Input {...register("name")} />
+              <Input placeholder="Ex: Jean Dupont" {...register("name")} />
               {errors.name && (
                 <p className="text-xs text-red-600">{errors.name.message}</p>
               )}
             </div>
             <div className="space-y-1">
               <label className="text-sm font-medium text-foreground">
-                Entreprise
+                Nom de l&apos;entreprise
               </label>
-              <Input {...register("company")} />
+              <Input placeholder="Ex: Transport SA" {...register("company")} />
               {errors.company && (
                 <p className="text-xs text-red-600">{errors.company.message}</p>
               )}

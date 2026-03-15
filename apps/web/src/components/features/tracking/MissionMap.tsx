@@ -138,7 +138,14 @@ export function MissionMap({
     ] as [number, number][];
 
     polylineRef.current.setLatLngs(path);
-  }, [truckPosition, origin, destination]);
+  }, [
+    truckPosition?.lat,
+    truckPosition?.lng,
+    origin.lat,
+    origin.lng,
+    destination.lat,
+    destination.lng,
+  ]);
 
   return (
     <div

@@ -5,6 +5,20 @@
 
 export type UserRole = "EXPEDITEUR" | "TRANSPORTEUR" | "ADMIN" | "DOUANIER";
 
+export type LeadType = "EXPEDITEUR" | "TRANSPORTEUR" | "BTP" | "CONTACT";
+
+export interface Lead {
+  id: string;
+  type: LeadType;
+  name: string | null;
+  email: string | null;
+  phone: string | null;
+  company: string | null;
+  message: string | null;
+  metadata: Record<string, unknown> | null;
+  createdAt: string;
+}
+
 export interface ApiSuccess<T> {
   success: true;
   data: T;

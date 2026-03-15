@@ -420,7 +420,7 @@ export function OffresContent() {
                 <Label htmlFor="region">Région départ</Label>
                 <Input
                   id="region"
-                  placeholder="Ex: Bénin, Lomé..."
+                  placeholder="Ex: Bénin, Togo, Niger, Lomé..."
                   value={regionFilter}
                   onChange={(e) => setRegionFilter(e.target.value)}
                 />

@@ -1,8 +1,16 @@
 import type { FastifyInstance, FastifyPluginOptions } from "fastify";
+import type { LeadType } from "@prisma/client";
 import { z } from "zod";
 import { authenticate } from "../middlewares/authenticate.js";
 import { requireAdmin } from "../middlewares/authorize.js";
 import { prisma } from "../repositories/prisma.js";
+
+const leadListQuerySchema = z.object({
+  type: z.enum(["ALL", "EXPEDITEUR", "TRANSPORTEUR", "BTP", "CONTACT"]).optional().default("ALL"),
+  search: z.string().optional(),
+  page: z.coerce.number().int().min(1).optional().default(1),
+  limit: z.coerce.number().int().min(1).max(100).optional().default(25),
+});
 
 const updateSettingSchema = z.object({
   key: z.string(),
@@ -185,6 +193,62 @@ export async function adminRoutes(
         commissions_total: Number(payments._sum.commission ?? 0),
         missions_actives: missionsActive,
       },
+    });
+  });
+
+  app.get("/leads", async (request, reply) => {
+    const parsed = leadListQuerySchema.safeParse(request.query);
+    if (!parsed.success) {
+      return reply.status(400).send({
+        success: false,
+        error: "Paramètres invalides",
+        code: "VALIDATION_ERROR",
+        details: parsed.error.flatten(),
+      });
+    }
+    const { type, search, page, limit } = parsed.data;
+
+    const where = {
+      ...(type && type !== "ALL" ? { type: type as LeadType } : {}),
+      ...(search?.trim()
+        ? {
+            OR: [
+              { name: { contains: search.trim(), mode: "insensitive" as const } },
+              { email: { contains: search.trim(), mode: "insensitive" as const } },
+              { company: { contains: search.trim(), mode: "insensitive" as const } },
+              { phone: { contains: search.trim() } },
+            ],
+          }
+        : {}),
+    };
+
+    const [leads, total] = await Promise.all([
+      prisma.lead.findMany({
+        where,
+        orderBy: { createdAt: "desc" },
+        skip: (page - 1) * limit,
+        take: limit,
+      }),
+      prisma.lead.count({ where }),
+    ]);
+
+    const data = leads.map((l) => ({
+      id: l.id,
+      type: l.type,
+      name: l.name,
+      email: l.email,
+      phone: l.phone,
+      company: l.company,
+      message: l.message,
+      metadata: l.metadata,
+      createdAt: l.createdAt.toISOString(),
+    }));
+
+    return reply.send({
+      success: true,
+      data,
+      total,
+      page,
     });
   });
 }

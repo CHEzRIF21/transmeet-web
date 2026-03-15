@@ -51,10 +51,12 @@ const MOCK_COMMISSIONS: CommissionType[] = [
 const MOCK_ZONES: ZoneItem[] = [
   { id: "1", name: "Bénin", type: "pays", active: true },
   { id: "2", name: "Togo", type: "pays", active: true },
+  { id: "2b", name: "Niger", type: "pays", active: true },
   { id: "3", name: "Ghana", type: "pays", active: true },
   { id: "4", name: "Burkina Faso", type: "pays", active: false },
   { id: "5", name: "Cotonou", type: "ville", active: true },
   { id: "6", name: "Lomé", type: "ville", active: true },
+  { id: "6b", name: "Niamey", type: "ville", active: true },
   { id: "7", name: "Accra", type: "ville", active: true },
   { id: "8", name: "Porto-Novo", type: "ville", active: false },
 ];

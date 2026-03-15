@@ -7,7 +7,7 @@ const services = [
     icon: Truck,
     title: "Transport routier",
     description:
-      "Convoyage de marchandises sur les axes Bénin, Togo et pays limitrophes. Camions et véhicules adaptés.",
+      "Convoyage de marchandises sur les axes Bénin, Togo, Niger et pays limitrophes. Camions et véhicules adaptés.",
   },
   {
     icon: HardHat,

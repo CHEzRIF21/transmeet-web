@@ -17,6 +17,7 @@ import {
   Settings,
   FileText,
   Layers,
+  Inbox,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { AppRole } from "@/types/database.types";
@@ -52,6 +53,7 @@ const transporteurNav: NavItem[] = [
 
 const adminNav: NavItem[] = [
   { href: "/admin", label: "Tableau de bord", icon: LayoutDashboard },
+  { href: "/admin/leads", label: "Leads", icon: Inbox },
   { href: "/admin/missions", label: "Missions", icon: ClipboardList },
   { href: "/admin/utilisateurs", label: "Utilisateurs", icon: Users },
   { href: "/admin/kyc", label: "KYC", icon: ShieldCheck },

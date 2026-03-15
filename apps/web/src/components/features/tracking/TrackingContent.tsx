@@ -36,6 +36,9 @@ const MissionMap = dynamic(() => import("./MissionMap").then((m) => m.MissionMap
   ),
 });
 
+const ORIGIN: LatLng = { lat: 6.357, lng: 2.442 };
+const DEST: LatLng = { lat: 6.1256, lng: 1.2222 };
+
 function haversineKm(a: LatLng, b: LatLng): number {
   const R = 6371;
   const dLat = ((b.lat - a.lat) * Math.PI) / 180;
@@ -158,7 +161,7 @@ export function TrackingContent({ missionId }: TrackingContentProps) {
   const distanceRemaining = useMemo(() => {
     if (!truckPosition) return 0;
     return Math.round(haversineKm(truckPosition, DEST));
-  }, [truckPosition]);
+  }, [truckPosition, DEST]);
 
   const totalDistance = haversineKm(ORIGIN, DEST);
   const progress = truckPosition ? Math.max(0, 1 - distanceRemaining / totalDistance) : 0;

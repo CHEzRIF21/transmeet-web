@@ -115,6 +115,11 @@ export function PublicFooter() {
                 </Link>
               </li>
               <li>
+                <Link href="/cgu" className="text-white/70 hover:text-white transition-colors">
+                  CGU
+                </Link>
+              </li>
+              <li>
                 <Link
                   href="/politique-confidentialite"
                   className="text-white/70 hover:text-white transition-colors"

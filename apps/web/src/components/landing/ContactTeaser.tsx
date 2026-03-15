@@ -54,7 +54,7 @@ const CONTACT_CARDS = [
     icon: IconWhatsApp,
     title: "WhatsApp",
     subtitle: "Réponse en quelques minutes",
-    detail: "Bénin / Togo",
+    detail: "Bénin / Togo / Niger",
     buttonLabel: "Discuter",
     href: `https://wa.me/${WHATSAPP_NUMBER}`,
     iconColor: "text-[#25D366]",
@@ -244,14 +244,14 @@ export function ContactTeaser() {
                 <div className="space-y-2">
                   <Input
                     name="nom"
-                    placeholder="Nom"
+                    placeholder="Nom et prénom"
                     className="border-muted-foreground/30 bg-white"
                   />
                 </div>
                 <div className="space-y-2">
                   <Input
                     name="entreprise"
-                    placeholder="Entreprise"
+                    placeholder="Nom de l'entreprise"
                     className="border-muted-foreground/30 bg-white"
                   />
                 </div>
@@ -344,7 +344,7 @@ export function ContactTeaser() {
           <div className="mt-8 flex items-center justify-center gap-2 border-t border-muted/50 pt-6">
             <MapPin className="h-5 w-5 text-accent" />
             <p className="text-sm text-muted-foreground">
-              Couverture : Bénin - Togo - Afrique de l&apos;Ouest
+              Couverture : Bénin - Togo - Niger - Afrique de l&apos;Ouest
             </p>
           </div>
         </motion.div>

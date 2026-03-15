@@ -56,7 +56,7 @@ export function AboutSection() {
             variants={leftVariants}
             className="text-balance text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
           >
-            Une plateforme logistique dédiée aux projets ambitieux.
+            L&apos;appli pour commander vos camions et engins BTP
           </motion.h2>
           {PARAGRAPHS.map((text, i) => (
             <motion.p

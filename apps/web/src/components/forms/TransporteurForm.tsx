@@ -55,6 +55,13 @@ const schema = z
         });
       }
     } else {
+      if (!data.name || data.name.trim().length < 2) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Nom et prénom de la personne requis",
+          path: ["name"],
+        });
+      }
       if (!data.company || data.company.trim().length < 2) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
@@ -116,7 +123,7 @@ export function TransporteurForm() {
       const { email, phone } = parseContact(values.contact);
       const message = await submitLead({
         type: "TRANSPORTEUR",
-        name: values.profileType === "particulier" ? values.name : undefined,
+        name: values.name,
         company: values.profileType === "entreprise" ? values.company : undefined,
         email,
         phone,
@@ -165,10 +172,10 @@ export function TransporteurForm() {
             </div>
           </div>
 
-          {profileType === "particulier" ? (
+          <div className="space-y-4 sm:grid sm:grid-cols-2 sm:gap-4">
             <div className="space-y-1">
               <label className="text-sm font-medium text-foreground">
-                Nom et prénom
+                Nom et prénom{profileType === "entreprise" ? " de la personne" : ""}
               </label>
               <Input
                 placeholder="Ex: Jean Dupont"
@@ -178,20 +185,21 @@ export function TransporteurForm() {
                 <p className="text-xs text-red-600">{errors.name.message}</p>
               )}
             </div>
-          ) : (
-            <div className="space-y-1">
-              <label className="text-sm font-medium text-foreground">
-                Nom de l&apos;entreprise
-              </label>
-              <Input
-                placeholder="Ex: Transport SA"
-                {...register("company")}
-              />
-              {errors.company && (
-                <p className="text-xs text-red-600">{errors.company.message}</p>
-              )}
-            </div>
-          )}
+            {profileType === "entreprise" && (
+              <div className="space-y-1">
+                <label className="text-sm font-medium text-foreground">
+                  Nom de l&apos;entreprise
+                </label>
+                <Input
+                  placeholder="Ex: Transport SA"
+                  {...register("company")}
+                />
+                {errors.company && (
+                  <p className="text-xs text-red-600">{errors.company.message}</p>
+                )}
+              </div>
+            )}
+          </div>
 
           <div className="space-y-1">
             <label className="text-sm font-medium text-foreground">
