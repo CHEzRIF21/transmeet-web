@@ -83,11 +83,6 @@ export function PublicFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/#comment-ca-marche" className="text-white/70 hover:text-white transition-colors">
-                  Comment ça marche
-                </Link>
-              </li>
-              <li>
                 <Link href="/#expediteurs" className="text-white/70 hover:text-white transition-colors">
                   Expéditeurs
                 </Link>

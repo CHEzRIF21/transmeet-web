@@ -13,11 +13,11 @@ export default function HomePage() {
     <div className="space-y-12 pb-16 md:space-y-24">
       <HeroSection />
       <AboutSection />
-      <HowItWorksSection />
       <TruckTypesSection />
       <ExpediteursTeaser />
       <TransporteursTeaser />
       <BTPTeaser />
+      <HowItWorksSection />
       <ValuesSection />
       <ContactTeaser />
     </div>

@@ -20,7 +20,6 @@ import { WHATSAPP_NUMBER } from "@/lib/config";
 const NAV_ITEMS = [
   { href: "/", label: "Accueil" },
   { href: "/#qui-sommes-nous", label: "Qui sommes-nous" },
-  { href: "/#comment-ca-marche", label: "Comment ça marche" },
   { href: "/#expediteurs", label: "Expéditeurs" },
   { href: "/#transporteurs", label: "Transporteurs" },
   { href: "/#btp", label: "BTP" },
@@ -29,7 +28,6 @@ const NAV_ITEMS = [
 
 const SECTION_IDS = [
   "qui-sommes-nous",
-  "comment-ca-marche",
   "expediteurs",
   "transporteurs",
   "btp",
