@@ -4,9 +4,7 @@ import { CONTACT_EMAIL } from "@/lib/config";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000";
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-/** Destinataire des leads. En sandbox Resend : utiliser l'email de votre compte Resend. */
 const LEADS_EMAIL = process.env.LEADS_EMAIL ?? CONTACT_EMAIL;
-/** Expéditeur : doit être une adresse du domaine vérifié dans Resend (ex. noreply@trans-meet.com). */
 const RESEND_FROM =
   process.env.RESEND_FROM ?? "Transmeet <noreply@trans-meet.com>";
 
@@ -23,7 +21,11 @@ function formatValue(v: unknown): string {
         .map((item) => `${item.type} x${item.quantity}`)
         .join(", ");
     }
-    return v.map((item) => (typeof item === "object" ? JSON.stringify(item) : String(item))).join(", ");
+    return v
+      .map((item) =>
+        typeof item === "object" ? JSON.stringify(item) : String(item)
+      )
+      .join(", ");
   }
   if (typeof v === "object" && v !== null) {
     return JSON.stringify(v);
@@ -33,7 +35,7 @@ function formatValue(v: unknown): string {
 
 function formatLeadEmail(payload: Record<string, unknown>): string {
   const labels: Record<string, string> = {
-    type: "Type",
+    type: "Type de demande",
     name: "Nom",
     email: "Email",
     phone: "Téléphone",
@@ -43,6 +45,10 @@ function formatLeadEmail(payload: Record<string, unknown>): string {
     arrivalCity: "Ville d'arrivée",
     truckTypes: "Types de camions",
     subject: "Sujet",
+    projectType: "Type de projet",
+    equipments: "Engins souhaités",
+    startDate: "Début estimé",
+    endDate: "Fin estimée",
   };
   return Object.entries(payload)
     .map(([k, v]) => `${labels[k] ?? k}: ${formatValue(v)}`)
@@ -50,77 +56,141 @@ function formatLeadEmail(payload: Record<string, unknown>): string {
     .join("\n");
 }
 
+function buildHtmlEmail(payload: Record<string, unknown>): string {
+  const labels: Record<string, string> = {
+    type: "Type de demande",
+    name: "Nom",
+    email: "Email",
+    phone: "Téléphone",
+    company: "Entreprise",
+    message: "Message",
+    departureCity: "Ville de départ",
+    arrivalCity: "Ville d'arrivée",
+    truckTypes: "Types de camions",
+    subject: "Sujet",
+    projectType: "Type de projet",
+    equipments: "Engins souhaités",
+    startDate: "Début estimé",
+    endDate: "Fin estimée",
+  };
+
+  const rows = Object.entries(payload)
+    .map(([k, v]) => {
+      const val = formatValue(v);
+      if (!val) return "";
+      const label = labels[k] ?? k;
+      return `<tr><td style="padding:8px 12px;font-weight:600;color:#374151;border-bottom:1px solid #e5e7eb;white-space:nowrap;vertical-align:top;">${label}</td><td style="padding:8px 12px;color:#111827;border-bottom:1px solid #e5e7eb;">${val}</td></tr>`;
+    })
+    .filter(Boolean)
+    .join("");
+
+  const type = (payload.type as string) || "LEAD";
+
+  return `
+<!DOCTYPE html>
+<html><body style="margin:0;padding:0;background:#f3f4f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+<div style="max-width:600px;margin:24px auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.1);">
+  <div style="background:#1e3a5f;padding:20px 24px;">
+    <h1 style="margin:0;color:#fff;font-size:18px;">Nouvelle lead ${type}</h1>
+    <p style="margin:4px 0 0;color:#93c5fd;font-size:13px;">Transmeet — Plateforme logistique</p>
+  </div>
+  <table style="width:100%;border-collapse:collapse;font-size:14px;">
+    ${rows}
+  </table>
+  <div style="padding:16px 24px;background:#f9fafb;font-size:12px;color:#6b7280;text-align:center;">
+    Reçu via le formulaire ${type} sur trans-meet.com
+  </div>
+</div>
+</body></html>`;
+}
+
 export async function POST(request: NextRequest) {
   try {
     const payload = (await request.json()) as Record<string, unknown>;
 
-    if (RESEND_API_KEY) {
+    let emailSent = false;
+    let emailError: string | null = null;
+
+    if (!RESEND_API_KEY) {
+      console.error("[Leads] RESEND_API_KEY manquante — email non envoyé");
+      emailError = "Configuration email manquante sur le serveur.";
+    } else {
       try {
         const resend = new Resend(RESEND_API_KEY);
         const type = (payload.type as string) || "CONTACT";
-        const { error } = await resend.emails.send({
+        const who =
+          (payload.name as string) ??
+          (payload.company as string) ??
+          "Sans nom";
+
+        const { data, error } = await resend.emails.send({
           from: RESEND_FROM,
           to: LEADS_EMAIL,
-          subject: `[Transmeet] Nouvelle lead ${type} - ${(payload.name as string) ?? (payload.company as string) ?? "Sans nom"}`,
+          subject: `[Transmeet] Nouvelle lead ${type} — ${who}`,
           text: formatLeadEmail(payload),
+          html: buildHtmlEmail(payload),
         });
+
         if (error) {
-          console.error("[Resend] Erreur envoi email lead:", error);
+          console.error("[Resend] Erreur:", JSON.stringify(error));
+          emailError = `Resend: ${error.message ?? "erreur inconnue"}`;
+        } else {
+          emailSent = true;
+          console.info("[Resend] Email envoyé, id:", data?.id);
         }
       } catch (err) {
-        console.error("[Resend] Exception envoi email:", err);
-        // Ne pas bloquer : la lead sera quand même enregistrée côté API
+        console.error("[Resend] Exception:", err);
+        emailError =
+          err instanceof Error ? err.message : "Erreur envoi email";
       }
     }
+
+    saveLeadToApi(payload);
 
     if (process.env.LEADS_WEBHOOK_URL) {
-      try {
-        await fetch(process.env.LEADS_WEBHOOK_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-      } catch {
-        // Ne pas bloquer le flux si le webhook échoue
-      }
+      fireWebhook(process.env.LEADS_WEBHOOK_URL, payload);
     }
 
-    let res: Response;
-    try {
-      res = await fetch(`${API_BASE}/api/v1/leads`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+    if (emailSent) {
+      return NextResponse.json({
+        success: true,
+        message: "Votre demande a bien été envoyée. Nous vous recontacterons rapidement.",
       });
-    } catch {
-      return NextResponse.json(
-        {
-          success: false,
-          message:
-            "Impossible de joindre l’API (vérifiez que le backend tourne et NEXT_PUBLIC_API_URL).",
-        },
-        { status: 503 }
-      );
     }
 
-    if (!res.ok) {
-      const errData = (await res.json().catch(() => ({}))) as {
-        message?: string;
-        error?: string;
-      };
-      const apiMessage = errData.message ?? errData.error ?? "Erreur serveur";
-      return NextResponse.json(
-        { success: false, message: apiMessage },
-        { status: res.status }
-      );
-    }
-
-    const data = (await res.json()) as { success: boolean; message?: string };
-    return NextResponse.json(data);
-  } catch (err) {
     return NextResponse.json(
-      { success: false, message: "Une erreur est survenue." },
+      {
+        success: false,
+        message:
+          emailError ??
+          "L'envoi de votre demande a échoué. Veuillez réessayer ou nous contacter directement.",
+      },
+      { status: 500 }
+    );
+  } catch {
+    return NextResponse.json(
+      { success: false, message: "Une erreur est survenue. Veuillez réessayer." },
       { status: 500 }
     );
   }
+}
+
+/** Fire-and-forget : enregistre la lead en base via l'API Fastify (non-bloquant). */
+function saveLeadToApi(payload: Record<string, unknown>): void {
+  fetch(`${API_BASE}/api/v1/leads`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  }).catch((err) => {
+    console.warn("[Leads] Sauvegarde API échouée (non-bloquant):", err);
+  });
+}
+
+/** Fire-and-forget : webhook vers Zapier/Make (non-bloquant). */
+function fireWebhook(url: string, payload: Record<string, unknown>): void {
+  fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  }).catch(() => {});
 }
