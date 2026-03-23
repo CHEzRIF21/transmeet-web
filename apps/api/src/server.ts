@@ -1,4 +1,7 @@
+import { config as loadEnv } from "dotenv";
 import Fastify from "fastify";
+
+loadEnv();
 import cors from "@fastify/cors";
 import helmet from "@fastify/helmet";
 import rateLimit from "@fastify/rate-limit";

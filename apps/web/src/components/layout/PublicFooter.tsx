@@ -29,7 +29,7 @@ export function PublicFooter() {
         </svg>
       </div>
 
-      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 text-sm text-white/70 sm:px-6 sm:py-12 md:flex-row md:items-start md:justify-between">
+      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-10 text-sm text-white/70 sm:px-6 sm:py-12 md:flex-row md:items-start md:justify-between">
         <div className="space-y-2">
           <Link href="/" className="inline-block">
             <Image
@@ -66,8 +66,8 @@ export function PublicFooter() {
           </Button>
         </div>
 
-        <div className="flex gap-12">
-          <div className="space-y-2">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-12">
+          <div className="space-y-2 min-w-0">
             <div className="text-xs font-semibold uppercase tracking-wide text-[#e0a842]">
               Navigation
             </div>
@@ -80,6 +80,11 @@ export function PublicFooter() {
               <li>
                 <Link href="/#qui-sommes-nous" className="text-white/70 hover:text-white transition-colors">
                   Qui sommes-nous
+                </Link>
+              </li>
+              <li>
+                <Link href="/#comment-ca-marche" className="text-white/70 hover:text-white transition-colors">
+                  Comment ça marche
                 </Link>
               </li>
               <li>
@@ -104,7 +109,7 @@ export function PublicFooter() {
               </li>
             </ul>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-2 min-w-0">
             <div className="text-xs font-semibold uppercase tracking-wide text-[#e0a842]">
               Légal
             </div>

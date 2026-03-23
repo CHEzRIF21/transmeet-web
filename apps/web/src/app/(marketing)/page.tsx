@@ -1,5 +1,6 @@
 import { HeroSection } from "@/components/landing/HeroSection";
 import { AboutSection } from "@/components/landing/AboutSection";
+import { HowItWorksSection } from "@/components/landing/HowItWorksSection";
 import { TruckTypesSection } from "@/components/landing/TruckTypesSection";
 import { ExpediteursTeaser } from "@/components/landing/ExpediteursTeaser";
 import { TransporteursTeaser } from "@/components/landing/TransporteursTeaser";
@@ -12,6 +13,7 @@ export default function HomePage() {
     <div className="space-y-12 pb-16 md:space-y-24">
       <HeroSection />
       <AboutSection />
+      <HowItWorksSection />
       <TruckTypesSection />
       <ExpediteursTeaser />
       <TransporteursTeaser />

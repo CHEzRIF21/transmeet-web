@@ -6,14 +6,16 @@
     "dev:all": "turbo dev",
     "dev:web": "pnpm --filter web dev",
     "dev:api": "pnpm --filter api dev",
-    "build": "turbo build",
+    "prisma:generate": "node scripts/prisma-generate-retry.cjs",
+    "build": "pnpm run prisma:generate && turbo build",
     "test": "turbo test",
     "lint": "turbo lint",
     "db:migrate": "pnpm --filter api exec prisma migrate dev",
     "db:push": "pnpm --filter api exec prisma db push",
     "db:seed": "pnpm --filter api exec prisma db seed",
     "db:studio": "pnpm --filter api exec prisma studio",
-    "db:generate": "pnpm --filter api exec prisma generate"
+    "db:generate": "pnpm --filter api exec prisma generate",
+    "test:leads": "node scripts/test-lead-email.mjs"
   },
   "devDependencies": {
     "next": "14.2.18",

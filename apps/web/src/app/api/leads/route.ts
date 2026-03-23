@@ -4,6 +4,11 @@ import { CONTACT_EMAIL } from "@/lib/config";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000";
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
+/** Destinataire des leads. En sandbox Resend : utiliser l'email de votre compte Resend. */
+const LEADS_EMAIL = process.env.LEADS_EMAIL ?? CONTACT_EMAIL;
+/** Expéditeur : doit être une adresse du domaine vérifié dans Resend (ex. noreply@trans-meet.com). */
+const RESEND_FROM =
+  process.env.RESEND_FROM ?? "Transmeet <noreply@trans-meet.com>";
 
 function formatValue(v: unknown): string {
   if (Array.isArray(v)) {
@@ -50,14 +55,22 @@ export async function POST(request: NextRequest) {
     const payload = (await request.json()) as Record<string, unknown>;
 
     if (RESEND_API_KEY) {
-      const resend = new Resend(RESEND_API_KEY);
-      const type = (payload.type as string) || "CONTACT";
-      await resend.emails.send({
-        from: "Transmeet <onboarding@resend.dev>",
-        to: CONTACT_EMAIL,
-        subject: `[Transmeet] Nouvelle lead ${type} - ${(payload.name as string) ?? (payload.company as string) ?? "Sans nom"}`,
-        text: formatLeadEmail(payload),
-      });
+      try {
+        const resend = new Resend(RESEND_API_KEY);
+        const type = (payload.type as string) || "CONTACT";
+        const { error } = await resend.emails.send({
+          from: RESEND_FROM,
+          to: LEADS_EMAIL,
+          subject: `[Transmeet] Nouvelle lead ${type} - ${(payload.name as string) ?? (payload.company as string) ?? "Sans nom"}`,
+          text: formatLeadEmail(payload),
+        });
+        if (error) {
+          console.error("[Resend] Erreur envoi email lead:", error);
+        }
+      } catch (err) {
+        console.error("[Resend] Exception envoi email:", err);
+        // Ne pas bloquer : la lead sera quand même enregistrée côté API
+      }
     }
 
     if (process.env.LEADS_WEBHOOK_URL) {
@@ -72,16 +85,32 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    const res = await fetch(`${API_BASE}/api/v1/leads`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+    let res: Response;
+    try {
+      res = await fetch(`${API_BASE}/api/v1/leads`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+    } catch {
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            "Impossible de joindre l’API (vérifiez que le backend tourne et NEXT_PUBLIC_API_URL).",
+        },
+        { status: 503 }
+      );
+    }
 
     if (!res.ok) {
-      const errData = await res.json().catch(() => ({}));
+      const errData = (await res.json().catch(() => ({}))) as {
+        message?: string;
+        error?: string;
+      };
+      const apiMessage = errData.message ?? errData.error ?? "Erreur serveur";
       return NextResponse.json(
-        { success: false, message: (errData as { message?: string }).message ?? "Erreur serveur" },
+        { success: false, message: apiMessage },
         { status: res.status }
       );
     }

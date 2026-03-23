@@ -57,7 +57,7 @@ export function DashboardHeader({ user, role }: DashboardHeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b bg-background/95 px-4 md:px-6 backdrop-blur">
+    <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b bg-background/95 px-3 sm:px-4 md:px-6 backdrop-blur">
       {/* Left: mobile menu + breadcrumb */}
       <div className="flex items-center gap-2">
         <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
@@ -71,7 +71,7 @@ export function DashboardHeader({ user, role }: DashboardHeaderProps) {
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-56 p-0">
+          <SheetContent side="left" className="w-[85vw] max-w-64 p-0">
             <DashboardSidebar
               role={role}
               variant="drawer"
@@ -79,13 +79,13 @@ export function DashboardHeader({ user, role }: DashboardHeaderProps) {
             />
           </SheetContent>
         </Sheet>
-        <span className="text-sm font-medium text-muted-foreground">
+        <span className="hidden text-sm font-medium text-muted-foreground sm:inline">
           Tableau de bord
         </span>
       </div>
 
       {/* Right: actions */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1.5 sm:gap-2">
         {/* Notifications bell */}
         <NotificationBell />
 
@@ -94,7 +94,7 @@ export function DashboardHeader({ user, role }: DashboardHeaderProps) {
           <DropdownMenuTrigger asChild>
             <Button
               variant="ghost"
-              className="flex items-center gap-2 px-2 hover:bg-muted"
+              className="flex max-w-[170px] items-center gap-2 px-1.5 hover:bg-muted sm:px-2"
               aria-label="Menu utilisateur"
             >
               <Avatar className="h-8 w-8 border-2 border-accent/30">
@@ -103,7 +103,7 @@ export function DashboardHeader({ user, role }: DashboardHeaderProps) {
                 </AvatarFallback>
               </Avatar>
               <div className="hidden flex-col items-start sm:flex">
-                <span className="max-w-[120px] truncate text-xs font-semibold text-foreground">
+                <span className="max-w-[110px] truncate text-xs font-semibold text-foreground lg:max-w-[150px]">
                   {displayName}
                 </span>
               </div>

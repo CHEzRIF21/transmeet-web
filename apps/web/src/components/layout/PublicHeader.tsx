@@ -20,6 +20,7 @@ import { WHATSAPP_NUMBER } from "@/lib/config";
 const NAV_ITEMS = [
   { href: "/", label: "Accueil" },
   { href: "/#qui-sommes-nous", label: "Qui sommes-nous" },
+  { href: "/#comment-ca-marche", label: "Comment ça marche" },
   { href: "/#expediteurs", label: "Expéditeurs" },
   { href: "/#transporteurs", label: "Transporteurs" },
   { href: "/#btp", label: "BTP" },
@@ -28,6 +29,7 @@ const NAV_ITEMS = [
 
 const SECTION_IDS = [
   "qui-sommes-nous",
+  "comment-ca-marche",
   "expediteurs",
   "transporteurs",
   "btp",
@@ -171,7 +173,7 @@ export function PublicHeader() {
   const activeScrollId = useScrollSpy(SECTION_IDS);
   return (
     <header className="sticky top-0 z-40 overflow-visible bg-[#012767] shadow-lg shadow-[#012767]/20">
-      <div className="mx-auto flex h-18 max-w-6xl items-center justify-between px-4 sm:px-6">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
           <Image
@@ -179,7 +181,7 @@ export function PublicHeader() {
             alt="Transmeet"
             width={52}
             height={52}
-            className="h-13 w-13 object-contain"
+            className="h-12 w-12 object-contain sm:h-[52px] sm:w-[52px]"
             priority
           />
           <div className="flex flex-col leading-tight">
