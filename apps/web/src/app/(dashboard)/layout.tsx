@@ -15,11 +15,11 @@ export default async function DashboardLayout({
   if (!user) redirect("/login");
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-background">
+    <div className="min-h-screen min-w-0 overflow-x-hidden bg-background">
       <DashboardSidebar role={user.role} />
-      <div className="min-w-0 md:pl-56">
+      <div className="min-w-0 w-full max-w-[100vw] md:pl-56">
         <DashboardHeader user={{ email: user.email, full_name: user.full_name }} role={user.role} />
-        <main className="px-4 py-4 sm:px-6 sm:py-6 lg:px-8">
+        <main className="min-w-0 px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-6 sm:py-6 lg:px-8">
           <PageTransition>{children}</PageTransition>
         </main>
       </div>

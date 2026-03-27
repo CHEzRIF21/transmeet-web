@@ -23,6 +23,10 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#012767",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
@@ -31,8 +35,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${inter.variable} ${plusJakarta.variable}`}>
-      <body className="font-sans antialiased bg-background text-foreground">
+    <html lang="fr" className={`${inter.variable} ${plusJakarta.variable} h-full`}>
+      <body className="min-h-full min-w-0 overflow-x-hidden font-sans antialiased bg-background text-foreground">
         <QueryProvider>
           {children}
         </QueryProvider>

@@ -57,7 +57,7 @@ export function DashboardHeader({ user, role }: DashboardHeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b bg-background/95 px-3 sm:px-4 md:px-6 backdrop-blur">
+    <header className="sticky top-0 z-30 flex h-14 min-w-0 items-center justify-between border-b bg-background/95 px-3 sm:px-4 md:px-6 backdrop-blur">
       {/* Left: mobile menu + breadcrumb */}
       <div className="flex items-center gap-2">
         <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
@@ -71,7 +71,10 @@ export function DashboardHeader({ user, role }: DashboardHeaderProps) {
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-[85vw] max-w-64 p-0">
+          <SheetContent
+            side="left"
+            className="flex h-full w-[85vw] max-w-64 flex-col p-0 [&>button]:text-white [&>button]:hover:bg-white/10"
+          >
             <DashboardSidebar
               role={role}
               variant="drawer"

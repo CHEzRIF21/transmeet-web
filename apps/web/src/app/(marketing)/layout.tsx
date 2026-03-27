@@ -9,7 +9,7 @@ export default function MarketingLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen min-w-0 flex-col">
       {/* Skip to main content — accessibility */}
       <a
         href="#main-content"
@@ -19,7 +19,10 @@ export default function MarketingLayout({
       </a>
       <PublicHeader />
       <ScrollToHash />
-      <main id="main-content" className="flex-1 pt-12">
+      <main
+        id="main-content"
+        className="flex-1 w-full min-w-0 max-w-[100vw] pt-12 pb-[env(safe-area-inset-bottom,0px)]"
+      >
         <PageTransition>{children}</PageTransition>
       </main>
       <PublicFooter />

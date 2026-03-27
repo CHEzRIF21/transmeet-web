@@ -116,7 +116,7 @@ export function DashboardSidebar({ role, className, variant = "fixed", onNavigat
       {/* Main nav */}
       <nav
         aria-label="Navigation dashboard"
-        className="flex flex-1 flex-col gap-1 overflow-y-auto p-3"
+        className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto overscroll-contain p-3"
       >
         <p className="mb-1 px-3 text-[0.65rem] font-semibold uppercase tracking-widest text-white/40">
           Principal

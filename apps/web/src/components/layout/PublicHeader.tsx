@@ -170,7 +170,7 @@ export function PublicHeader() {
   const { pathname, hash } = usePathnameAndHash();
   const activeScrollId = useScrollSpy(SECTION_IDS);
   return (
-    <header className="sticky top-0 z-40 overflow-visible bg-[#012767] shadow-lg shadow-[#012767]/20">
+    <header className="sticky top-0 z-40 w-full min-w-0 max-w-[100vw] overflow-visible bg-[#012767] shadow-lg shadow-[#012767]/20">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">

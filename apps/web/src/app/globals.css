@@ -44,6 +44,8 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 /* Scroll margin pour que les titres de sections restent visibles sous le header lors du scroll-anchor */

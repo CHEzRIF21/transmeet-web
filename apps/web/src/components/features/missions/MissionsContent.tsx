@@ -235,16 +235,16 @@ export function MissionsContent({ role }: MissionsContentProps) {
                     </span>
                   </div>
 
-                  {/* Timeline */}
-                  <div className="flex items-center gap-0">
+                  {/* Timeline — texte plus compact sur mobile */}
+                  <div className="flex min-w-0 items-center gap-0">
                     {TIMELINE_STEPS.map((step, idx) => {
                       const isActive = idx === currentStepIndex;
                       const isCompleted = idx < currentStepIndex;
                       return (
-                        <div key={step.key} className="flex flex-1 items-center">
+                        <div key={step.key} className="flex min-w-0 flex-1 items-center">
                           <div
                             className={cn(
-                              "flex-1 rounded-full px-2 py-1.5 text-center text-[10px] font-semibold transition-colors",
+                              "min-w-0 flex-1 rounded-full px-1 py-1.5 text-center text-[9px] font-semibold transition-colors sm:px-2 sm:text-[10px]",
                               isActive && "ring-2 ring-offset-1"
                             )}
                             style={{

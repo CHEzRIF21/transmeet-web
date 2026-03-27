@@ -94,7 +94,7 @@ export function ExpediteurDashboardContent({ userId }: ExpediteurDashboardConten
           return (
             <Card
               key={kpi.key}
-              className="border-primary/10 transition-all duration-300 hover:scale-105 hover:shadow-md"
+              className="border-primary/10 transition-all duration-300 md:hover:scale-[1.02] md:hover:shadow-md"
             >
               <CardContent className="p-5">
                 <div className="flex items-start justify-between">
@@ -122,7 +122,7 @@ export function ExpediteurDashboardContent({ userId }: ExpediteurDashboardConten
       </div>
 
       <Card className="border-primary/10">
-        <CardHeader className="flex flex-row items-center justify-between px-5 pb-3 pt-5">
+        <CardHeader className="flex flex-col gap-4 px-5 pb-3 pt-5 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
           <div>
             <h2 className="text-base font-semibold text-foreground">
               Mes missions récentes

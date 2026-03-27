@@ -2,13 +2,7 @@
 
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
-import {
-  FilePenLine,
-  Search,
-  CircleCheck,
-  MapPin,
-  ArrowRight,
-} from "lucide-react";
+import { FilePenLine, Search, CircleCheck, ArrowRight } from "lucide-react";
 import { motion, type Variants } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -23,21 +17,24 @@ interface Step {
   title: string;
   description: string;
   href?: string;
+  /** Afficher le libellé sous la carte (ex. « Se connecter »). Sinon la carte reste cliquable sans texte de lien. */
+  showLinkLabel?: boolean;
 }
 
 const STEPS: Step[] = [
   {
     id: "1",
     icon: FilePenLine,
-    title: "Soumettez votre besoin",
+    title: "Commandez votre camion",
     description:
       "Remplissez le formulaire en ligne : origine, destination, type de marchandise, tonnage.",
-    href: "/register",
+    href: "/expediteurs",
+    showLinkLabel: false,
   },
   {
     id: "2",
     icon: Search,
-    title: "Recevez des offres",
+    title: "Recevez un devis",
     description:
       "L'équipe Transmeet sélectionne les meilleurs transporteurs et vous soumet des propositions.",
   },
@@ -46,15 +43,7 @@ const STEPS: Step[] = [
     icon: CircleCheck,
     title: "Confirmez la mission",
     description:
-      "Acceptez l'offre qui vous convient. Le transporteur est notifié instantanément.",
-    href: "/login",
-  },
-  {
-    id: "4",
-    icon: MapPin,
-    title: "Suivez en temps réel",
-    description:
-      "Tracking GPS, messagerie intégrée, mise à jour du statut jusqu'à la livraison.",
+      "Acceptez le devis s'il vous convient. L'équipe Transmeet valide votre commande instantanément.",
   },
 ];
 
@@ -196,15 +185,13 @@ function StepCard({ step, index }: { step: Step; index: number }) {
           <p className="flex-1 text-sm leading-relaxed text-muted-foreground">
             {step.description}
           </p>
-          {step.href ? (
+          {step.href && step.showLinkLabel !== false ? (
             <motion.span
               className="inline-flex items-center gap-1.5 text-sm font-medium text-accent underline-offset-4 group-hover:underline"
               whileHover={reduced ? undefined : { x: 3 }}
               transition={springTransition}
             >
-              {step.href === "/register"
-                ? "Créer un compte"
-                : "Se connecter"}
+              {step.href === "/login" ? "Se connecter" : "En savoir plus"}
               <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
             </motion.span>
           ) : null}
@@ -262,7 +249,7 @@ export function HowItWorksSection() {
             id="how-it-works-heading"
             className="text-balance text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
           >
-            En 4 étapes simples
+            En 3 étapes simples
           </h2>
           <p className="mx-auto max-w-2xl text-sm text-muted-foreground sm:text-base">
             Du formulaire à la livraison, un parcours clair et accompagné par
@@ -271,9 +258,9 @@ export function HowItWorksSection() {
         </motion.div>
 
         <motion.div
-          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
           role="list"
-          aria-label="Les quatre étapes du parcours Transmeet"
+          aria-label="Les trois étapes du parcours Transmeet"
           variants={stepsStaggerContainer}
           initial="hidden"
           whileInView="visible"

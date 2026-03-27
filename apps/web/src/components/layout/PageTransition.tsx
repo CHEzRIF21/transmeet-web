@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 interface PageTransitionProps {
   children: React.ReactNode;
@@ -42,7 +43,7 @@ export function PageTransition({ children, className }: PageTransitionProps) {
         initial="initial"
         animate="animate"
         exit="exit"
-        className={className}
+        className={cn("min-w-0 w-full", className)}
       >
         {children}
       </motion.div>
