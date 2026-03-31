@@ -1,7 +1,23 @@
 "use server";
 
 import { prisma } from "@/lib/db";
-import type { MissionStatus, RequestStatus } from "@prisma/client";
+
+/** Alignés sur `apps/api/prisma/schema.prisma` — évite d'importer les enums Prisma quand `prisma generate` n'a pas encore tourné (ex. CI/Vercel). */
+type MissionStatus =
+  | "ASSIGNED"
+  | "LOADING"
+  | "IN_TRANSIT"
+  | "AT_CUSTOMS"
+  | "DELIVERED"
+  | "DISPUTED";
+
+type RequestStatus =
+  | "DRAFT"
+  | "PUBLISHED"
+  | "MATCHED"
+  | "IN_PROGRESS"
+  | "COMPLETED"
+  | "CANCELLED";
 
 // ─── Types pour les stats et missions ──────────────────────────────────────
 
