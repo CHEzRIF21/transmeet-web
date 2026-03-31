@@ -2,11 +2,27 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { CONTACT_EMAIL } from "@/lib/config";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000";
+/**
+ * URL de l'API Fastify (Prisma / table `leads`).
+ * - En local : http://localhost:4000
+ * - Sur Vercel : obligatoire — utiliser NEXT_PUBLIC_API_URL ou API_URL (serveur uniquement).
+ *   Sans cela, le fetch pointe vers localhost sur le serveur Vercel et l'enregistrement échoue.
+ */
+const API_BASE =
+  process.env.API_URL ??
+  process.env.NEXT_PUBLIC_API_URL ??
+  "http://localhost:4000";
+
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const LEADS_EMAIL = process.env.LEADS_EMAIL ?? CONTACT_EMAIL;
 const RESEND_FROM =
   process.env.RESEND_FROM ?? "Transmeet <noreply@trans-meet.com>";
+
+if (process.env.VERCEL === "1" && !process.env.API_URL && !process.env.NEXT_PUBLIC_API_URL) {
+  console.error(
+    "[Leads] Définir API_URL ou NEXT_PUBLIC_API_URL (URL publique Fastify/Railway). Sinon les leads ne s'enregistrent pas."
+  );
+}
 
 function formatValue(v: unknown): string {
   if (Array.isArray(v)) {
@@ -108,12 +124,8 @@ export async function POST(request: NextRequest) {
   try {
     const payload = (await request.json()) as Record<string, unknown>;
 
-    let emailSent = false;
-    let emailError: string | null = null;
-
     if (!RESEND_API_KEY) {
-      console.error("[Leads] RESEND_API_KEY manquante — email non envoyé");
-      emailError = "Configuration email manquante sur le serveur.";
+      console.warn("[Leads] RESEND_API_KEY absente — notification email ignorée (optionnel)");
     } else {
       try {
         const resend = new Resend(RESEND_API_KEY);
@@ -132,26 +144,22 @@ export async function POST(request: NextRequest) {
         });
 
         if (error) {
-          console.error("[Resend] Erreur:", JSON.stringify(error));
-          emailError = `Resend: ${error.message ?? "erreur inconnue"}`;
+          console.warn("[Resend] Email non envoyé (optionnel):", JSON.stringify(error));
         } else {
-          emailSent = true;
           console.info("[Resend] Email envoyé, id:", data?.id);
         }
       } catch (err) {
-        console.error("[Resend] Exception:", err);
-        emailError =
-          err instanceof Error ? err.message : "Erreur envoi email";
+        console.warn("[Resend] Exception (email optionnel):", err);
       }
     }
 
-    saveLeadToApi(payload);
+    const savedToApi = await saveLeadToApi(payload);
 
     if (process.env.LEADS_WEBHOOK_URL) {
       fireWebhook(process.env.LEADS_WEBHOOK_URL, payload);
     }
 
-    if (emailSent) {
+    if (savedToApi) {
       return NextResponse.json({
         success: true,
         message: "Votre demande a bien été envoyée. Nous vous recontacterons rapidement.",
@@ -161,9 +169,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        message:
-          emailError ??
-          "L'envoi de votre demande a échoué. Veuillez réessayer ou nous contacter directement.",
+        message: "L'enregistrement de votre demande a échoué. Veuillez réessayer ou nous contacter directement.",
       },
       { status: 500 }
     );
@@ -175,15 +181,23 @@ export async function POST(request: NextRequest) {
   }
 }
 
-/** Fire-and-forget : enregistre la lead en base via l'API Fastify (non-bloquant). */
-function saveLeadToApi(payload: Record<string, unknown>): void {
-  fetch(`${API_BASE}/api/v1/leads`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  }).catch((err) => {
-    console.warn("[Leads] Sauvegarde API échouée (non-bloquant):", err);
-  });
+/** Enregistre la lead en base via l'API Fastify (bloquant). */
+async function saveLeadToApi(payload: Record<string, unknown>): Promise<boolean> {
+  try {
+    const res = await fetch(`${API_BASE}/api/v1/leads`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      console.error("[Leads] Sauvegarde API échouée. Status:", res.status);
+      return false;
+    }
+    return true;
+  } catch (err) {
+    console.error("[Leads] Exception lors de la sauvegarde API:", err);
+    return false;
+  }
 }
 
 /** Fire-and-forget : webhook vers Zapier/Make (non-bloquant). */

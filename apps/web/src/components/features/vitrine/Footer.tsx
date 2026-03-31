@@ -1,11 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, Phone, MessageCircle } from "lucide-react";
+import { CONTACT_EMAIL, CONTACT_PHONE, WHATSAPP_NUMBER } from "@/lib/config";
 
 const contact = {
-  phone: "+229 00 00 00 00",
-  email: "contact@transmeet.com",
-  whatsapp: "+22900000000",
+  phone: CONTACT_PHONE,
+  email: CONTACT_EMAIL,
+  whatsapp: WHATSAPP_NUMBER,
 };
 
 const socialLinks = [

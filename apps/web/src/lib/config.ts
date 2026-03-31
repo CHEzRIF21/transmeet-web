@@ -1,4 +1,16 @@
-/** Email de contact pour les formulaires et affichage */
+/**
+ * Email de contact public (footer, pages légales, mailto, page contact).
+ *
+ * Destinataire par défaut des notifications Resend (tous les formulaires / leads) :
+ * `hello@trans-meet.com` sauf si `LEADS_EMAIL` est défini (Vercel / .env). Voir
+ * apps/web/src/app/api/leads/route.ts — `process.env.LEADS_EMAIL ?? CONTACT_EMAIL`.
+ * Pour changer uniquement la boîte qui reçoit
+ * les mails sans toucher au site, définir `LEADS_EMAIL` sur Vercel ou dans `.env.local`
+ * (ex. `LEADS_EMAIL=toi@gmail.com`). Aucun fichier `supabase/functions/send-email` dans ce repo.
+ *
+ * Le **forwarding DNS / Routing Resend** (domaine → autre adresse) est indépendant du code :
+ * il se configure dans le dashboard Resend si vous l’utilisez.
+ */
 export const CONTACT_EMAIL = "hello@trans-meet.com";
 
 /** Numéro de téléphone (format international) */
