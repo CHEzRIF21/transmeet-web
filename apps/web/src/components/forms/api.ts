@@ -7,17 +7,15 @@ export async function submitLead(payload: unknown): Promise<string> {
     body: JSON.stringify(payload),
   });
 
-  if (!res.ok) {
-    throw new Error("Une erreur est survenue. Merci de réessayer.");
-  }
-
-  const data = (await res.json()) as {
-    success: boolean;
+  const data = (await res.json().catch(() => ({}))) as {
+    success?: boolean;
     message?: string;
   };
 
-  if (!data.success) {
-    throw new Error(data.message ?? "Une erreur est survenue.");
+  if (!res.ok || data.success === false) {
+    throw new Error(
+      data.message ?? "Une erreur est survenue. Merci de réessayer."
+    );
   }
 
   return data.message ?? "Votre demande a bien été prise en compte.";

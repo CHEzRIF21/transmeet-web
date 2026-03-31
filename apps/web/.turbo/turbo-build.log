@@ -3,8 +3,83 @@
 > prisma generate && next build
 
 Prisma schema loaded from ..\api\prisma\schema.prisma
-Error: 
-EPERM: operation not permitted, rename 'C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\.prisma\client\query_engine-windows.dll.node.tmp39944' -> 'C:\Users\Mustafa\Desktop\TRANSMEET\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\.prisma\client\query_engine-windows.dll.node'
+
+✔ Generated Prisma Client (v5.22.0) to .\..\..\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client in 617ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Easily identify and fix slow SQL queries in your app. Optimize helps you enhance your visibility: https://pris.ly/--optimize
+
+  ▲ Next.js 14.2.18
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+
+./src/components/features/tracking/MissionMap.tsx
+127:6  Warning: React Hook useEffect has missing dependencies: 'truckPosition.lat' and 'truckPosition.lng'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/components/features/tracking/TrackingContent.tsx
+78:9  Warning: The 'DEST' object makes the dependencies of useMemo Hook (at line 164) change on every render. To fix this, wrap the initialization of 'DEST' in its own useMemo() Hook.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/37) ...
+   Generating static pages (9/37) 
+   Generating static pages (18/37) 
+   Generating static pages (27/37) 
+ ✓ Generating static pages (37/37)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    17.5 kB         161 kB
+├ ○ /_not-found                          877 B          88.7 kB
+├ ƒ /admin                               6.3 kB          116 kB
+├ ƒ /admin/kyc                           6.28 kB         113 kB
+├ ƒ /admin/leads                         7.03 kB         178 kB
+├ ƒ /admin/missions                      161 B            88 kB
+├ ƒ /admin/parametres                    6.66 kB         113 kB
+├ ƒ /admin/utilisateurs                  3.95 kB         127 kB
+├ ƒ /api/leads                           0 B                0 B
+├ ○ /btp                                 5.39 kB         166 kB
+├ ○ /cgu                                 190 B          94.8 kB
+├ ○ /contact                             3.51 kB         122 kB
+├ ○ /cookies                             190 B          94.8 kB
+├ ƒ /dashboard                           161 B            88 kB
+├ ƒ /dashboard/messagerie                5.19 kB        99.8 kB
+├ ƒ /dashboard/missions                  4.67 kB         134 kB
+├ ƒ /dashboard/missions/[id]             6.84 kB         201 kB
+├ ƒ /dashboard/missions/[id]/tracking    8.09 kB         176 kB
+├ ƒ /dashboard/notifications             4.93 kB         173 kB
+├ ƒ /dashboard/paiements                 6.51 kB         101 kB
+├ ƒ /expediteur                          6.56 kB         116 kB
+├ ƒ /expediteur/demandes                 3.04 kB         175 kB
+├ ƒ /expediteur/demandes/[id]            2.48 kB         174 kB
+├ ƒ /expediteur/demandes/nouvelle        3.12 kB         199 kB
+├ ƒ /expediteur/missions                 161 B            88 kB
+├ ○ /expediteurs                         5.59 kB         124 kB
+├ ○ /login                               4.11 kB         188 kB
+├ ○ /mentions-legales                    190 B          94.8 kB
+├ ○ /politique-confidentialite           190 B          94.8 kB
+├ ○ /qui-sommes-nous                     161 B            88 kB
+├ ○ /register                            5.02 kB         189 kB
+├ ○ /register/verify                     4.5 kB          188 kB
+├ ƒ /transporteur                        6.37 kB         116 kB
+├ ƒ /transporteur/flotte                 11 kB           181 kB
+├ ƒ /transporteur/missions               161 B            88 kB
+├ ƒ /transporteur/offres                 8.65 kB         115 kB
+├ ƒ /transporteur/vehicules              161 B            88 kB
+└ ○ /transporteurs                       5.56 kB         124 kB
++ First Load JS shared by all            87.8 kB
+  ├ chunks/7298-5c558b78ef496712.js      31.7 kB
+  ├ chunks/b62a28e4-6ed851f95c3fa3de.js  53.6 kB
+  └ other shared chunks (total)          2.44 kB
 
 
- ELIFECYCLE  Command failed with exit code 1.
+ƒ Middleware                             73.7 kB
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

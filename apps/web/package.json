@@ -14,6 +14,7 @@
     "schema": "../api/prisma/schema.prisma"
   },
   "dependencies": {
+    "@transmit/validations": "workspace:*",
     "@hookform/resolvers": "^3.9.0",
     "@prisma/client": "^5.22.0",
     "@radix-ui/react-dialog": "^1.1.15",
