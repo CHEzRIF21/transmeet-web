@@ -1,32 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-import type { LeadType } from "@prisma/client";
 import { Resend } from "resend";
-import { z } from "zod";
-import { leadSchema } from "@transmit/validations";
 import { CONTACT_EMAIL } from "@/lib/config";
-import { prisma } from "@/lib/db";
+import { persistLead, warnIfNoPersistenceChannel } from "@/lib/leads/persistLead";
 
-/**
- * URL de l'API Fastify (Prisma / table `leads`).
- * - En local : http://localhost:4000
- * - Sur Vercel : obligatoire — utiliser NEXT_PUBLIC_API_URL ou API_URL (serveur uniquement).
- *   Sans cela, le fetch pointe vers localhost sur le serveur Vercel et l'enregistrement échoue.
- */
-const API_BASE =
-  process.env.API_URL ??
-  process.env.NEXT_PUBLIC_API_URL ??
-  "http://localhost:4000";
+warnIfNoPersistenceChannel();
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const LEADS_EMAIL = process.env.LEADS_EMAIL ?? CONTACT_EMAIL;
 const RESEND_FROM =
   process.env.RESEND_FROM ?? "Transmeet <noreply@trans-meet.com>";
-
-if (process.env.VERCEL === "1" && !process.env.API_URL && !process.env.NEXT_PUBLIC_API_URL) {
-  console.error(
-    "[Leads] Définir API_URL ou NEXT_PUBLIC_API_URL (URL publique Fastify/Railway). Sinon les leads ne s'enregistrent pas."
-  );
-}
 
 function formatValue(v: unknown): string {
   if (Array.isArray(v)) {
@@ -157,10 +139,7 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    const savedToApi = await saveLeadToApi(payload);
-    const savedDirect =
-      !savedToApi && (await saveLeadDirectToDb(payload));
-    const saved = savedToApi || savedDirect;
+    const { ok: saved } = await persistLead(payload);
 
     if (process.env.LEADS_WEBHOOK_URL) {
       fireWebhook(process.env.LEADS_WEBHOOK_URL, payload);
@@ -188,67 +167,6 @@ export async function POST(request: NextRequest) {
   }
 }
 
-/** Enregistre la lead en base via l'API Fastify (bloquant). */
-async function saveLeadToApi(payload: Record<string, unknown>): Promise<boolean> {
-  try {
-    const res = await fetch(`${API_BASE}/api/v1/leads`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    if (!res.ok) {
-      const detail = await res.text().catch(() => "");
-      console.error(
-        "[Leads] Sauvegarde API échouée. Status:",
-        res.status,
-        detail.slice(0, 500)
-      );
-      return false;
-    }
-    return true;
-  } catch (err) {
-    console.error("[Leads] Exception lors de la sauvegarde API:", err);
-    return false;
-  }
-}
-
-/**
- * Si l'API Fastify est injoignable (ex. NEXT_PUBLIC_API_URL absent sur Vercel)
- * mais que DATABASE_URL est défini sur le projet Next, enregistrement direct.
- */
-async function saveLeadDirectToDb(
-  payload: Record<string, unknown>
-): Promise<boolean> {
-  try {
-    const parsed = leadSchema.parse(payload);
-    const { type, name, email, phone, company, message, ...metadata } = parsed;
-    const cleanName = name?.trim() || undefined;
-    const cleanEmail = email?.trim() || undefined;
-
-    await prisma.lead.create({
-      data: {
-        type: type as LeadType,
-        name: cleanName,
-        email: cleanEmail,
-        phone: phone?.trim() || undefined,
-        company: company?.trim() || undefined,
-        message: message?.trim() || undefined,
-        metadata: Object.keys(metadata).length ? metadata : undefined,
-      },
-    });
-    console.info("[Leads] Lead enregistrée via Prisma (fallback direct)");
-    return true;
-  } catch (err) {
-    if (err instanceof z.ZodError) {
-      console.warn("[Leads] Validation (fallback):", err.flatten());
-    } else {
-      console.error("[Leads] Sauvegarde Prisma directe échouée:", err);
-    }
-    return false;
-  }
-}
-
-/** Fire-and-forget : webhook vers Zapier/Make (non-bloquant). */
 function fireWebhook(url: string, payload: Record<string, unknown>): void {
   fetch(url, {
     method: "POST",
