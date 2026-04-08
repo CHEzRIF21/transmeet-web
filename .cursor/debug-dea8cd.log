@@ -1,0 +1,3 @@
+{"sessionId":"dea8cd","location":"persistLead.ts:52","message":"persistLead entry","data":{"isCloud":false,"hasRemoteApi":false,"apiBase":"http://localhost:4000","hasServiceKey":true,"hasSupaUrl":true,"hasDbUrl":false},"timestamp":1775682612437,"runId":"run1","hypothesisId":"H-A,H-B"}
+{"sessionId":"dea8cd","location":"persistLead.ts:55","message":"supabase channel succeeded","data":{},"timestamp":1775682614681,"runId":"run1","hypothesisId":"H-B"}
+{"sessionId":"dea8cd","location":"route.ts:POST","message":"persistLead result","data":{"saved":true,"channel":"supabase"},"timestamp":1775682614683,"runId":"run1","hypothesisId":"H-A,H-B"}

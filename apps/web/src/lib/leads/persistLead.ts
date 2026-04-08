@@ -49,7 +49,13 @@ export type PersistChannel = "api" | "supabase" | "prisma";
 export async function persistLead(
   payload: Record<string, unknown>
 ): Promise<{ ok: boolean; channel: PersistChannel | null }> {
+  // #region agent log
+  fetch('http://127.0.0.1:7827/ingest/59510182-c97c-42b6-999a-2373f6ab8e45',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'dea8cd'},body:JSON.stringify({sessionId:'dea8cd',location:'persistLead.ts:52',message:'persistLead entry',data:{isCloud:isCloudRuntime(),hasRemoteApi:hasRemoteApiUrl(),apiBase:getApiBaseUrl(),hasServiceKey:!!getServiceRoleKey(),hasSupaUrl:!!getSupabaseProjectUrl(),hasDbUrl:!!process.env.DATABASE_URL?.trim(),VERCEL:process.env.VERCEL,VERCEL_ENV:process.env.VERCEL_ENV},timestamp:Date.now(),runId:'run1',hypothesisId:'H-A,H-B'})}).catch(()=>{});
+  // #endregion
   if (await saveLeadViaSupabase(payload)) {
+    // #region agent log
+    fetch('http://127.0.0.1:7827/ingest/59510182-c97c-42b6-999a-2373f6ab8e45',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'dea8cd'},body:JSON.stringify({sessionId:'dea8cd',location:'persistLead.ts:55',message:'supabase channel succeeded',data:{},timestamp:Date.now(),runId:'run1',hypothesisId:'H-B'})}).catch(()=>{});
+    // #endregion
     return { ok: true, channel: "supabase" };
   }
   if (await saveLeadToApi(payload)) {
@@ -58,6 +64,9 @@ export async function persistLead(
   if (await saveLeadDirectToDb(payload)) {
     return { ok: true, channel: "prisma" };
   }
+  // #region agent log
+  fetch('http://127.0.0.1:7827/ingest/59510182-c97c-42b6-999a-2373f6ab8e45',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'dea8cd'},body:JSON.stringify({sessionId:'dea8cd',location:'persistLead.ts:68',message:'ALL channels failed',data:{},timestamp:Date.now(),runId:'run1',hypothesisId:'H-A,H-B,H-C'})}).catch(()=>{});
+  // #endregion
   return { ok: false, channel: null };
 }
 
@@ -76,6 +85,9 @@ export function warnIfNoPersistenceChannel(): void {
 
 async function saveLeadToApi(payload: Record<string, unknown>): Promise<boolean> {
   const apiBase = getApiBaseUrl();
+  // #region agent log
+  fetch('http://127.0.0.1:7827/ingest/59510182-c97c-42b6-999a-2373f6ab8e45',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'dea8cd'},body:JSON.stringify({sessionId:'dea8cd',location:'persistLead.ts:saveLeadToApi',message:'API channel attempt',data:{apiBase,isCloud:isCloudRuntime(),isLoopback:isLoopbackUrl(apiBase),hasRemote:hasRemoteApiUrl()},timestamp:Date.now(),runId:'run1',hypothesisId:'H-A'})}).catch(()=>{});
+  // #endregion
   if (isCloudRuntime() && isLoopbackUrl(apiBase)) {
     console.warn(
       "[Leads] API Fastify ignorée : l’URL de l’API est localhost — sur Vercel, utilisez l’URL publique (Railway, etc.), pas une copie de .env.local."
@@ -180,6 +192,9 @@ async function saveLeadViaSupabase(
 async function saveLeadDirectToDb(
   payload: Record<string, unknown>
 ): Promise<boolean> {
+  // #region agent log
+  fetch('http://127.0.0.1:7827/ingest/59510182-c97c-42b6-999a-2373f6ab8e45',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'dea8cd'},body:JSON.stringify({sessionId:'dea8cd',location:'persistLead.ts:saveLeadDirectToDb',message:'Prisma channel attempt',data:{hasDbUrl:!!process.env.DATABASE_URL?.trim()},timestamp:Date.now(),runId:'run1',hypothesisId:'H-C'})}).catch(()=>{});
+  // #endregion
   if (!process.env.DATABASE_URL?.trim()) {
     return false;
   }

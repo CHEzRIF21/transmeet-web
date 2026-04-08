@@ -1,0 +1,18 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:3000",
+  "executionArgs": {
+    "projectName": "TRANSMEET",
+    "projectPath": "c:\\Users\\Mustafa\\Desktop\\TRANSMEET",
+    "testIds": [],
+    "additionalInstruction": "Prioritize tests for /contact lead form POST /api/leads success, registration flow at /register and /register/verify, and login at /login. Verify success messages and no console errors after form submit.",
+    "serverMode": "production",
+    "envs": {
+      "API_KEY": "sk-user-U5mj7HZc21xoTEg-x7lja39x-PGKeNl7UbR0UKWjrbBN8SBNm7B52qBiGgGZpA1ox-zHkcvKTwh9qvT-aIC5l7f_xtAURyTXk2sbkzhPuaQBPsylN3GjXYCa1Cr4JewG68E"
+    }
+  },
+  "serverPort": 58605,
+  "proxy": "http://fdd06e38-0627-49e6-a1ed-c062b98379ae:0sruh4SIRn6GTrh9svxvih2r8T5RkaQ8@tun.testsprite.com:8080"
+}

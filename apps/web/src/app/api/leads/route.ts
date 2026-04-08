@@ -139,7 +139,10 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    const { ok: saved } = await persistLead(payload);
+    const { ok: saved, channel } = await persistLead(payload);
+    // #region agent log
+    fetch('http://127.0.0.1:7827/ingest/59510182-c97c-42b6-999a-2373f6ab8e45',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'dea8cd'},body:JSON.stringify({sessionId:'dea8cd',location:'route.ts:POST',message:'persistLead result',data:{saved,channel},timestamp:Date.now(),runId:'run1',hypothesisId:'H-A,H-B'})}).catch(()=>{});
+    // #endregion
 
     if (process.env.LEADS_WEBHOOK_URL) {
       fireWebhook(process.env.LEADS_WEBHOOK_URL, payload);

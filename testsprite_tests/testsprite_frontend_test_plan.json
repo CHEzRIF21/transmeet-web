@@ -1,0 +1,297 @@
+[
+  {
+    "id": "TC001",
+    "title": "Submit a valid lead enquiry from the contact page",
+    "description": "A visitor can complete the contact form with valid details, submit it, and sees a success confirmation indicating the lead was saved.",
+    "category": "Contact and lead form submission",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to contact the company"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Alex Martin\" into the name field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"alex.martin@example.com\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"+33612345678\" into the phone field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Demande de devis\" into the subject field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Je souhaite obtenir un devis et des informations sur vos services.\" into the message field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a success confirmation is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Avoid duplicate submission via rapid repeated submits",
+    "description": "A visitor rapidly submitting the contact form multiple times results in a single successful submission flow with the UI preventing duplicate submissions.",
+    "category": "Contact and lead form submission",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /contact"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Alex Martin\" into the name field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"alex.martin@example.com\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"+33612345678\" into the phone field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Demande de contact\" into the subject field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Merci de me recontacter.\" into the message field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify only one success confirmation is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Correct validation errors and submit successfully",
+    "description": "A visitor who initially submits invalid contact form data can correct the fields and then submit successfully to see a success confirmation.",
+    "category": "Contact and lead form submission",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /contact"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Alex Martin\" into the name field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"invalid\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"+33612345678\" into the phone field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Demande\" into the subject field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Je souhaite être contacté.\" into the message field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"alex.martin@example.com\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a success confirmation is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Prevent submission when required fields are missing",
+    "description": "A visitor attempting to submit the contact form with missing required fields sees validation errors and the lead is not submitted.",
+    "category": "Contact and lead form submission",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /contact"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Alex Martin\" into the name field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"alex.martin@example.com\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Leave the message field empty"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a required-field validation error is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC005",
+    "title": "Validate email format before allowing submission",
+    "description": "A visitor entering an invalid email in the contact form is shown an email validation error and cannot successfully submit until corrected.",
+    "category": "Contact and lead form submission",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /contact"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Alex Martin\" into the name field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"not-an-email\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"+33612345678\" into the phone field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Question\" into the subject field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Bonjour, j’ai une question.\" into the message field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an email validation error is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC006",
+    "title": "Validate phone format before allowing submission",
+    "description": "A visitor entering an invalid phone number in the contact form is shown a phone validation error and cannot successfully submit until corrected.",
+    "category": "Contact and lead form submission",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /contact"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Alex Martin\" into the name field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"alex.martin@example.com\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"abcdef\" into the phone field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Appel\" into the subject field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Merci de me rappeler.\" into the message field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a phone validation error is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC007",
+    "title": "Accept long message content without breaking submission",
+    "description": "A visitor can submit the contact form with a very long message and still receives a success confirmation if the data is valid.",
+    "category": "Contact and lead form submission",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /contact"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Alex Martin\" into the name field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"alex.martin@example.com\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"+33612345678\" into the phone field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Demande détaillée\" into the subject field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\" into the message field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a success confirmation is visible"
+      }
+    ],
+    "priority": "Low"
+  }
+]
