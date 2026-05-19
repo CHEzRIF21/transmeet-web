@@ -110,8 +110,10 @@ export async function POST(request: NextRequest) {
   try {
     const payload = (await request.json()) as Record<string, unknown>;
 
+    let emailSent = false;
+
     if (!RESEND_API_KEY) {
-      console.warn("[Leads] RESEND_API_KEY absente — notification email ignorée (optionnel)");
+      console.warn("[Leads] RESEND_API_KEY absente — notification email ignorée");
     } else {
       try {
         const resend = new Resend(RESEND_API_KEY);
@@ -130,25 +132,29 @@ export async function POST(request: NextRequest) {
         });
 
         if (error) {
-          console.warn("[Resend] Email non envoyé (optionnel):", JSON.stringify(error));
+          console.warn("[Resend] Email non envoyé:", JSON.stringify(error));
         } else {
+          emailSent = true;
           console.info("[Resend] Email envoyé, id:", data?.id);
         }
       } catch (err) {
-        console.warn("[Resend] Exception (email optionnel):", err);
+        console.warn("[Resend] Exception:", err);
       }
     }
 
     const { ok: saved, channel } = await persistLead(payload);
-    // #region agent log
-    fetch('http://127.0.0.1:7827/ingest/59510182-c97c-42b6-999a-2373f6ab8e45',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'dea8cd'},body:JSON.stringify({sessionId:'dea8cd',location:'route.ts:POST',message:'persistLead result',data:{saved,channel},timestamp:Date.now(),runId:'run1',hypothesisId:'H-A,H-B'})}).catch(()=>{});
-    // #endregion
+
+    if (saved) {
+      console.info(`[Leads] Persisté via ${channel}`);
+    } else {
+      console.warn("[Leads] Aucun canal de persistence n'a fonctionné");
+    }
 
     if (process.env.LEADS_WEBHOOK_URL) {
       fireWebhook(process.env.LEADS_WEBHOOK_URL, payload);
     }
 
-    if (saved) {
+    if (saved || emailSent) {
       return NextResponse.json({
         success: true,
         message: "Votre demande a bien été envoyée. Nous vous recontacterons rapidement.",

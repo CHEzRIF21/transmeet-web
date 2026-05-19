@@ -74,9 +74,6 @@ export function TrackingContent({ missionId }: TrackingContentProps) {
   const originCity = m?.request?.originCity ?? "Cotonou";
   const destCity = m?.request?.destCity ?? "Lomé";
 
-  const ORIGIN: LatLng = { lat: 6.357, lng: 2.442 };
-  const DEST: LatLng = { lat: 6.1256, lng: 1.2222 };
-
   useEffect(() => {
     if (positions.length > 0) {
       const last = positions[positions.length - 1] as {

@@ -5434,3 +5434,15 @@
 {"timestamp":"2026-04-08T21:10:30.649Z","level":"info","message":"🔚 [Proxy-227] Local closed after 60587ms (transferred: 457940→2583 bytes)","context":{"tunnelVersion":"1"}}
 {"timestamp":"2026-04-08T21:10:32.085Z","level":"info","message":"🔚 [Proxy-228] Remote closed after 60642ms (transferred: 457941→2615 bytes)","context":{"tunnelVersion":"1"}}
 {"timestamp":"2026-04-08T21:10:32.392Z","level":"info","message":"🔚 [Proxy-228] Local closed after 60949ms (transferred: 457941→2615 bytes)","context":{"tunnelVersion":"1"}}
+{"timestamp":"2026-04-08T21:11:19.087Z","level":"info","message":"🔚 [Proxy-235] Remote closed after 60515ms (transferred: 8666→2556 bytes)","context":{"tunnelVersion":"1"}}
+{"timestamp":"2026-04-08T21:11:19.088Z","level":"info","message":"🔚 [Proxy-234] Remote closed after 60622ms (transferred: 8665→2524 bytes)","context":{"tunnelVersion":"1"}}
+{"timestamp":"2026-04-08T21:11:19.290Z","level":"info","message":"🔚 [Proxy-235] Local closed after 60718ms (transferred: 8666→2556 bytes)","context":{"tunnelVersion":"1"}}
+{"timestamp":"2026-04-08T21:11:19.291Z","level":"info","message":"🔚 [Proxy-234] Local closed after 60825ms (transferred: 8665→2524 bytes)","context":{"tunnelVersion":"1"}}
+{"timestamp":"2026-04-08T21:11:21.647Z","level":"info","message":"🔚 [Proxy-236] Remote closed after 60518ms (transferred: 457941→2679 bytes)","context":{"tunnelVersion":"1"}}
+{"timestamp":"2026-04-08T21:11:21.747Z","level":"info","message":"🔚 [Proxy-236] Local closed after 60618ms (transferred: 457941→2679 bytes)","context":{"tunnelVersion":"1"}}
+{"timestamp":"2026-04-08T21:11:22.366Z","level":"info","message":"🔚 [Proxy-237] Remote closed after 60623ms (transferred: 457941→2583 bytes)","context":{"tunnelVersion":"1"}}
+{"timestamp":"2026-04-08T21:11:22.467Z","level":"info","message":"🔚 [Proxy-237] Local closed after 60724ms (transferred: 457941→2583 bytes)","context":{"tunnelVersion":"1"}}
+{"timestamp":"2026-04-08T21:12:50.065Z","level":"info","message":"Test execution completed","context":{"projectId":"a3f64180-0cd8-40be-85b9-b2091efea7fd","totalTests":7}}
+{"timestamp":"2026-04-08T21:12:50.084Z","level":"info","message":"Tunnel has been closed."}
+{"timestamp":"2026-04-08T21:12:50.081Z","level":"info","message":"HTTP proxy stopped"}
+{"timestamp":"2026-04-08T21:12:50.097Z","level":"info","message":"🔌 Control connection closed. Was connected: true, Total connections handled: 237","context":{"tunnelVersion":"1"}}

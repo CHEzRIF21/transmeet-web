@@ -78,27 +78,27 @@ export function PublicFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/#qui-sommes-nous" className="text-white/70 hover:text-white transition-colors">
+                <Link href="/qui-sommes-nous" className="text-white/70 hover:text-white transition-colors">
                   Qui sommes-nous
                 </Link>
               </li>
               <li>
-                <Link href="/#expediteurs" className="text-white/70 hover:text-white transition-colors">
+                <Link href="/expediteurs" className="text-white/70 hover:text-white transition-colors">
                   Expéditeurs
                 </Link>
               </li>
               <li>
-                <Link href="/#transporteurs" className="text-white/70 hover:text-white transition-colors">
+                <Link href="/transporteurs" className="text-white/70 hover:text-white transition-colors">
                   Transporteurs
                 </Link>
               </li>
               <li>
-                <Link href="/#btp" className="text-white/70 hover:text-white transition-colors">
+                <Link href="/btp" className="text-white/70 hover:text-white transition-colors">
                   BTP
                 </Link>
               </li>
               <li>
-                <Link href="/#contact" className="text-white/70 hover:text-white transition-colors">
+                <Link href="/contact" className="text-white/70 hover:text-white transition-colors">
                   Contact
                 </Link>
               </li>
@@ -138,6 +138,7 @@ export function PublicFooter() {
       </div>
       <div className="border-t border-white/10 py-4 text-center text-xs text-white/50">
         © {new Date().getFullYear()} Transmeet. Tous droits réservés.
+        <span className="text-white/35">, développé CHEzRIF Agency</span>
       </div>
     </footer>
   );

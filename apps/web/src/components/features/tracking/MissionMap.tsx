@@ -124,6 +124,9 @@ export function MissionMap({
       truckMarkerRef.current = null;
       polylineRef.current = null;
     };
+    // Truck marker and polyline are updated in the effect below; including truckPosition
+    // here would tear down and recreate the map on every GPS tick.
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- sync truck via separate effect
   }, [origin.lat, origin.lng, destination.lat, destination.lng]);
 
   useEffect(() => {

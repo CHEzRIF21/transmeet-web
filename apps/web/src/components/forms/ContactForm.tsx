@@ -13,7 +13,10 @@ import { Textarea } from "@/components/ui/textarea";
 const schema = z.object({
   name: z.string().min(2, "Nom requis"),
   email: z.string().email("Email invalide"),
-  phone: z.string().min(6, "Téléphone requis").optional(),
+  phone: z.preprocess(
+    (v) => (typeof v === "string" && v.trim() === "" ? undefined : v),
+    z.string().min(6, "Numéro trop court").optional()
+  ),
   subject: z.string().min(2, "Sujet requis"),
   message: z.string().min(5, "Message trop court"),
 });

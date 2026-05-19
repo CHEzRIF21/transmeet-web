@@ -108,6 +108,7 @@ export function Footer() {
         </div>
         <div className="mt-12 border-t border-white/10 pt-8 text-center text-sm text-white/60">
           &copy; {new Date().getFullYear()} Transmeet. Tous droits réservés.
+          <span className="text-white/40">, développé CHEzRIF Agency</span>
         </div>
       </div>
     </footer>

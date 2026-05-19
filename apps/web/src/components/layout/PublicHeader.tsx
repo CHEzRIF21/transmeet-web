@@ -19,11 +19,11 @@ import { WHATSAPP_NUMBER } from "@/lib/config";
 
 const NAV_ITEMS = [
   { href: "/", label: "Accueil" },
-  { href: "/#qui-sommes-nous", label: "Qui sommes-nous" },
-  { href: "/#expediteurs", label: "Expéditeurs" },
-  { href: "/#transporteurs", label: "Transporteurs" },
-  { href: "/#btp", label: "BTP" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/qui-sommes-nous", label: "Qui sommes-nous" },
+  { href: "/expediteurs", label: "Expéditeurs" },
+  { href: "/transporteurs", label: "Transporteurs" },
+  { href: "/btp", label: "BTP" },
+  { href: "/contact", label: "Contact" },
 ];
 
 const SECTION_IDS = [
@@ -77,17 +77,6 @@ function useScrollSpy(sectionIds: readonly string[]) {
   return activeId;
 }
 
-function usePathnameAndHash() {
-  const pathname = usePathname();
-  const [hash, setHash] = useState("");
-  useEffect(() => {
-    setHash(typeof window !== "undefined" ? window.location.hash : "");
-    const onHashChange = () => setHash(window.location.hash);
-    window.addEventListener("hashchange", onHashChange);
-    return () => window.removeEventListener("hashchange", onHashChange);
-  }, []);
-  return { pathname, hash };
-}
 
 function NavLink({
   href,
@@ -138,36 +127,19 @@ function NavLink({
   );
 }
 
-const HREF_TO_PAGE: Record<string, string> = {
-  "/#qui-sommes-nous": "/qui-sommes-nous",
-  "/#expediteurs": "/expediteurs",
-  "/#transporteurs": "/transporteurs",
-  "/#btp": "/btp",
-  "/#contact": "/contact",
-};
-
 function getIsActive(
   href: string,
   pathname: string,
-  hash: string,
+  _hash: string,
   activeScrollId: string
 ): boolean {
   if (href === "/")
-    return pathname === "/" && !activeScrollId && !hash;
-  if (href.startsWith("/#")) {
-    const sectionId = href.slice(2); // href is "/#qui-sommes-nous", sectionId = "qui-sommes-nous"
-    const matchOnHome =
-      pathname === "/" &&
-      (activeScrollId === sectionId ||
-        (hash === "#" + sectionId && !activeScrollId));
-    const matchOnPage = HREF_TO_PAGE[href] && pathname === HREF_TO_PAGE[href];
-    return matchOnHome || !!matchOnPage;
-  }
-  return pathname.startsWith(href);
+    return pathname === "/" && !activeScrollId;
+  return pathname === href || pathname.startsWith(href + "/");
 }
 
 export function PublicHeader() {
-  const { pathname, hash } = usePathnameAndHash();
+  const pathname = usePathname();
   const activeScrollId = useScrollSpy(SECTION_IDS);
   return (
     <header className="sticky top-0 z-40 w-full min-w-0 max-w-[100vw] overflow-visible bg-[#012767] shadow-lg shadow-[#012767]/20">
@@ -202,7 +174,7 @@ export function PublicHeader() {
               key={item.href}
               href={item.href}
               label={item.label}
-              isActive={getIsActive(item.href, pathname, hash, activeScrollId)}
+              isActive={getIsActive(item.href, pathname, "", activeScrollId)}
             />
           ))}
         </nav>
@@ -261,7 +233,7 @@ export function PublicHeader() {
                   <NavLink
                     href={item.href}
                     label={item.label}
-                    isActive={getIsActive(item.href, pathname, hash, activeScrollId)}
+                    isActive={getIsActive(item.href, pathname, "", activeScrollId)}
                     variant="mobile"
                     className="block rounded-md px-3 py-2.5 text-base text-white/70 hover:bg-white/10 hover:text-white"
                   />

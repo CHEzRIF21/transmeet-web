@@ -16,8 +16,9 @@ FROM information_schema.columns
 WHERE table_schema = 'public' AND table_name = 'leads'
 ORDER BY ordinal_position;
 
--- La clé service_role Supabase contourne RLS : les INSERT depuis Next.js (SUPABASE_SERVICE_ROLE_KEY) fonctionnent
--- même si RLS est activé sur public.leads.
+-- RLS : si des erreurs PostgREST/anon persistent, appliquer aussi
+-- scripts/sql/supabase_leads_rls_policies.sql dans le SQL Editor Supabase.
+-- La clé service_role contourne RLS pour les INSERT serveur (SUPABASE_SERVICE_ROLE_KEY).
 
 -- Migration `lead_name_email_optional` (colonnes name/email nullable) : appliquée sur Supabase via MCP si besoin.
 -- Pour aligner l’historique Prisma local avec la base :
